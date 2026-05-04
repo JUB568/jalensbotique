@@ -30,35 +30,103 @@ Public Class Form1
     New TailoringService With {.CatalogID = 7, .ServiceName = "Lengthen Hem", .Description = "Add fabric to hem", .BasePrice = 220D, .EstimatedTime = "2 days"}
 }
 
-    Private ServiceRequirements As New Dictionary(Of Integer, List(Of ServiceRequirement))
+    Private ServiceRequirements As New Dictionary(Of String, Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))))
+
 
     Private Sub InitializeServiceRequirements()
-        ServiceRequirements = New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-        {1, New List(Of ServiceRequirement) From {  ' Hemming Pants (ID 1)
-            New ServiceRequirement With {.CatalogID = 1, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"},
-            New ServiceRequirement With {.CatalogID = 1, .MaterialID = 5, .MaterialName = "Fabric Patch Cotton", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
+        ServiceRequirements = New Dictionary(Of String, Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement)))) From {
+        {"Pants", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
+            {"Cotton", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {1, New List(Of ServiceRequirement) From {  ' Hemming Pants
+                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"},
+                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 7, .MaterialName = "Cotton Fabric Patch", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
+                }},
+                {2, New List(Of ServiceRequirement) From {  ' Zipper Replacement (Pants only)
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+                }}
+            }},
+            {"Denim", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {1, New List(Of ServiceRequirement) From {  ' Hemming Pants
+                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"},
+                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 8, .MaterialName = "Denim Patch Material", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
+                }},
+                {2, New List(Of ServiceRequirement) From {  ' Zipper Replacement
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }},
+            {"Gabardine", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {1, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
+                }},
+                {2, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }}
         }},
-        {2, New List(Of ServiceRequirement) From {  ' Zipper Replacement (ID 3)
-            New ServiceRequirement With {.CatalogID = 2, .MaterialID = 3, .MaterialName = "Zipper 7 Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
-            New ServiceRequirement With {.CatalogID = 2, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+        {"Top", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
+            {"Cotton", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {3, New List(Of ServiceRequirement) From {  ' Button Replacement (Tops only)
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+                }},
+                {6, New List(Of ServiceRequirement) From {  ' Shorten Sleeves (Tops only)
+                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }},
+            {"Silk", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {3, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+                }},
+                {6, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 2, .UnitMeasure = "rolls"},
+                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 10, .MaterialName = "Silk Fabric Patch", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
+                }}
+            }},
+            {"Polyester", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {3, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
+                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 2, .MaterialName = "Polyester Thread Black", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+                }},
+                {6, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 2, .MaterialName = "Polyester Thread Black", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }}
         }},
-        {3, New List(Of ServiceRequirement) From {  ' Button Replacement (ID 4)
-            New ServiceRequirement With {.CatalogID = 3, .MaterialID = 4, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
-            New ServiceRequirement With {.CatalogID = 3, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
+        {"Dress", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
+            {"Silk", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {4, New List(Of ServiceRequirement) From {  ' Taking In Waist (Dress)
+                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
+                }},
+                {7, New List(Of ServiceRequirement) From {  ' Lengthen Hem (Dress)
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 15, .MaterialName = "Silk Fabric Roll", .DefaultQuantity = 1, .UnitMeasure = "yards"},
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }},
+            {"Linen", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {4, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
+                }},
+                {7, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 17, .MaterialName = "Linen Fabric Roll", .DefaultQuantity = 2, .UnitMeasure = "yards"},
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }}
         }},
-        {4, New List(Of ServiceRequirement) From {  ' Taking In Waist
-            New ServiceRequirement With {.CatalogID = 4, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
-        }},
-        {5, New List(Of ServiceRequirement) From {  ' Tapering Legs
-            New ServiceRequirement With {.CatalogID = 5, .MaterialID = 2, .MaterialName = "Polyester Thread Black", .DefaultQuantity = 4, .UnitMeasure = "rolls"},
-            New ServiceRequirement With {.CatalogID = 5, .MaterialID = 6, .MaterialName = "Denim Patch Material", .DefaultQuantity = 2, .UnitMeasure = "pieces"}
-        }},
-        {6, New List(Of ServiceRequirement) From {  ' Shorten Sleeves
-            New ServiceRequirement With {.CatalogID = 6, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-        }},
-        {7, New List(Of ServiceRequirement) From {  ' Lengthen Hem
-            New ServiceRequirement With {.CatalogID = 7, .MaterialID = 5, .MaterialName = "Fabric Patch Cotton", .DefaultQuantity = 3, .UnitMeasure = "pieces"},
-            New ServiceRequirement With {.CatalogID = 7, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+        {"Suit", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
+            {"Twill", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
+                {4, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"},
+                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 11, .MaterialName = "Interfacing Cloth", .DefaultQuantity = 1, .UnitMeasure = "meters"}
+                }},
+                {7, New List(Of ServiceRequirement) From {
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 16, .MaterialName = "Twill Fabric Roll", .DefaultQuantity = 2, .UnitMeasure = "yards"},
+                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
+                }}
+            }}
         }}
     }
     End Sub
@@ -1753,11 +1821,54 @@ Public Class Form1
         Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
         If service Is Nothing Then Return
 
-        Dim requirements = ServiceRequirements.GetValueOrDefault(service.CatalogID, New List(Of ServiceRequirement))
+        Dim clothesDetails = GetSelectedClothesDetails()
+        Dim requirements As List(Of ServiceRequirement) = New List(Of ServiceRequirement)
 
-        ' ✅ ENHANCED: Show actual stock availability
+        ' 🔍 Priority 1: Category + Fabric specific
+        If ServiceRequirements.ContainsKey(clothesDetails.Category) AndAlso
+       ServiceRequirements(clothesDetails.Category).ContainsKey(clothesDetails.FabricType) AndAlso
+       ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType).ContainsKey(service.CatalogID) Then
+
+            requirements = ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType)(service.CatalogID)
+
+            ' 🔍 Priority 2: Category + Any Fabric
+        ElseIf ServiceRequirements.ContainsKey(clothesDetails.Category) Then
+            Dim categoryDict = ServiceRequirements(clothesDetails.Category)
+            Dim fabricDict = categoryDict.Values.FirstOrDefault(Function(d) d.ContainsKey(service.CatalogID))
+            If fabricDict IsNot Nothing Then
+                requirements = fabricDict(service.CatalogID)
+            End If
+
+            ' 🔍 Priority 3: Any Category + Fabric
+        Else
+            For Each categoryDict In ServiceRequirements.Values
+                Dim fabricDict = categoryDict.Values.FirstOrDefault(Function(d) d.ContainsKey(service.CatalogID))
+                If fabricDict IsNot Nothing Then
+                    requirements = fabricDict(service.CatalogID)
+                    Exit For
+                End If
+            Next
+        End If
+
+        If requirements.Count = 0 Then
+            TailoringMaterialsDGV.DataSource = Nothing
+            TailoringMaterialsDGV.Columns.Clear()
+
+            ' Add columns first, then rows
+            TailoringMaterialsDGV.Columns.Add("MaterialID", "ID")
+            TailoringMaterialsDGV.Columns.Add("MaterialName", "Material")
+            TailoringMaterialsDGV.Columns.Add("Quantity", "Qty")
+            TailoringMaterialsDGV.Columns.Add("Unit", "Unit")
+            TailoringMaterialsDGV.Columns.Add("Stock", "Stock Status")
+            TailoringMaterialsDGV.Columns.Add("Match", "Match")
+
+            ' Now add the warning row
+            TailoringMaterialsDGV.Rows.Add("", "⚠️ No materials defined for this service + cloth combination", "", "", "CHECK SERVICE COMPATIBILITY", "")
+            Return
+        End If
+
+        ' Show materials with stock status (same as before)
         Dim materialsWithStock = New List(Of Object)
-
         For Each req In requirements
             Dim stockLevel As Integer = 0
             Try
@@ -1765,7 +1876,8 @@ Public Class Form1
                 Dim stockQuery = "SELECT Quantity_in_Stock FROM Materials WHERE Material_ID = @id"
                 cmd = New MySqlCommand(stockQuery, conn)
                 cmd.Parameters.AddWithValue("@id", req.MaterialID)
-                stockLevel = Convert.ToInt32(cmd.ExecuteScalar())
+                Dim result = cmd.ExecuteScalar()
+                stockLevel = If(result IsNot Nothing, Convert.ToInt32(result), 0)
                 CloseConn()
             Catch
                 stockLevel = 0
@@ -1775,7 +1887,7 @@ Public Class Form1
             If stockLevel >= req.DefaultQuantity Then
                 stockStatus = $"✅ IN STOCK ({stockLevel})"
             ElseIf stockLevel > 0 Then
-                stockStatus = $"⚠️ LOW STOCK ({stockLevel}/{req.DefaultQuantity})"
+                stockStatus = $"⚠️ LOW ({stockLevel}/{req.DefaultQuantity})"
             Else
                 stockStatus = "❌ OUT OF STOCK"
             End If
@@ -1786,15 +1898,78 @@ Public Class Form1
             .Default_Quantity = req.DefaultQuantity,
             .Unit_Measure = req.UnitMeasure,
             .Stock_Available = stockLevel,
-            .Stock_Status = stockStatus
+            .Stock_Status = stockStatus,
+            .Category_Match = clothesDetails.Category,
+            .Fabric_Match = clothesDetails.FabricType
         })
         Next
 
+        TailoringMaterialsDGV.Columns.Clear()
         TailoringMaterialsDGV.DataSource = materialsWithStock
+
+        ' Auto-size columns
+        TailoringMaterialsDGV.AutoResizeColumns()
+        TailoringMaterialsDGV.Columns("Material_ID").Visible = False  ' Hide ID column
     End Sub
+
+    Private Function GetSelectedClothesDetails() As (Category As String, FabricType As String)
+        If isCustomerOwnedMode Then
+            ' Parse customer description for category hints
+            Dim desc = TailoringCustomerClothesTB.Text.ToLower()
+            Dim category = "Top" ' Default
+            If desc.Contains("pants") Or desc.Contains("slacks") Or desc.Contains("jeans") Then
+                category = "Pants"
+            ElseIf desc.Contains("dress") Or desc.Contains("terno") Then
+                category = "Dress"
+            ElseIf desc.Contains("suit") Or desc.Contains("uniform") Then
+                category = "Suit"
+            End If
+            Return (category, "Cotton") ' Default fabric for customer-owned
+        End If
+
+        If TailoringClothesCMB.SelectedValue IsNot Nothing Then
+            Try
+                OpenConn()
+                Dim query = "SELECT Category, Fabric_Type FROM Clothes WHERE Clothes_ID = @id"
+                cmd = New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@id", TailoringClothesCMB.SelectedValue)
+                Using reader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        Dim category = reader("Category").ToString()
+                        Dim fabric = If(IsDBNull(reader("Fabric_Type")), "Cotton", reader("Fabric_Type").ToString())
+                        CloseConn()
+                        Return (category, fabric)
+                    End If
+                End Using
+                CloseConn()
+            Catch
+                ' Fallback
+            End Try
+        End If
+        Return ("Top", "Cotton") ' Ultimate fallback
+    End Function
 
     ' Create Request
     Private Sub CreateTailoringRequestBTN_Click(sender As Object, e As EventArgs) Handles CreateTailoringRequestBTN.Click
+        ' 🆕 VALIDATE SERVICE COMPATIBILITY
+        Dim clothesDetails = GetSelectedClothesDetails()
+        Dim serviceName = TailoringTypeCMB.Text
+        Dim tailoringService = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = TailoringTypeCMB.Text)
+
+        ' Block incompatible services
+        Dim incompatibleServices = {
+            ("Pants", "Shorten Sleeves"), ("Pants", "Button Replacement"),
+            ("Top", "Zipper Replacement"), ("Dress", "Button Replacement"),
+            ("Suit", "Zipper Replacement")
+}
+
+        For Each invalid In incompatibleServices
+            If clothesDetails.Category = invalid.Item1 AndAlso serviceName.Contains(invalid.Item2) Then
+                MessageBox.Show($"❌ '{serviceName}' not available for {clothesDetails.Category}!", "Service Incompatible")
+                Return
+            End If
+        Next
+
         If TailoringCustomerCMB.SelectedIndex = -1 OrElse String.IsNullOrEmpty(TailoringTypeCMB.Text) Then
             MessageBox.Show("⚠️ Select Customer + Service Type")
             Return
@@ -1826,7 +2001,7 @@ Public Class Form1
             cmd.Parameters.AddWithValue("@customerId", TailoringCustomerCMB.SelectedValue)
             cmd.Parameters.AddWithValue("@clothesId", If(isCustomerOwnedMode, DBNull.Value, TailoringClothesCMB.SelectedValue))
             cmd.Parameters.AddWithValue("@isOwned", If(isCustomerOwnedMode, 1, 0))
-            cmd.Parameters.AddWithValue("@employeeId", TailoringEmployeeCMB.SelectedValue)  ' ✅ ADD EMPLOYEE
+            cmd.Parameters.AddWithValue("@employeeId", TailoringEmployeeCMB.SelectedValue)
 
             cmd.ExecuteNonQuery()
 
@@ -1839,21 +2014,18 @@ Public Class Form1
             End If
 
             ' 🔥 NEW: AUTO-DEDUCT MATERIALS FROM STOCK
-            Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = TailoringTypeCMB.Text)
-            If service IsNot Nothing Then
-                Dim requirements = ServiceRequirements.GetValueOrDefault(service.CatalogID, New List(Of ServiceRequirement))
+            If tailoringService IsNot Nothing Then  ' ✅ Fixed: Use consistent variable name
+                Dim requirements = GetCurrentServiceRequirements(tailoringService.CatalogID)  ' ✅ Fixed: Use tailoringService
                 Dim serviceId As Integer = Convert.ToInt32(cmd.LastInsertedId)
 
                 For Each req In requirements
                     Try
-                        ' 1. Deduct from Materials stock
                         Dim deductQuery = "UPDATE Materials SET Quantity_in_Stock = GREATEST(0, Quantity_in_Stock - @qty) WHERE Material_ID = @materialId"
                         cmd = New MySqlCommand(deductQuery, conn)
                         cmd.Parameters.AddWithValue("@qty", req.DefaultQuantity)
                         cmd.Parameters.AddWithValue("@materialId", req.MaterialID)
                         cmd.ExecuteNonQuery()
 
-                        ' 2. Record in Required_Materials table (for audit trail)
                         Dim recordQuery = "INSERT INTO Required_Materials (Tailoring_Services_ID, Material_ID, Quantity_Used, Unit_Measure_Used) VALUES (@serviceId, @materialId, @qty, @unit)"
                         cmd = New MySqlCommand(recordQuery, conn)
                         cmd.Parameters.AddWithValue("@serviceId", serviceId)
@@ -1870,10 +2042,10 @@ Public Class Form1
             End If
 
             MessageBox.Show("✅ Tailoring request created!" & vbCrLf &
-                   $"💰 ₱" & TailoringPriceTB.Text & vbCrLf &
-                   $"👷 Assigned: " & TailoringEmployeeCMB.Text & vbCrLf &
-                   $"📦 " & If(isCustomerOwnedMode, "👕 CUSTOMER-OWNED", "👗 SHOP INVENTORY"),
-                   "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+               $"💰 ₱" & TailoringPriceTB.Text & vbCrLf &
+               $"👷 Assigned: " & TailoringEmployeeCMB.Text & vbCrLf &
+               $"📦 " & If(isCustomerOwnedMode, "👕 CUSTOMER-OWNED", "👗 SHOP INVENTORY"),
+               "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ClearTailoringFields()
             LoadTailoringTransactions()
@@ -1886,7 +2058,45 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Function GetCurrentServiceRequirements(catalogId As Integer) As List(Of ServiceRequirement)
+        Dim clothesDetails = GetSelectedClothesDetails()
 
+        ' Priority 1: Exact Category + Fabric match
+        If ServiceRequirements.ContainsKey(clothesDetails.Category) AndAlso
+       ServiceRequirements(clothesDetails.Category).ContainsKey(clothesDetails.FabricType) AndAlso
+       ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType).ContainsKey(catalogId) Then
+            Return ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType)(catalogId)
+        End If
+
+        ' Priority 2: Category match, any fabric
+        If ServiceRequirements.ContainsKey(clothesDetails.Category) Then
+            Dim categoryDict = ServiceRequirements(clothesDetails.Category)
+            For Each fabricDict In categoryDict.Values
+                If fabricDict.ContainsKey(catalogId) Then
+                    Return fabricDict(catalogId)
+                End If
+            Next
+        End If
+
+        ' Priority 3: Any category + fabric match
+        For Each categoryDict In ServiceRequirements.Values
+            If categoryDict.ContainsKey(clothesDetails.FabricType) AndAlso
+           categoryDict(clothesDetails.FabricType).ContainsKey(catalogId) Then
+                Return categoryDict(clothesDetails.FabricType)(catalogId)
+            End If
+        Next
+
+        ' Priority 4: Any category, any fabric
+        For Each categoryDict In ServiceRequirements.Values
+            For Each fabricDict In categoryDict.Values
+                If fabricDict.ContainsKey(catalogId) Then
+                    Return fabricDict(catalogId)
+                End If
+            Next
+        Next
+
+        Return New List(Of ServiceRequirement)()
+    End Function
     Private Sub UpdateTailoringStatusBTN_Click(sender As Object, e As EventArgs) Handles UpdateTailoringStatusBTN.Click
         If TailoringServiceIDTB.Text = "" OrElse String.IsNullOrEmpty(TailoringServiceIDTB.Text) Then
             MessageBox.Show("❌ Select a tailoring transaction first!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -1900,6 +2110,7 @@ Public Class Form1
 
         Dim serviceId As Integer = Convert.ToInt32(TailoringServiceIDTB.Text.Trim())
         Dim newStatus As String = TailoringStatusCMB.SelectedItem.ToString().Trim()
+        Dim fabricType As String = "Cotton"
 
         ' 🔒 TRANSACTION for safety
         Dim transaction As MySqlTransaction = Nothing
@@ -1959,7 +2170,7 @@ Public Class Form1
                     End If
 
                 Case "CANCELLED"
-                    ' 🔥 CANCEL: Return clothes + REFUND materials
+                    ' Return shop clothes to Available
                     If clothesId.HasValue AndAlso Not isCustomerOwned Then
                         Dim updateClothesQuery As String = "UPDATE Clothes SET Status = 'Available' WHERE Clothes_ID = @clothesId"
                         Using cmdClothes = New MySqlCommand(updateClothesQuery, conn, transaction)
@@ -1968,19 +2179,55 @@ Public Class Form1
                         End Using
                     End If
 
-                    ' 💰 REFUND Materials (lookup from your ServiceRequirements)
+                    ' 🔥 FIXED: Fabric-aware material refund
                     Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName.Equals(serviceTypeName, StringComparison.OrdinalIgnoreCase))
                     If service IsNot Nothing Then
-                        Dim requirements = ServiceRequirements.GetValueOrDefault(service.CatalogID, New List(Of ServiceRequirement))
-                        For Each req In requirements
-                            ' REFUND stock
+                        ' Determine fabric type
+                        Dim refundFabricType As String = "Cotton"
+                        If clothesId.HasValue AndAlso Not isCustomerOwned Then
+                            Using cmdFabric = New MySqlCommand("SELECT Fabric_Type FROM Clothes WHERE Clothes_ID = @id", conn, transaction)
+                                cmdFabric.Parameters.AddWithValue("@id", clothesId.Value)
+                                Dim fabricResult = cmdFabric.ExecuteScalar()
+                                If fabricResult IsNot Nothing Then refundFabricType = fabricResult.ToString()
+                            End Using
+                        End If
+
+                        ' Get fabric-specific requirements or fallback
+                        Dim refundRequirements As New List(Of ServiceRequirement)
+                        Dim categoryDict As Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) = Nothing
+                        Dim fabricDict As Dictionary(Of Integer, List(Of ServiceRequirement)) = Nothing
+
+                        If ServiceRequirements.ContainsKey(refundFabricType) Then
+                            categoryDict = ServiceRequirements(refundFabricType)
+                            If categoryDict IsNot Nothing AndAlso categoryDict.ContainsKey(service.CatalogID.ToString()) Then
+                                fabricDict = categoryDict(service.CatalogID.ToString())
+                                If fabricDict IsNot Nothing AndAlso fabricDict.ContainsKey(service.CatalogID) Then
+                                    refundRequirements = fabricDict(service.CatalogID)
+                                End If
+                            End If
+                        End If
+
+                        If refundRequirements.Count = 0 Then
+                            For Each catDict In ServiceRequirements.Values
+                                For Each fabDict In catDict.Values
+                                    If fabDict.ContainsKey(service.CatalogID) Then
+                                        refundRequirements = fabDict(service.CatalogID)
+                                        Exit For
+                                    End If
+                                Next
+                                If refundRequirements.Count > 0 Then Exit For
+                            Next
+                        End If
+
+                        ' Refund each material
+                        For Each req In refundRequirements
                             Dim refundQuery As String = "UPDATE Materials SET Quantity_in_Stock = Quantity_in_Stock + @qty WHERE Material_ID = @materialId"
                             Using cmdRefund = New MySqlCommand(refundQuery, conn, transaction)
                                 cmdRefund.Parameters.AddWithValue("@qty", req.DefaultQuantity)
                                 cmdRefund.Parameters.AddWithValue("@materialId", req.MaterialID)
                                 materialsRefunded += cmdRefund.ExecuteNonQuery()
                             End Using
-                            Debug.WriteLine($"💰 Refunded {req.DefaultQuantity} {req.MaterialName}")
+                            Debug.WriteLine($"💰 Refunded {req.DefaultQuantity} {req.MaterialName} ({refundFabricType})")
                         Next
                     End If
 
