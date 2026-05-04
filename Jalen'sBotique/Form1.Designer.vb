@@ -98,7 +98,6 @@ Partial Class Form1
         TailoringCustomerCMB = New ComboBox()
         TailoringEmployeeCMB = New ComboBox()
         TailoringPriceTB = New TextBox()
-        TailoringPriceLabel = New Label()
         Label54 = New Label()
         Label53 = New Label()
         Label52 = New Label()
@@ -106,6 +105,7 @@ Partial Class Form1
         Label50 = New Label()
         Panel32 = New Panel()
         Label57 = New Label()
+        ReportsPanel = New Panel()
         RentPanel = New Panel()
         RentSearchTB = New TextBox()
         ReturnItemPanel = New Panel()
@@ -295,7 +295,6 @@ Partial Class Form1
         Label93 = New Label()
         Label92 = New Label()
         CustomerDGV = New DataGridView()
-        ReportsPanel = New Panel()
         GunaAreaDataset1 = New Guna.Charts.WinForms.GunaAreaDataset()
         LogInPanel.SuspendLayout()
         overlayPanel.SuspendLayout()
@@ -517,12 +516,12 @@ Partial Class Form1
         ' 
         MainPanel.BackColor = SystemColors.Info
         MainPanel.Controls.Add(TailoringPanel)
+        MainPanel.Controls.Add(ReportsPanel)
         MainPanel.Controls.Add(RentPanel)
         MainPanel.Controls.Add(ClothesPanel)
         MainPanel.Controls.Add(AdminDashboardPanel)
         MainPanel.Controls.Add(MaterialsPanel)
         MainPanel.Controls.Add(CustomerPanel)
-        MainPanel.Controls.Add(ReportsPanel)
         MainPanel.Dock = DockStyle.Fill
         MainPanel.Location = New Point(214, 0)
         MainPanel.Name = "MainPanel"
@@ -631,7 +630,7 @@ Partial Class Form1
         ' TailoringStatusCMB
         ' 
         TailoringStatusCMB.FormattingEnabled = True
-        TailoringStatusCMB.Items.AddRange(New Object() {"Done"})
+        TailoringStatusCMB.Items.AddRange(New Object() {"In Progress", "Completed", "Cancelled"})
         TailoringStatusCMB.Location = New Point(162, 140)
         TailoringStatusCMB.Name = "TailoringStatusCMB"
         TailoringStatusCMB.Size = New Size(121, 23)
@@ -726,7 +725,6 @@ Partial Class Form1
         Panel30.Controls.Add(TailoringCustomerCMB)
         Panel30.Controls.Add(TailoringEmployeeCMB)
         Panel30.Controls.Add(TailoringPriceTB)
-        Panel30.Controls.Add(TailoringPriceLabel)
         Panel30.Controls.Add(Label54)
         Panel30.Controls.Add(Label53)
         Panel30.Controls.Add(Label52)
@@ -816,18 +814,10 @@ Partial Class Form1
         ' 
         TailoringPriceTB.Location = New Point(148, 272)
         TailoringPriceTB.Name = "TailoringPriceTB"
+        TailoringPriceTB.ReadOnly = True
         TailoringPriceTB.Size = New Size(155, 23)
         TailoringPriceTB.TabIndex = 13
-        ' 
-        ' TailoringPriceLabel
-        ' 
-        TailoringPriceLabel.AutoSize = True
-        TailoringPriceLabel.Font = New Font("Segoe UI", 12F)
-        TailoringPriceLabel.Location = New Point(94, 310)
-        TailoringPriceLabel.Name = "TailoringPriceLabel"
-        TailoringPriceLabel.Size = New Size(44, 21)
-        TailoringPriceLabel.TabIndex = 7
-        TailoringPriceLabel.Text = "Price"
+        TailoringPriceTB.TabStop = False
         ' 
         ' Label54
         ' 
@@ -899,6 +889,15 @@ Partial Class Form1
         Label57.Size = New Size(193, 28)
         Label57.TabIndex = 0
         Label57.Text = " TAILORING (ORDER)"
+        ' 
+        ' ReportsPanel
+        ' 
+        ReportsPanel.BackColor = Color.FromArgb(CByte(235), CByte(47), CByte(6))
+        ReportsPanel.Dock = DockStyle.Fill
+        ReportsPanel.Location = New Point(0, 0)
+        ReportsPanel.Name = "ReportsPanel"
+        ReportsPanel.Size = New Size(1380, 796)
+        ReportsPanel.TabIndex = 3
         ' 
         ' RentPanel
         ' 
@@ -2772,15 +2771,6 @@ Partial Class Form1
         CustomerDGV.Size = New Size(1208, 542)
         CustomerDGV.TabIndex = 0
         ' 
-        ' ReportsPanel
-        ' 
-        ReportsPanel.BackColor = Color.FromArgb(CByte(235), CByte(47), CByte(6))
-        ReportsPanel.Dock = DockStyle.Fill
-        ReportsPanel.Location = New Point(0, 0)
-        ReportsPanel.Name = "ReportsPanel"
-        ReportsPanel.Size = New Size(1380, 796)
-        ReportsPanel.TabIndex = 3
-        ' 
         ' GunaAreaDataset1
         ' 
         GunaAreaDataset1.BorderColor = Color.Empty
@@ -2999,7 +2989,6 @@ Partial Class Form1
     Friend WithEvents Panel32 As Panel
     Friend WithEvents Panel33 As Panel
     Friend WithEvents Label56 As Label
-    Friend WithEvents TailoringPriceLabel As Label
     Friend WithEvents Label54 As Label
     Friend WithEvents Label53 As Label
     Friend WithEvents Label52 As Label

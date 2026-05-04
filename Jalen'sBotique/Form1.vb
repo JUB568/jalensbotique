@@ -64,19 +64,6 @@ Public Class Form1
     End Sub
 
 
-
-    Private ReadOnly FabricPricingRules As New Dictionary(Of String, Dictionary(Of String, Decimal)) From {
-    {"Pantalon Hemming", New Dictionary(Of String, Decimal) From {{"Piña", 1.8D}, {"Cotton", 1D}, {"Denim", 1.2D}, {"Polo", 1.1D}}},
-    {"Zipper Palit", New Dictionary(Of String, Decimal) From {{"Cotton", 1D}, {"Piña", 2D}, {"Denim", 1.3D}, {"Katsa", 1.5D}}},
-    {"Button Palit", New Dictionary(Of String, Decimal) From {{"Piña", 1.5D}, {"Cotton", 1D}, {"Polo", 1.1D}}},
-    {"Baywang Tanggal", New Dictionary(Of String, Decimal) From {{"Piña", 2D}, {"Cotton", 1D}, {"Denim", 1.4D}}},
-    {"Pantalon Taper", New Dictionary(Of String, Decimal) From {{"Denim", 1.5D}, {"Cotton", 1D}, {"Piña", 2D}, {"Polo", 1.3D}}},
-    {"Manggas Shorten", New Dictionary(Of String, Decimal) From {{"Piña", 1.6D}, {"Cotton", 1D}, {"Polo", 1.2D}}},
-    {"Basta Lengthen", New Dictionary(Of String, Decimal) From {{"Piña", 2D}, {"Cotton", 1D}, {"Katsa", 1.4D}}},
-    {"Barong Waist In", New Dictionary(Of String, Decimal) From {{"Piña", 2.2D}, {"Polyester", 1D}}},
-    {"Terno Hemming", New Dictionary(Of String, Decimal) From {{"Silk", 2.5D}, {"Piña", 2D}, {"Cotton", 1.5D}}}
-}
-
     ' Tailoring mode tracking
     Private isCustomerOwnedMode As Boolean = False
 
@@ -229,7 +216,7 @@ Public Class Form1
         WHERE Status != 'Archived' 
         ORDER BY Clothes_ID DESC"
         LoadToDGV(query, ClothesDGV)
-        AutoSelectFirstRow()
+        AutoSelectFirstRow(ClothesDGV)
     End Sub
 
     Private Sub LoadArchiveClothes()
@@ -248,7 +235,7 @@ Public Class Form1
         WHERE Status = 'Archived'
         ORDER BY Archived_Date DESC, Clothes_ID DESC"
         LoadToDGV(query, ArchiveClothesDGV)
-        AutoSelectFirstRow()
+        AutoSelectFirstRow(ArchiveClothesDGV)
     End Sub
 
     Private Sub ClotheSearchTB_TextChanged(sender As Object, e As EventArgs) Handles ClotheSearchTB.TextChanged
@@ -342,20 +329,72 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub AutoSelectFirstRow()
-        Dim currentDGV As DataGridView = If(isArchiveMode, ArchiveClothesDGV, ClothesDGV)
-
-        If currentDGV IsNot Nothing AndAlso currentDGV.Rows.Count > 0 Then
-            ' Select first row
-            currentDGV.ClearSelection()
-            currentDGV.CurrentCell = currentDGV.Rows(0).Cells(0)
-            currentDGV.Rows(0).Selected = True
-
-            ' Load fields automatically
-            LoadEditFieldsFromRow(currentDGV.Rows(0))
-        Else
-            ClearEditFields()
+    Private Sub AutoSelectFirstRow(Optional dgv As DataGridView = Nothing)
+        ' Auto-detect current DGV if none specified
+        If dgv Is Nothing Then
+            dgv = GetCurrentActiveDGV()
         End If
+
+        If dgv IsNot Nothing AndAlso dgv.Rows.Count > 0 Then
+            ' Clear any existing selection
+            dgv.ClearSelection()
+            dgv.CurrentCell = dgv.Rows(0).Cells(0)
+            dgv.Rows(0).Selected = True
+
+            ' Trigger the cell click event automatically
+            dgv_CellClick(dgv, New DataGridViewCellEventArgs(0, 0))
+        Else
+            ' Clear fields if no data
+            ClearAllEditFields()
+        End If
+    End Sub
+
+    ' Helper to detect which DGV is currently active
+    Private Function GetCurrentActiveDGV() As DataGridView
+        If isArchiveMode Then Return ArchiveClothesDGV
+        If MaterialsPanel.Visible Then Return MaterialsDGV
+        If CustomerPanel.Visible Then Return CustomerDGV
+        If RentPanel.Visible Then Return RentDGV
+        If TailoringPanel.Visible Then Return TailoringDGV
+        Return ClothesDGV ' Default
+    End Function
+
+    Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles _
+    ClothesDGV.CellClick, ArchiveClothesDGV.CellClick, MaterialsDGV.CellClick,
+    SuppliersDGV.CellClick, CustomerDGV.CellClick, RentDGV.CellClick, TailoringDGV.CellClick
+
+        Dim dgv As DataGridView = DirectCast(sender, DataGridView)
+
+        If e.RowIndex >= 0 Then
+            Dim row As DataGridViewRow = dgv.Rows(e.RowIndex)
+            LoadFieldsFromRow(dgv, row)
+        End If
+    End Sub
+
+    Private Sub LoadFieldsFromRow(dgv As DataGridView, row As DataGridViewRow)
+        Try
+            Select Case dgv.Name
+                Case "ClothesDGV", "ArchiveClothesDGV"
+                    LoadEditFieldsFromRow(row)
+
+                Case "MaterialsDGV"
+                    LoadMaterialsEditFields(row)
+
+                Case "SuppliersDGV"
+                    LoadSuppliersEditFields(row)
+
+                Case "CustomerDGV"
+                    LoadCustomerEditFields(row)
+
+                Case "RentDGV"
+                    LoadRentEditFields(row)
+
+                Case "TailoringDGV"
+                    LoadTailoringEditFields(row)
+            End Select
+        Catch ex As Exception
+            Debug.WriteLine($"LoadFieldsFromRow Error ({dgv.Name}): {ex.Message}")
+        End Try
     End Sub
 
     Private Sub LoadEditFieldsFromRow(row As DataGridViewRow)
@@ -373,6 +412,57 @@ Public Class Form1
         Catch ex As Exception
             Debug.WriteLine("LoadEditFieldsFromRow Error: " & ex.Message)
         End Try
+    End Sub
+
+    ' Materials Edit Fields
+    Private Sub LoadMaterialsEditFields(row As DataGridViewRow)
+        If UpdateMaterialIDTB IsNot Nothing Then
+            UpdateMaterialIDTB.Text = GetCellValue(row.Cells("Material_ID"))
+        End If
+        UpdateMaterialNameTB.Text = GetCellValue(row.Cells("Material_Name"))
+        UpdateMaterialDescriptionTB.Text = GetCellValue(row.Cells("Description"))
+        UpdateMaterialQuantityOnStockTB.Text = GetCellValue(row.Cells("Quantity_in_Stock"))
+        UpdateMaterialUnitOfMeasureTB.Text = GetCellValue(row.Cells("Unit_of_Measure"))
+        ' Supplier combo will be set in MaterialsDGV_CellClick
+    End Sub
+
+    ' Suppliers Edit Fields
+    Private Sub LoadSuppliersEditFields(row As DataGridViewRow)
+        SuppliersNameTB.Text = GetCellValue(row.Cells("Supplier_Name"))
+        SuppliersContactTB.Text = GetCellValue(row.Cells("Contact_Number"))
+        SuppliersAddressTB.Text = GetCellValue(row.Cells("Address"))
+        SuppliersEmailTB.Text = GetCellValue(row.Cells("Email"))
+    End Sub
+
+    ' Customer Edit Fields
+    Private Sub LoadCustomerEditFields(row As DataGridViewRow)
+        UpdateCustomerModalIDTB.Text = GetCellValue(row.Cells("Customer_ID"))
+        UpdateCustomerModalNameTB.Text = GetCellValue(row.Cells("Full_Name"))
+        UpdateCustomerModalContactNoTB.Text = GetCellValue(row.Cells("Contact_Number"))
+        UpdateCustomerModalAddressTB.Text = GetCellValue(row.Cells("Address"))
+    End Sub
+
+    ' Rent Edit Fields
+    Private Sub LoadRentEditFields(row As DataGridViewRow)
+        ReturnItemRentIDTB.Text = GetCellValue(row.Cells("Rent_ID"))
+        ReturnItemCustomerNameTB.Text = GetCellValue(row.Cells("Full_Name"))
+        ReturnItemClothesNameTB.Text = GetCellValue(row.Cells("Clothes_Name"))
+        ReturnItemStatusTB.Text = GetCellValue(row.Cells("Rental_Status"))
+    End Sub
+
+    ' Tailoring Edit Fields
+    Private Sub LoadTailoringEditFields(row As DataGridViewRow)
+        TailoringServiceIDTB.Text = GetCellValue(row.Cells("Tailoring_Services_ID"))
+    End Sub
+
+    ' Clear ALL edit fields
+    Private Sub ClearAllEditFields()
+        ClearEditFields()           ' Clothes
+        ClearUpdateMaterialFields() ' Materials
+        ClearSupplierFields()       ' Suppliers
+        UpdateCustomerModalIDTB.Clear() ' Customers
+        ReturnItemRentIDTB.Clear()  ' Rent
+        TailoringServiceIDTB.Clear() ' Tailoring
     End Sub
 
     ' Helper function
@@ -693,11 +783,13 @@ Public Class Form1
                           LEFT JOIN Supplier s ON m.Supplier_ID = s.Supplier_ID 
                           ORDER BY m.Material_ID DESC"
         LoadToDGV(query, MaterialsDGV)
+        AutoSelectFirstRow(MaterialsDGV)
     End Sub
 
     Private Sub LoadSuppliers()
         Dim query As String = "SELECT * FROM Supplier ORDER BY Supplier_Name"
         LoadToDGV(query, SuppliersDGV)
+        AutoSelectFirstRow(SuppliersDGV)
     End Sub
 
     Private Sub LoadSuppliersToComboBox(comboBox As ComboBox)
@@ -753,19 +845,6 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub SuppliersDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles SuppliersDGV.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = SuppliersDGV.Rows(e.RowIndex)
-            SuppliersNameTB.Text = row.Cells("Supplier_Name").Value.ToString()
-            SuppliersContactTB.Text = row.Cells("Contact_Number").Value.ToString()
-            SuppliersAddressTB.Text = row.Cells("Address").Value.ToString()
-            If Not IsDBNull(row.Cells("Email").Value) Then
-                SuppliersEmailTB.Text = row.Cells("Email").Value.ToString()
-            Else
-                SuppliersEmailTB.Text = ""
-            End If
-        End If
-    End Sub
 
     Private Sub ClearSupplierFields()
         SuppliersNameTB.Clear()
@@ -838,26 +917,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub MaterialsDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles MaterialsDGV.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = MaterialsDGV.Rows(e.RowIndex)
 
-            ' Assuming you have UpdateMaterialIDTB text box for storing ID
-            If UpdateMaterialIDTB IsNot Nothing Then
-                UpdateMaterialIDTB.Text = row.Cells("Material_ID").Value.ToString()
-            End If
-
-            UpdateMaterialNameTB.Text = row.Cells("Material_Name").Value.ToString()
-            If Not IsDBNull(row.Cells("Description").Value) Then
-                UpdateMaterialDescriptionTB.Text = row.Cells("Description").Value.ToString()
-            Else
-                UpdateMaterialDescriptionTB.Text = ""
-            End If
-            UpdateMaterialQuantityOnStockTB.Text = row.Cells("Quantity_in_Stock").Value.ToString()
-            UpdateMaterialUnitOfMeasureTB.Text = row.Cells("Unit_of_Measure").Value.ToString()
-            UpdateMaterialSupplierCMB.SelectedValue = row.Cells("Supplier_ID").Value
-        End If
-    End Sub
 
     Private Sub UpdateMaterialModalConfirmBTN_Click(sender As Object, e As EventArgs) Handles UpdateMaterialModalConfirmBTN.Click
         If UpdateMaterialSupplierCMB.SelectedIndex = -1 Then
@@ -960,6 +1020,7 @@ Public Class Form1
     Private Sub LoadCustomers()
         Dim query As String = "SELECT * FROM customer ORDER BY Customer_ID DESC"
         LoadToDGV(query, CustomerDGV)
+        AutoSelectFirstRow(CustomerDGV)
     End Sub
 
     ' =========================
@@ -1124,16 +1185,7 @@ Public Class Form1
     ' DGV CELL CLICK - POPULATE UPDATE FIELDS
     ' =========================
 
-    Private Sub CustomerDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles CustomerDGV.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = CustomerDGV.Rows(e.RowIndex)
 
-            UpdateCustomerModalIDTB.Text = row.Cells("Customer_ID").Value.ToString()
-            UpdateCustomerModalNameTB.Text = row.Cells("Full_Name").Value.ToString()
-            UpdateCustomerModalContactNoTB.Text = row.Cells("Contact_Number").Value.ToString()
-            UpdateCustomerModalAddressTB.Text = row.Cells("Address").Value.ToString()
-        End If
-    End Sub
 
     ' =========================
     ' SEARCH FUNCTIONALITY
@@ -1192,7 +1244,7 @@ Public Class Form1
     ORDER BY r.Rent_ID DESC"
 
         LoadToDGV(query, RentDGV)
-
+        AutoSelectFirstRow(RentDGV)
     End Sub
 
     Private Sub LoadCustomersToRentCombo()
@@ -1344,20 +1396,6 @@ Public Class Form1
         ClearRentFields()
     End Sub
 
-    Private Sub RentDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles RentDGV.CellClick
-
-        If e.RowIndex >= 0 Then
-
-            Dim row As DataGridViewRow = RentDGV.Rows(e.RowIndex)
-
-            ReturnItemRentIDTB.Text = row.Cells("Rent_ID").Value.ToString()
-            ReturnItemCustomerNameTB.Text = row.Cells("Full_Name").Value.ToString()
-            ReturnItemClothesNameTB.Text = row.Cells("Clothes_Name").Value.ToString()
-            ReturnItemStatusTB.Text = row.Cells("Rental_Status").Value.ToString()
-
-        End If
-
-    End Sub
 
     Private Sub ReturnItemBTN_Click(sender As Object, e As EventArgs) Handles ReturnItemBTN.Click
 
@@ -1557,6 +1595,7 @@ Public Class Form1
         ORDER BY ts.Tailoring_Services_ID DESC"
 
             LoadToDGV(query, TailoringDGV)
+            AutoSelectFirstRow(TailoringDGV)
         Catch ex As Exception
             MessageBox.Show("Error loading tailoring transactions: " & ex.Message)
         End Try
@@ -1678,58 +1717,39 @@ Public Class Form1
     ' Smart Features
     Private Sub TailoringTypeCMB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TailoringTypeCMB.SelectedIndexChanged
         LoadRequiredMaterials()
-        If TailoringClothesCMB.SelectedIndex >= 0 Then CalculateSmartPrice()
-    End Sub
-
-    Private Sub TailoringClothesCMB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TailoringClothesCMB.SelectedIndexChanged
         CalculateSmartPrice()
     End Sub
 
-    Private Sub CalculateSmartPrice()
-        Dim serviceName = TailoringTypeCMB.Text
-        Dim fabricType = GetSelectedClothesFabric()
-
-        If String.IsNullOrEmpty(serviceName) Then Return
-
-        Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
-        If service Is Nothing Then Return
-
-        Dim multiplier = 1D
-        If FabricPricingRules.ContainsKey(serviceName) AndAlso FabricPricingRules(serviceName).ContainsKey(fabricType) Then
-            multiplier = FabricPricingRules(serviceName)(fabricType)
+    Private Sub TailoringClothesCMB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TailoringClothesCMB.SelectedIndexChanged
+        If Not String.IsNullOrEmpty(TailoringTypeCMB.Text) Then
+            CalculateSmartPrice()
         End If
-
-        Dim finalPrice = Math.Max(service.BasePrice * multiplier, 50D) ' Minimum ₱50
-        TailoringPriceTB.Text = finalPrice.ToString("F2") ' Just the number
-        TailoringPriceLabel.Text = $"Base: ₱{service.BasePrice:F2} × {multiplier:F1}x ({fabricType})"
     End Sub
 
-    Private Function GetSelectedClothesFabric() As String
-        If TailoringClothesCMB.SelectedIndex >= 0 AndAlso TailoringClothesCMB.SelectedValue IsNot Nothing Then
-            Try
-                OpenConn()
-                Dim query = "SELECT Fabric_Type FROM Clothes WHERE Clothes_ID = @id"
-                cmd = New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@id", TailoringClothesCMB.SelectedValue)
-
-                Dim result = cmd.ExecuteScalar()
-                If result IsNot Nothing Then
-                    Return result.ToString()
-                End If
-                Return "Cotton"
-            Catch ex As Exception
-                Return "Cotton"
-            Finally
-                CloseConn()
-            End Try
+    Private Sub CalculateSmartPrice()
+        If TailoringTypeCMB.SelectedIndex < 0 Then
+            TailoringPriceTB.Clear()
+            Return
         End If
-        Return "Cotton"
-    End Function
+
+        Dim serviceName = TailoringTypeCMB.Text
+        Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
+        If service Is Nothing Then
+            TailoringPriceTB.Clear()
+            Return
+        End If
+
+        TailoringPriceTB.Text = service.BasePrice.ToString("F2")
+    End Sub
+
 
     Private Sub LoadRequiredMaterials()
-        Dim serviceName = TailoringTypeCMB.Text
-        If String.IsNullOrEmpty(serviceName) Then Return
+        If TailoringTypeCMB.SelectedIndex < 0 Then
+            TailoringMaterialsDGV.DataSource = Nothing
+            Return
+        End If
 
+        Dim serviceName = TailoringTypeCMB.Text
         Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
         If service Is Nothing Then Return
 
@@ -1866,42 +1886,147 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub TailoringDGV_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TailoringDGV.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row = TailoringDGV.Rows(e.RowIndex)
-            TailoringServiceIDTB.Text = row.Cells("Tailoring_Services_ID").Value.ToString()
-        End If
-    End Sub
 
     Private Sub UpdateTailoringStatusBTN_Click(sender As Object, e As EventArgs) Handles UpdateTailoringStatusBTN.Click
-        If TailoringServiceIDTB.Text = "" Then
-            MessageBox.Show("Select a transaction first")
+        If TailoringServiceIDTB.Text = "" OrElse String.IsNullOrEmpty(TailoringServiceIDTB.Text) Then
+            MessageBox.Show("❌ Select a tailoring transaction first!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
+        If TailoringStatusCMB.SelectedIndex = -1 OrElse TailoringStatusCMB.SelectedItem Is Nothing Then
+            MessageBox.Show("❌ Please select a status from the dropdown!", "No Status Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim serviceId As Integer = Convert.ToInt32(TailoringServiceIDTB.Text.Trim())
+        Dim newStatus As String = TailoringStatusCMB.SelectedItem.ToString().Trim()
+
+        ' 🔒 TRANSACTION for safety
+        Dim transaction As MySqlTransaction = Nothing
         Try
             OpenConn()
-            Dim updateQuery = "UPDATE Tailoring_Services SET Status = @status, Date_Completed = NOW() WHERE Tailoring_Services_ID = @id"
-            cmd = New MySqlCommand(updateQuery, conn)
-            cmd.Parameters.AddWithValue("@status", TailoringStatusCMB.Text)
-            cmd.Parameters.AddWithValue("@id", TailoringServiceIDTB.Text)
-            cmd.ExecuteNonQuery()
+            transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted)
 
-            If TailoringStatusCMB.Text = "Completed" Then
-                Dim updateClothes = "UPDATE Clothes SET Status = 'Available' WHERE Clothes_ID = (SELECT Clothes_ID FROM Tailoring_Services WHERE Tailoring_Services_ID = @id) AND Clothes_ID IS NOT NULL"
-                cmd = New MySqlCommand(updateClothes, conn)
-                cmd.Parameters.AddWithValue("@id", TailoringServiceIDTB.Text)
-                cmd.ExecuteNonQuery()
+            ' 1️⃣ UPDATE Tailoring Service
+            Dim updateServiceQuery As String = "UPDATE Tailoring_Services SET Status = @status, Date_Completed = NOW() WHERE Tailoring_Services_ID = @id"
+            Using cmdService = New MySqlCommand(updateServiceQuery, conn, transaction)
+                cmdService.Parameters.AddWithValue("@status", newStatus)
+                cmdService.Parameters.AddWithValue("@id", serviceId)
+                Dim serviceRows = cmdService.ExecuteNonQuery()
+                Debug.WriteLine($"📝 Service {serviceId} → '{newStatus}' ({serviceRows} rows)")
+            End Using
+
+            ' 2️⃣ 🆕 Get Clothes_ID, Is_Customer_Owned & Service Type
+            Dim clothesId As Integer? = Nothing
+            Dim isCustomerOwned As Boolean = False
+            Dim serviceTypeName As String = ""
+
+            Dim getDetailsQuery As String = "
+            SELECT Clothes_ID, Is_Customer_Owned, Type_of_Alteration 
+            FROM Tailoring_Services 
+            WHERE Tailoring_Services_ID = @id"
+
+            Using cmdDetails = New MySqlCommand(getDetailsQuery, conn, transaction)
+                cmdDetails.Parameters.AddWithValue("@id", serviceId)
+                Using reader = cmdDetails.ExecuteReader()
+                    If reader.Read() Then
+                        If Not IsDBNull(reader("Clothes_ID")) Then
+                            clothesId = Convert.ToInt32(reader("Clothes_ID"))
+                        End If
+                        isCustomerOwned = Convert.ToBoolean(reader("Is_Customer_Owned"))
+                        serviceTypeName = reader("Type_of_Alteration").ToString()
+                    End If
+                End Using
+            End Using
+
+            ' 3️⃣ HANDLE EACH STATUS
+            Dim clothesUpdated As Integer = 0
+            Dim materialsRefunded As Integer = 0
+
+            Select Case newStatus.ToUpperInvariant()
+                Case "COMPLETED"
+                    ' 🎉 Return shop clothes to Available
+                    If clothesId.HasValue AndAlso Not isCustomerOwned Then
+                        Dim updateClothesQuery As String = "
+                        UPDATE Clothes 
+                        SET Status = 'Available', 
+                            Clothes_Condition = 'Good'
+                        WHERE Clothes_ID = @clothesId"
+                        Using cmdClothes = New MySqlCommand(updateClothesQuery, conn, transaction)
+                            cmdClothes.Parameters.AddWithValue("@clothesId", clothesId.Value)
+                            clothesUpdated = cmdClothes.ExecuteNonQuery()
+                        End Using
+                    End If
+
+                Case "CANCELLED"
+                    ' 🔥 CANCEL: Return clothes + REFUND materials
+                    If clothesId.HasValue AndAlso Not isCustomerOwned Then
+                        Dim updateClothesQuery As String = "UPDATE Clothes SET Status = 'Available' WHERE Clothes_ID = @clothesId"
+                        Using cmdClothes = New MySqlCommand(updateClothesQuery, conn, transaction)
+                            cmdClothes.Parameters.AddWithValue("@clothesId", clothesId.Value)
+                            clothesUpdated = cmdClothes.ExecuteNonQuery()
+                        End Using
+                    End If
+
+                    ' 💰 REFUND Materials (lookup from your ServiceRequirements)
+                    Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName.Equals(serviceTypeName, StringComparison.OrdinalIgnoreCase))
+                    If service IsNot Nothing Then
+                        Dim requirements = ServiceRequirements.GetValueOrDefault(service.CatalogID, New List(Of ServiceRequirement))
+                        For Each req In requirements
+                            ' REFUND stock
+                            Dim refundQuery As String = "UPDATE Materials SET Quantity_in_Stock = Quantity_in_Stock + @qty WHERE Material_ID = @materialId"
+                            Using cmdRefund = New MySqlCommand(refundQuery, conn, transaction)
+                                cmdRefund.Parameters.AddWithValue("@qty", req.DefaultQuantity)
+                                cmdRefund.Parameters.AddWithValue("@materialId", req.MaterialID)
+                                materialsRefunded += cmdRefund.ExecuteNonQuery()
+                            End Using
+                            Debug.WriteLine($"💰 Refunded {req.DefaultQuantity} {req.MaterialName}")
+                        Next
+                    End If
+
+                Case Else
+                    ' Pending/In Progress/Ready for Pickup: No special handling
+                    Debug.WriteLine($"ℹ️ Status '{newStatus}' - no special clothes/material handling")
+
+            End Select
+
+            ' 4️⃣ COMMIT
+            transaction.Commit()
+
+            ' 🎉 DETAILED SUCCESS REPORT
+            Dim successMsg As New List(Of String) From {
+            $"✅ Service #{serviceId} → '{newStatus}'",
+            $"📅 {DateTime.Now:MMM dd, yyyy HH:mm}"
+        }
+
+            If clothesUpdated > 0 Then
+                successMsg.Insert(0, "👗 Clothes returned to Available inventory!")
             End If
 
-            MessageBox.Show("Status updated!")
+            If materialsRefunded > 0 Then
+                successMsg.Insert(0, $"💰 {materialsRefunded} material units refunded!")
+            ElseIf newStatus.ToUpperInvariant() = "COMPLETED" AndAlso Not isCustomerOwned AndAlso clothesId.HasValue Then
+                successMsg.Insert(0, "🎉 Service completed - clothes ready!")
+            ElseIf newStatus.ToUpperInvariant() = "COMPLETED" Then
+                successMsg.Insert(0, "✅ Service completed (customer-owned)")
+            End If
+
+            MessageBox.Show(String.Join(vbCrLf, successMsg), "✅ Update Successful!",
+                       MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' 🔄 FULL REFRESH
             LoadTailoringTransactions()
             LoadClothes()
+            If MaterialsPanel.Visible Then LoadMaterials()  ' Refresh stock display
+            If TailoringPanel.Visible Then LoadAvailableClothesToTailoringCombo()
 
         Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
+            transaction?.Rollback()
+            MessageBox.Show($"❌ Update failed: {ex.Message}", "Database Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Debug.WriteLine($"TAILORING ERROR: {ex.ToString()}")
         Finally
-            CloseConn()
+            If conn?.State = ConnectionState.Open Then conn.Close()
         End Try
     End Sub
 
@@ -1913,7 +2038,6 @@ Public Class Form1
         TailoringCustomerClothesTB.Clear()
         TailoringDescriptionTB.Clear()
         TailoringPriceTB.Clear()
-        TailoringPriceLabel.Text = ""
         TailoringMaterialsDGV.DataSource = Nothing
         TailoringServiceIDTB.Clear()
     End Sub

@@ -37,7 +37,6 @@ Module ConnDB
 
     Public Sub OpenConn()
         Try
-            ' If already offline, don't even try
             If IsOfflineMode Then Return
 
             If conn Is Nothing Then
