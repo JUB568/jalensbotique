@@ -84,7 +84,7 @@ Public Class Form1
     Private isDragging As Boolean = False
     Private dragOffset As Point
 
-    Public userRole As String = "admin" ' 👉 set default for testing
+    Public userRole As String = "admin" ' 👉 set default for testing asd
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConnDB.TestConnection()
