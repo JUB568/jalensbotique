@@ -130,8 +130,6 @@ Public Class Form1
         Me.WindowState = FormWindowState.Maximized
         Me.FormBorderStyle = FormBorderStyle.Sizable
 
-        ' Load UI based on role
-        SetupUI()
 
     End Sub
 
@@ -144,27 +142,7 @@ Public Class Form1
     ' =========================
     ' ROLE-BASED UI
     ' =========================
-    Private Sub SetupUI()
 
-        ' Default visibility
-        UsersBTN.Visible = True
-        ReportsBTN.Visible = True
-        MaterialBTN.Visible = True
-
-        If userRole = "admin" Then
-
-            ShowPanel(AdminDashboardPanel)
-
-        ElseIf userRole = "employee" Then
-
-            UsersBTN.Visible = False
-            ReportsBTN.Visible = False
-
-            ShowPanel(EmployeeDashboardPanel)
-
-        End If
-
-    End Sub
 
     ' =========================
     ' PANEL SWITCHING
@@ -190,7 +168,7 @@ Public Class Form1
         If userRole = "admin" Then
             ShowPanel(AdminDashboardPanel)
         Else
-            ShowPanel(EmployeeDashboardPanel)
+
         End If
 
     End Sub
@@ -226,16 +204,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub UsersBTN_Click(sender As Object, e As EventArgs)
 
-        If userRole <> "admin" Then
-            MessageBox.Show("Access Denied!")
-            Exit Sub
-        End If
-
-        ShowPanel(UserPanel)
-
-    End Sub
 
 
     ' =========================

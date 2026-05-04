@@ -53,21 +53,6 @@ Partial Class Form1
         Dim ChartFont15 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
         Dim Tick6 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
         Dim ChartFont16 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont17 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont18 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont19 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont20 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid7 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick7 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont21 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid8 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick8 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont22 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid9 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim PointLabel3 As Guna.Charts.WinForms.PointLabel = New Guna.Charts.WinForms.PointLabel()
-        Dim ChartFont23 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Tick9 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont24 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
         LogInPanel = New Panel()
         txtPass = New TextBox()
         txtUser = New TextBox()
@@ -310,43 +295,6 @@ Partial Class Form1
         Label93 = New Label()
         Label92 = New Label()
         CustomerDGV = New DataGridView()
-        UserPanel = New Panel()
-        Panel28 = New Panel()
-        DataGridView1 = New DataGridView()
-        Panel27 = New Panel()
-        Button13 = New Button()
-        Button12 = New Button()
-        ComboBox4 = New ComboBox()
-        Label49 = New Label()
-        TextBox13 = New TextBox()
-        TextBox12 = New TextBox()
-        TextBox11 = New TextBox()
-        Label48 = New Label()
-        Label47 = New Label()
-        Label46 = New Label()
-        EmployeeDashboardPanel = New Panel()
-        Panel9 = New Panel()
-        Panel10 = New Panel()
-        Label13 = New Label()
-        GunaChart2 = New Guna.Charts.WinForms.GunaChart()
-        Panel11 = New Panel()
-        Label14 = New Label()
-        Panel12 = New Panel()
-        Label15 = New Label()
-        Panel13 = New Panel()
-        Label16 = New Label()
-        Panel14 = New Panel()
-        Panel15 = New Panel()
-        Label17 = New Label()
-        Label18 = New Label()
-        Panel16 = New Panel()
-        Label19 = New Label()
-        Label20 = New Label()
-        Panel17 = New Panel()
-        Label21 = New Label()
-        Label22 = New Label()
-        Panel18 = New Panel()
-        Label24 = New Label()
         ReportsPanel = New Panel()
         GunaAreaDataset1 = New Guna.Charts.WinForms.GunaAreaDataset()
         LogInPanel.SuspendLayout()
@@ -403,21 +351,6 @@ Partial Class Form1
         UpdateCustomerModalPanel.SuspendLayout()
         AddCustomerModalPanel.SuspendLayout()
         CType(CustomerDGV, ComponentModel.ISupportInitialize).BeginInit()
-        UserPanel.SuspendLayout()
-        Panel28.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
-        Panel27.SuspendLayout()
-        EmployeeDashboardPanel.SuspendLayout()
-        Panel9.SuspendLayout()
-        Panel10.SuspendLayout()
-        Panel11.SuspendLayout()
-        Panel12.SuspendLayout()
-        Panel13.SuspendLayout()
-        Panel14.SuspendLayout()
-        Panel15.SuspendLayout()
-        Panel16.SuspendLayout()
-        Panel17.SuspendLayout()
-        Panel18.SuspendLayout()
         SuspendLayout()
         ' 
         ' LogInPanel
@@ -589,8 +522,6 @@ Partial Class Form1
         MainPanel.Controls.Add(AdminDashboardPanel)
         MainPanel.Controls.Add(MaterialsPanel)
         MainPanel.Controls.Add(CustomerPanel)
-        MainPanel.Controls.Add(UserPanel)
-        MainPanel.Controls.Add(EmployeeDashboardPanel)
         MainPanel.Controls.Add(ReportsPanel)
         MainPanel.Dock = DockStyle.Fill
         MainPanel.Location = New Point(214, 0)
@@ -830,7 +761,7 @@ Partial Class Form1
         ' 
         CustomerOwnedToggleBTN.Location = New Point(31, 59)
         CustomerOwnedToggleBTN.Name = "CustomerOwnedToggleBTN"
-        CustomerOwnedToggleBTN.Size = New Size(75, 33)
+        CustomerOwnedToggleBTN.Size = New Size(187, 33)
         CustomerOwnedToggleBTN.TabIndex = 2
         CustomerOwnedToggleBTN.Text = "OwnedBy"
         CustomerOwnedToggleBTN.UseVisualStyleBackColor = True
@@ -2841,397 +2772,6 @@ Partial Class Form1
         CustomerDGV.Size = New Size(1208, 542)
         CustomerDGV.TabIndex = 0
         ' 
-        ' UserPanel
-        ' 
-        UserPanel.BackColor = Color.FromArgb(CByte(184), CByte(233), CByte(148))
-        UserPanel.Controls.Add(Panel28)
-        UserPanel.Controls.Add(Panel27)
-        UserPanel.Dock = DockStyle.Fill
-        UserPanel.Location = New Point(0, 0)
-        UserPanel.Name = "UserPanel"
-        UserPanel.Size = New Size(1380, 796)
-        UserPanel.TabIndex = 7
-        ' 
-        ' Panel28
-        ' 
-        Panel28.BackColor = Color.White
-        Panel28.Controls.Add(DataGridView1)
-        Panel28.Location = New Point(256, 388)
-        Panel28.Name = "Panel28"
-        Panel28.Size = New Size(871, 364)
-        Panel28.TabIndex = 1
-        ' 
-        ' DataGridView1
-        ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(28, 34)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(816, 310)
-        DataGridView1.TabIndex = 0
-        ' 
-        ' Panel27
-        ' 
-        Panel27.BackColor = Color.White
-        Panel27.Controls.Add(Button13)
-        Panel27.Controls.Add(Button12)
-        Panel27.Controls.Add(ComboBox4)
-        Panel27.Controls.Add(Label49)
-        Panel27.Controls.Add(TextBox13)
-        Panel27.Controls.Add(TextBox12)
-        Panel27.Controls.Add(TextBox11)
-        Panel27.Controls.Add(Label48)
-        Panel27.Controls.Add(Label47)
-        Panel27.Controls.Add(Label46)
-        Panel27.Location = New Point(259, 98)
-        Panel27.Name = "Panel27"
-        Panel27.Size = New Size(871, 234)
-        Panel27.TabIndex = 0
-        ' 
-        ' Button13
-        ' 
-        Button13.Location = New Point(729, 177)
-        Button13.Name = "Button13"
-        Button13.Size = New Size(112, 44)
-        Button13.TabIndex = 9
-        Button13.Text = "Clear"
-        Button13.UseVisualStyleBackColor = True
-        ' 
-        ' Button12
-        ' 
-        Button12.Location = New Point(598, 177)
-        Button12.Name = "Button12"
-        Button12.Size = New Size(112, 44)
-        Button12.TabIndex = 8
-        Button12.Text = "Add User"
-        Button12.UseVisualStyleBackColor = True
-        ' 
-        ' ComboBox4
-        ' 
-        ComboBox4.FormattingEnabled = True
-        ComboBox4.Location = New Point(477, 116)
-        ComboBox4.Name = "ComboBox4"
-        ComboBox4.Size = New Size(121, 23)
-        ComboBox4.TabIndex = 7
-        ' 
-        ' Label49
-        ' 
-        Label49.AutoSize = True
-        Label49.Font = New Font("Segoe UI", 14F)
-        Label49.Location = New Point(416, 108)
-        Label49.Name = "Label49"
-        Label49.Size = New Size(52, 25)
-        Label49.TabIndex = 6
-        Label49.Text = "Role:"
-        ' 
-        ' TextBox13
-        ' 
-        TextBox13.Font = New Font("Segoe UI", 14F)
-        TextBox13.Location = New Point(475, 48)
-        TextBox13.Name = "TextBox13"
-        TextBox13.Size = New Size(185, 32)
-        TextBox13.TabIndex = 5
-        ' 
-        ' TextBox12
-        ' 
-        TextBox12.Font = New Font("Segoe UI", 14F)
-        TextBox12.Location = New Point(130, 113)
-        TextBox12.Name = "TextBox12"
-        TextBox12.Size = New Size(185, 32)
-        TextBox12.TabIndex = 4
-        ' 
-        ' TextBox11
-        ' 
-        TextBox11.Font = New Font("Segoe UI", 14F)
-        TextBox11.Location = New Point(130, 48)
-        TextBox11.Name = "TextBox11"
-        TextBox11.Size = New Size(185, 32)
-        TextBox11.TabIndex = 3
-        ' 
-        ' Label48
-        ' 
-        Label48.AutoSize = True
-        Label48.Font = New Font("Segoe UI", 14F)
-        Label48.Location = New Point(386, 48)
-        Label48.Name = "Label48"
-        Label48.Size = New Size(83, 25)
-        Label48.TabIndex = 2
-        Label48.Text = "Position:"
-        ' 
-        ' Label47
-        ' 
-        Label47.AutoSize = True
-        Label47.Font = New Font("Segoe UI", 14F)
-        Label47.Location = New Point(25, 116)
-        Label47.Name = "Label47"
-        Label47.Size = New Size(101, 25)
-        Label47.TabIndex = 1
-        Label47.Text = "Username:"
-        ' 
-        ' Label46
-        ' 
-        Label46.AutoSize = True
-        Label46.Font = New Font("Segoe UI", 14F)
-        Label46.Location = New Point(53, 48)
-        Label46.Name = "Label46"
-        Label46.Size = New Size(71, 25)
-        Label46.TabIndex = 0
-        Label46.Text = " Name:"
-        ' 
-        ' EmployeeDashboardPanel
-        ' 
-        EmployeeDashboardPanel.BackColor = Color.FromArgb(CByte(250), CByte(211), CByte(144))
-        EmployeeDashboardPanel.Controls.Add(Panel9)
-        EmployeeDashboardPanel.Dock = DockStyle.Fill
-        EmployeeDashboardPanel.Location = New Point(0, 0)
-        EmployeeDashboardPanel.Name = "EmployeeDashboardPanel"
-        EmployeeDashboardPanel.Size = New Size(1380, 796)
-        EmployeeDashboardPanel.TabIndex = 8
-        ' 
-        ' Panel9
-        ' 
-        Panel9.Controls.Add(Panel10)
-        Panel9.Controls.Add(Panel11)
-        Panel9.Controls.Add(Panel12)
-        Panel9.Controls.Add(Panel13)
-        Panel9.Controls.Add(Panel14)
-        Panel9.Dock = DockStyle.Fill
-        Panel9.Location = New Point(0, 0)
-        Panel9.Name = "Panel9"
-        Panel9.Size = New Size(1380, 796)
-        Panel9.TabIndex = 1
-        ' 
-        ' Panel10
-        ' 
-        Panel10.BackColor = Color.White
-        Panel10.Controls.Add(Label13)
-        Panel10.Controls.Add(GunaChart2)
-        Panel10.Location = New Point(60, 530)
-        Panel10.Name = "Panel10"
-        Panel10.Size = New Size(696, 254)
-        Panel10.TabIndex = 2
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI", 20F)
-        Label13.Location = New Point(30, 19)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(88, 37)
-        Label13.TabIndex = 2
-        Label13.Text = "Tailor "
-        ' 
-        ' GunaChart2
-        ' 
-        ChartFont17.FontName = "Arial"
-        GunaChart2.Legend.LabelFont = ChartFont17
-        GunaChart2.Location = New Point(23, 77)
-        GunaChart2.Name = "GunaChart2"
-        GunaChart2.Size = New Size(647, 163)
-        GunaChart2.TabIndex = 0
-        ChartFont18.FontName = "Arial"
-        ChartFont18.Size = 12
-        ChartFont18.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart2.Title.Font = ChartFont18
-        ChartFont19.FontName = "Arial"
-        GunaChart2.Tooltips.BodyFont = ChartFont19
-        ChartFont20.FontName = "Arial"
-        ChartFont20.Size = 9
-        ChartFont20.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart2.Tooltips.TitleFont = ChartFont20
-        GunaChart2.XAxes.GridLines = Grid7
-        ChartFont21.FontName = "Arial"
-        Tick7.Font = ChartFont21
-        GunaChart2.XAxes.Ticks = Tick7
-        GunaChart2.YAxes.GridLines = Grid8
-        ChartFont22.FontName = "Arial"
-        Tick8.Font = ChartFont22
-        GunaChart2.YAxes.Ticks = Tick8
-        GunaChart2.ZAxes.GridLines = Grid9
-        ChartFont23.FontName = "Arial"
-        PointLabel3.Font = ChartFont23
-        GunaChart2.ZAxes.PointLabels = PointLabel3
-        ChartFont24.FontName = "Arial"
-        Tick9.Font = ChartFont24
-        GunaChart2.ZAxes.Ticks = Tick9
-        ' 
-        ' Panel11
-        ' 
-        Panel11.BackColor = Color.White
-        Panel11.Controls.Add(Label14)
-        Panel11.Location = New Point(801, 226)
-        Panel11.Name = "Panel11"
-        Panel11.Size = New Size(537, 558)
-        Panel11.TabIndex = 3
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI", 20F)
-        Label14.Location = New Point(40, 9)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(289, 37)
-        Label14.TabIndex = 3
-        Label14.Text = "Employee Performance"
-        ' 
-        ' Panel12
-        ' 
-        Panel12.BackColor = Color.White
-        Panel12.Controls.Add(Label15)
-        Panel12.Location = New Point(426, 226)
-        Panel12.Name = "Panel12"
-        Panel12.Size = New Size(330, 277)
-        Panel12.TabIndex = 2
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 20F)
-        Label15.Location = New Point(64, 9)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(197, 37)
-        Label15.TabIndex = 2
-        Label15.Text = "Tailoring Status"
-        ' 
-        ' Panel13
-        ' 
-        Panel13.BackColor = Color.White
-        Panel13.Controls.Add(Label16)
-        Panel13.Location = New Point(60, 226)
-        Panel13.Name = "Panel13"
-        Panel13.Size = New Size(325, 277)
-        Panel13.TabIndex = 1
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI", 20F)
-        Label16.Location = New Point(23, 9)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(279, 37)
-        Label16.TabIndex = 1
-        Label16.Text = "Overdue Rentals Table"
-        ' 
-        ' Panel14
-        ' 
-        Panel14.BackColor = Color.White
-        Panel14.Controls.Add(Panel15)
-        Panel14.Controls.Add(Panel16)
-        Panel14.Controls.Add(Panel17)
-        Panel14.Controls.Add(Panel18)
-        Panel14.Location = New Point(60, 39)
-        Panel14.Name = "Panel14"
-        Panel14.Size = New Size(1278, 164)
-        Panel14.TabIndex = 0
-        ' 
-        ' Panel15
-        ' 
-        Panel15.BackColor = Color.IndianRed
-        Panel15.Controls.Add(Label17)
-        Panel15.Controls.Add(Label18)
-        Panel15.Location = New Point(992, 26)
-        Panel15.Name = "Panel15"
-        Panel15.Size = New Size(256, 124)
-        Panel15.TabIndex = 3
-        ' 
-        ' Label17
-        ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 45F)
-        Label17.Location = New Point(98, 33)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(67, 81)
-        Label17.TabIndex = 6
-        Label17.Text = "0"
-        ' 
-        ' Label18
-        ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Segoe UI", 15F)
-        Label18.Location = New Point(98, 5)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(75, 28)
-        Label18.TabIndex = 5
-        Label18.Text = "Repairs"
-        ' 
-        ' Panel16
-        ' 
-        Panel16.BackColor = Color.IndianRed
-        Panel16.Controls.Add(Label19)
-        Panel16.Controls.Add(Label20)
-        Panel16.Location = New Point(681, 26)
-        Panel16.Name = "Panel16"
-        Panel16.Size = New Size(250, 124)
-        Panel16.TabIndex = 2
-        ' 
-        ' Label19
-        ' 
-        Label19.AutoSize = True
-        Label19.Font = New Font("Segoe UI", 45F)
-        Label19.Location = New Point(96, 33)
-        Label19.Name = "Label19"
-        Label19.Size = New Size(67, 81)
-        Label19.TabIndex = 5
-        Label19.Text = "0"
-        ' 
-        ' Label20
-        ' 
-        Label20.AutoSize = True
-        Label20.Font = New Font("Segoe UI", 15F)
-        Label20.Location = New Point(90, 5)
-        Label20.Name = "Label20"
-        Label20.Size = New Size(73, 28)
-        Label20.TabIndex = 4
-        Label20.Text = "Rented"
-        ' 
-        ' Panel17
-        ' 
-        Panel17.BackColor = Color.IndianRed
-        Panel17.Controls.Add(Label21)
-        Panel17.Controls.Add(Label22)
-        Panel17.Location = New Point(353, 26)
-        Panel17.Name = "Panel17"
-        Panel17.Size = New Size(261, 124)
-        Panel17.TabIndex = 1
-        ' 
-        ' Label21
-        ' 
-        Label21.AutoSize = True
-        Label21.Font = New Font("Segoe UI", 45F)
-        Label21.Location = New Point(102, 33)
-        Label21.Name = "Label21"
-        Label21.Size = New Size(67, 81)
-        Label21.TabIndex = 4
-        Label21.Text = "0"
-        ' 
-        ' Label22
-        ' 
-        Label22.AutoSize = True
-        Label22.Font = New Font("Segoe UI", 15F)
-        Label22.Location = New Point(89, 5)
-        Label22.Name = "Label22"
-        Label22.Size = New Size(92, 28)
-        Label22.TabIndex = 3
-        Label22.Text = "Available"
-        ' 
-        ' Panel18
-        ' 
-        Panel18.BackColor = Color.IndianRed
-        Panel18.Controls.Add(Label24)
-        Panel18.Location = New Point(30, 26)
-        Panel18.Name = "Panel18"
-        Panel18.Size = New Size(251, 124)
-        Panel18.TabIndex = 0
-        ' 
-        ' Label24
-        ' 
-        Label24.AutoSize = True
-        Label24.Font = New Font("Segoe UI", 15F)
-        Label24.Location = New Point(64, 5)
-        Label24.Name = "Label24"
-        Label24.Size = New Size(124, 28)
-        Label24.TabIndex = 2
-        Label24.Text = "Total Clothes"
-        ' 
         ' ReportsPanel
         ' 
         ReportsPanel.BackColor = Color.FromArgb(CByte(235), CByte(47), CByte(6))
@@ -3342,30 +2882,6 @@ Partial Class Form1
         AddCustomerModalPanel.ResumeLayout(False)
         AddCustomerModalPanel.PerformLayout()
         CType(CustomerDGV, ComponentModel.ISupportInitialize).EndInit()
-        UserPanel.ResumeLayout(False)
-        Panel28.ResumeLayout(False)
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
-        Panel27.ResumeLayout(False)
-        Panel27.PerformLayout()
-        EmployeeDashboardPanel.ResumeLayout(False)
-        Panel9.ResumeLayout(False)
-        Panel10.ResumeLayout(False)
-        Panel10.PerformLayout()
-        Panel11.ResumeLayout(False)
-        Panel11.PerformLayout()
-        Panel12.ResumeLayout(False)
-        Panel12.PerformLayout()
-        Panel13.ResumeLayout(False)
-        Panel13.PerformLayout()
-        Panel14.ResumeLayout(False)
-        Panel15.ResumeLayout(False)
-        Panel15.PerformLayout()
-        Panel16.ResumeLayout(False)
-        Panel16.PerformLayout()
-        Panel17.ResumeLayout(False)
-        Panel17.PerformLayout()
-        Panel18.ResumeLayout(False)
-        Panel18.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -3391,7 +2907,6 @@ Partial Class Form1
     Friend WithEvents ClothesPanel As Panel
     Friend WithEvents AdminDashboardPanel As Panel
     Friend WithEvents CustomerPanel As Panel
-    Friend WithEvents UserPanel As Panel
     Friend WithEvents CardDashboardContainer As Panel
     Friend WithEvents DashboardPanelContainer As Panel
     Friend WithEvents Panel2 As Panel
@@ -3415,29 +2930,6 @@ Partial Class Form1
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents EmployeeDashboardPanel As Panel
-    Friend WithEvents Panel9 As Panel
-    Friend WithEvents Panel10 As Panel
-    Friend WithEvents Label13 As Label
-    Friend WithEvents GunaChart2 As Guna.Charts.WinForms.GunaChart
-    Friend WithEvents Panel11 As Panel
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Panel12 As Panel
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Panel13 As Panel
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Panel14 As Panel
-    Friend WithEvents Panel15 As Panel
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Panel16 As Panel
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Panel17 As Panel
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Panel18 As Panel
-    Friend WithEvents Label24 As Label
     Friend WithEvents TableClotheContainer As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents ClotheSearchTB As TextBox
@@ -3500,19 +2992,6 @@ Partial Class Form1
     Friend WithEvents Label44 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents TextBox10 As TextBox
-    Friend WithEvents Panel28 As Panel
-    Friend WithEvents Panel27 As Panel
-    Friend WithEvents Label46 As Label
-    Friend WithEvents TextBox13 As TextBox
-    Friend WithEvents TextBox12 As TextBox
-    Friend WithEvents TextBox11 As TextBox
-    Friend WithEvents Label48 As Label
-    Friend WithEvents Label47 As Label
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button13 As Button
-    Friend WithEvents Button12 As Button
-    Friend WithEvents ComboBox4 As ComboBox
-    Friend WithEvents Label49 As Label
     Friend WithEvents Panel29 As Panel
     Friend WithEvents Panel30 As Panel
     Friend WithEvents Panel31 As Panel
