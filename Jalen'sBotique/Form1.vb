@@ -3,6 +3,8 @@
 
 Public Class Form1
 
+    Private clothesManager As ClothesInventoryManager
+
     Public Class TailoringService
         Public Property CatalogID As Integer
         Public Property ServiceName As String
@@ -142,13 +144,15 @@ Public Class Form1
     Public userRole As String = "admin" ' 👉 set default for testing asd
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        clothesManager = New ClothesInventoryManager(Me)
+
         ConnDB.TestConnection()
         UpdateConnectionStatus()
 
-        isArchiveMode = False
-        UpdateArchiveModeUI()
+        clothesManager.UpdateArchiveModeUI()
 
-        LoadClothes()
+        clothesManager.LoadClothes()
         LoadMaterials()
         LoadSuppliers()
 
@@ -259,92 +263,25 @@ Public Class Form1
 
     End Sub
 
-
-
-
     ' =========================
     ' CLOTHES INVENTORY PANEL
     ' =========================
-
-    Private Sub LoadClothes()
-        LoadActiveClothes()
-    End Sub
-
-    Private Sub LoadActiveClothes()
-        Dim query As String = "
-        SELECT Clothes_ID,
-            Clothes_Name,
-            Category,
-            Size,
-            Fabric_Type,
-            Color,
-            Clothes_Condition,
-            Status,
-            Date_Added FROM Clothes 
-        WHERE Status != 'Archived' 
-        ORDER BY Clothes_ID DESC"
-        LoadToDGV(query, ClothesDGV)
-        AutoSelectFirstRow(ClothesDGV)
-    End Sub
-
-    Private Sub LoadArchiveClothes()
-        Dim query As String = "
-        SELECT 
-            Clothes_ID,
-            Clothes_Name,
-            Category,
-            Size,
-            Fabric_Type,
-            Color,
-            Clothes_Condition,
-            Status,
-            Archived_Date
-        FROM Clothes 
-        WHERE Status = 'Archived'
-        ORDER BY Archived_Date DESC, Clothes_ID DESC"
-        LoadToDGV(query, ArchiveClothesDGV)
-        AutoSelectFirstRow(ArchiveClothesDGV)
-    End Sub
-
-    Private Sub ClotheSearchTB_TextChanged(sender As Object, e As EventArgs) Handles ClotheSearchTB.TextChanged
-        Dim searchText As String = ClotheSearchTB.Text.Trim()
-
-        If isArchiveMode Then
-            Dim query As String = "
-            SELECT Clothes_ID, Clothes_Name, Category, Size, Fabric_Type, 
-                   Color, Clothes_Condition, Status, Archived_Date
-            FROM Clothes 
-            WHERE Status = 'Archived'
-              AND (Clothes_Name LIKE '%" & searchText & "%'
-                OR Category LIKE '%" & searchText & "%'
-                OR Color LIKE '%" & searchText & "%')
-            ORDER BY Archived_Date DESC"
-            LoadToDGV(query, ArchiveClothesDGV)
-        Else
-            Dim query As String = "
-            SELECT * FROM Clothes 
-            WHERE Status != 'Archived'
-              AND (Clothes_Name LIKE '%" & searchText & "%'
-                OR Category LIKE '%" & searchText & "%'
-                OR Color LIKE '%" & searchText & "%')
-            ORDER BY Clothes_ID DESC"
-            LoadToDGV(query, ClothesDGV)
-        End If
-        AutoSelectFirstRow()
+    Private Sub ClotheSearchTB_TextChanged(
+        sender As Object,
+        e As EventArgs
+    ) Handles ClotheSearchTB.TextChanged
+        clothesManager.SearchClothes(ClotheSearchTB.Text)
     End Sub
 
     Private Sub ClothesEditBTN_Click(sender As Object, e As EventArgs) Handles ClothesEditBTN.Click
-
         ' check if may selected item
         If ClothesEditModalClothesIDTB.Text = "" Then
             MessageBox.Show("Please select item first")
             Return
         End If
-
         ' show modal
         ClotheEditModalPanel.Visible = True
         ClotheEditModalPanel.BringToFront()
-
     End Sub
 
     Private Sub ClothesAddBTN_Click(sender As Object, e As EventArgs) Handles ClothesAddBTN.Click
@@ -356,48 +293,18 @@ Public Class Form1
     End Sub
 
     Private Sub ClothesAddModalConfirmBTN_Click(sender As Object, e As EventArgs) Handles ClothesAddModalConfirmBTN.Click
-
-        Try
-            OpenConn()
-
-            Dim query As String = "INSERT INTO Clothes 
-        (Clothes_Name, Category, Size, Fabric_Type, Color, Clothes_Condition, Status)
-        VALUES (@name, @cat, @size, @fabric, @color, 'Good', 'Available')"
-
-            cmd = New MySqlCommand(query, conn)
-
-            cmd.Parameters.AddWithValue("@name", ClothesAddModalClothesNameTB.Text)
-            cmd.Parameters.AddWithValue("@cat", ClothesAddModalCategoryTB.Text)
-            cmd.Parameters.AddWithValue("@size", ClothesAddModalSizeTB.Text)
-            cmd.Parameters.AddWithValue("@fabric", ClothesAddModalFabricTypeTB.Text)
-            cmd.Parameters.AddWithValue("@color", ClothesAddModalColorTB.Text)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Clothes added successfully!")
-
-            ClotheAddModalPanel.Visible = False
-            ClearAddFields()
-            LoadActiveClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        clothesManager.AddClothes()
     End Sub
 
     Private Sub ClothesDGVs_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClothesDGV.CellClick, ArchiveClothesDGV.CellClick
         Dim dgv As DataGridView = DirectCast(sender, DataGridView)
-
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgv.Rows(e.RowIndex)
-            LoadEditFieldsFromRow(row)
+            clothesManager.LoadEditFieldsFromRow(row)
         End If
     End Sub
 
-    Private Sub AutoSelectFirstRow(Optional dgv As DataGridView = Nothing)
+    Public Sub AutoSelectFirstRow(Optional dgv As DataGridView = Nothing)
         ' Auto-detect current DGV if none specified
         If dgv Is Nothing Then
             dgv = GetCurrentActiveDGV()
@@ -418,8 +325,8 @@ Public Class Form1
     End Sub
 
     ' Helper to detect which DGV is currently active
-    Private Function GetCurrentActiveDGV() As DataGridView
-        If isArchiveMode Then Return ArchiveClothesDGV
+    Public Function GetCurrentActiveDGV() As DataGridView
+        If clothesManager.IsArchiveMode Then Return ArchiveClothesDGV
         If MaterialsPanel.Visible Then Return MaterialsDGV
         If CustomerPanel.Visible Then Return CustomerDGV
         If RentPanel.Visible Then Return RentDGV
@@ -432,7 +339,6 @@ Public Class Form1
     SuppliersDGV.CellClick, CustomerDGV.CellClick, RentDGV.CellClick, TailoringDGV.CellClick
 
         Dim dgv As DataGridView = DirectCast(sender, DataGridView)
-
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgv.Rows(e.RowIndex)
             LoadFieldsFromRow(dgv, row)
@@ -443,7 +349,7 @@ Public Class Form1
         Try
             Select Case dgv.Name
                 Case "ClothesDGV", "ArchiveClothesDGV"
-                    LoadEditFieldsFromRow(row)
+                    clothesManager.LoadEditFieldsFromRow(row)
 
                 Case "MaterialsDGV"
                     LoadMaterialsEditFields(row)
@@ -465,22 +371,6 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub LoadEditFieldsFromRow(row As DataGridViewRow)
-        Try
-            With row
-                ClothesEditModalClothesIDTB.Text = GetCellValue(.Cells("Clothes_ID"))
-                ClothesEditModalClothesNameTB.Text = GetCellValue(.Cells("Clothes_Name"))
-                ClothesEditModalCategoryTB.Text = GetCellValue(.Cells("Category"))
-                ClothesEditModalSizeTB.Text = GetCellValue(.Cells("Size"))
-                ClothesEditModalFabricTypeTB.Text = GetCellValue(.Cells("Fabric_Type"))
-                ClothesEditModalColorTB.Text = GetCellValue(.Cells("Color"))
-                ClothesEditModalConditionTB.Text = GetCellValue(.Cells("Clothes_Condition"))
-            End With
-
-        Catch ex As Exception
-            Debug.WriteLine("LoadEditFieldsFromRow Error: " & ex.Message)
-        End Try
-    End Sub
 
     ' Materials Edit Fields
     Private Sub LoadMaterialsEditFields(row As DataGridViewRow)
@@ -525,320 +415,46 @@ Public Class Form1
 
     ' Clear ALL edit fields
     Private Sub ClearAllEditFields()
-        ClearEditFields()           ' Clothes
-        ClearUpdateMaterialFields() ' Materials
-        ClearSupplierFields()       ' Suppliers
-        UpdateCustomerModalIDTB.Clear() ' Customers
-        ReturnItemRentIDTB.Clear()  ' Rent
-        TailoringServiceIDTB.Clear() ' Tailoring
+        clothesManager.ClearEditFields()
+        ClearUpdateMaterialFields()
+        ClearSupplierFields()
+        UpdateCustomerModalIDTB.Clear()
+        ReturnItemRentIDTB.Clear()
+        TailoringServiceIDTB.Clear()
     End Sub
 
     ' Helper function
-    Private Function GetCellValue(cell As DataGridViewCell) As String
+    Public Function GetCellValue(cell As DataGridViewCell) As String
         If cell Is Nothing OrElse cell.Value Is Nothing Then
             Return ""
         End If
         Return cell.Value.ToString()
     End Function
 
-
-
     Private Sub ClothesEditModalConfirmBTN_Click(sender As Object, e As EventArgs) Handles ClothesEditModalConfirmBTN.Click
-
-        Try
-            OpenConn()
-
-            Dim query As String = "UPDATE Clothes SET 
-            Clothes_Name=@name,
-            Category=@cat,
-            Size=@size,
-            Fabric_Type=@fabric,
-            Color=@color,
-            Clothes_Condition=@condition
-            WHERE Clothes_ID=@id"
-
-            cmd = New MySqlCommand(query, conn)
-
-            cmd.Parameters.AddWithValue("@id", ClothesEditModalClothesIDTB.Text)
-            cmd.Parameters.AddWithValue("@name", ClothesEditModalClothesNameTB.Text)
-            cmd.Parameters.AddWithValue("@cat", ClothesEditModalCategoryTB.Text)
-            cmd.Parameters.AddWithValue("@size", ClothesEditModalSizeTB.Text)
-            cmd.Parameters.AddWithValue("@fabric", ClothesEditModalFabricTypeTB.Text)
-            cmd.Parameters.AddWithValue("@color", ClothesEditModalColorTB.Text)
-            cmd.Parameters.AddWithValue("@condition", ClothesEditModalConditionTB.Text)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Updated successfully!")
-
-            ClotheEditModalPanel.Visible = False
-            LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        clothesManager.UpdateClothes()
     End Sub
 
     ' Archive (Soft Delete) - Changes Status to 'Archived'
     Private Sub ClothesDeleteBTN_Click(sender As Object, e As EventArgs) Handles ClothesDeleteBTN.Click
-        If ConnDB.IsOfflineMode Then
-            MessageBox.Show("Cannot modify while offline!", "Offline Mode")
-            Return
-        End If
-
-        If ClothesEditModalClothesIDTB.Text = "" Then
-            MessageBox.Show("Select item first!")
-            Return
-        End If
-
-        Dim actionText As String = If(isArchiveMode, "RESTORE to Active", "ARCHIVE to Storage")
-        Dim newStatus As String = If(isArchiveMode, "Available", "Archived")
-
-        If MessageBox.Show($"📦 {actionText}?" & vbCrLf & $"Status will be: {newStatus}",
-                          If(isArchiveMode, "Restore Item", "Archive Item"),
-                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-
-            Try
-                OpenConn()
-
-                Dim query As String = "
-                    UPDATE Clothes SET 
-                        Status = @newStatus,
-                        Archived_Date = " & If(newStatus = "Archived", "NOW()", "NULL") & "
-                    WHERE Clothes_ID = @id"
-
-                cmd = New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@id", Convert.ToInt32(ClothesEditModalClothesIDTB.Text))
-                cmd.Parameters.AddWithValue("@newStatus", newStatus)
-
-                cmd.ExecuteNonQuery()
-
-                MessageBox.Show($"✅ Item {actionText} successfully!" & vbCrLf &
-                              $"📅 " & DateTime.Now.ToString("MMM dd, yyyy HH:mm"))
-
-                ClearEditFields()
-                LoadCurrentDGV()
-
-            Catch ex As Exception
-                MessageBox.Show("Operation failed: " & ex.Message)
-            Finally
-                CloseConn()
-            End Try
-        End If
+        clothesManager.SafeClothesDelete()
     End Sub
 
     Private Sub RestoreFromArchiveBTN_Click(sender As Object, e As EventArgs) Handles RestoreFromArchiveBTN.Click
-        If ConnDB.IsOfflineMode Then
-            MessageBox.Show("Cannot restore while offline!", "Offline Mode", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        If ClothesEditModalClothesIDTB.Text = "" Then
-            MessageBox.Show("Please select an archived item first!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' Confirm restore
-        Dim result = MessageBox.Show(
-        "👗 Restore this item to ACTIVE INVENTORY?" & vbCrLf & vbCrLf &
-        "✓ Status: Available" & vbCrLf &
-        "✓ Clears archive date" & vbCrLf &
-        "✓ Item returns to main inventory",
-        "Restore from Storage",
-        MessageBoxButtons.YesNoCancel,
-        MessageBoxIcon.Question
-    )
-
-        If result <> DialogResult.Yes Then Return
-
-        Try
-            OpenConn()
-
-            ' Restore: Set Status back to 'Available' and clear archive fields
-            Dim restoreQuery As String = "
-            UPDATE Clothes SET 
-                Status = 'Available',
-                Archived_Date = NULL
-            WHERE Clothes_ID = @id AND Status = 'Archived'"
-
-            cmd = New MySqlCommand(restoreQuery, conn)
-            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(ClothesEditModalClothesIDTB.Text))
-
-            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-
-            If rowsAffected > 0 Then
-                MessageBox.Show(
-                "✅ Item restored to ACTIVE INVENTORY!" & vbCrLf & vbCrLf &
-                "📅 Restored: " & DateTime.Now.ToString("MMM dd, yyyy hh:mm tt") & vbCrLf &
-                "👗 Now visible in Active Inventory",
-                "Restore Successful",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            )
-
-                ' Clear fields and refresh
-                ClearEditFields()
-
-                ' Switch to active mode and refresh
-                isArchiveMode = False
-                ToggleDGVVisibility()
-                LoadActiveClothes()
-                UpdateToggleUI()
-
-            Else
-                MessageBox.Show("Item not found in archive or already restored!", "Restore Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show("Restore failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            CloseConn()
-        End Try
+        clothesManager.RestoreDeletedClothes()
     End Sub
-
-
-    Private Sub ClearEditFields()
-        ClothesEditModalClothesIDTB.Clear()
-        ClothesEditModalClothesNameTB.Clear()
-        ClothesEditModalCategoryTB.Clear()
-        ClothesEditModalSizeTB.Clear()
-        ClothesEditModalFabricTypeTB.Clear()
-        ClothesEditModalColorTB.Clear()
-        ClothesEditModalConditionTB.Clear()
-    End Sub
-
 
 
     Private Sub ClothesMarkAsRepairBTN_Click(sender As Object, e As EventArgs) Handles ClothesMarkAsRepairBTN.Click
-
-        If ClothesEditModalClothesIDTB.Text = "" Then
-            MessageBox.Show("Select item first")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim query As String = "UPDATE Clothes SET Status='For Repair' WHERE Clothes_ID=@id"
-            cmd = New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@id", ClothesEditModalClothesIDTB.Text)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Marked as For Repair")
-            LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        clothesManager.MarkAsRepairClothes()
     End Sub
-
-    Private Sub ClearAddFields()
-        ClothesAddModalClothesNameTB.Clear()
-        ClothesAddModalCategoryTB.Clear()
-        ClothesAddModalSizeTB.Clear()
-        ClothesAddModalFabricTypeTB.Clear()
-        ClothesAddModalColorTB.Clear()
-    End Sub
-
 
     ' =========================
     ' ARCHIVE TOGGLE SYSTEM
     ' =========================
-
-    ' Archive mode tracking
-    Private isArchiveMode As Boolean = False
-
-    Private Sub ToggleArchiveBTN_Click(sender As Object, e As EventArgs) Handles ToggleArchiveBTN.Click
-        If ConnDB.IsOfflineMode Then
-            MessageBox.Show("Cannot switch views while offline!", "Offline Mode")
-            Return
-        End If
-
-        isArchiveMode = Not isArchiveMode
-        ToggleDGVVisibility()
-        LoadCurrentDGV()
-        UpdateToggleUI()
+    Public Sub ToggleArchiveBTN_Click(sender As Object, e As EventArgs) Handles ToggleArchiveBTN.Click
+        clothesManager.ToggleArchiveMode()
     End Sub
-
-    Private Sub ToggleDGVVisibility()
-        If isArchiveMode Then
-            ArchiveClothesDGV.Visible = True
-            ArchiveClothesDGV.BringToFront()
-            ClothesDGV.Visible = False
-            RestoreFromArchiveBTN.Visible = True
-            ClothesDeleteBTN.Visible = False
-        Else
-            ClothesDGV.Visible = True
-            ClothesDGV.BringToFront()
-            ArchiveClothesDGV.Visible = False
-            RestoreFromArchiveBTN.Visible = False
-            ClothesDeleteBTN.Visible = True
-        End If
-    End Sub
-
-    Private Sub UpdateToggleUI()
-        If isArchiveMode Then
-            ToggleArchiveBTN.Text = "👗 SHOW ACTIVE INVENTORY"
-            ToggleArchiveBTN.BackColor = Color.OrangeRed
-            ToggleArchiveBTN.ForeColor = Color.White
-            ArchiveModeLabel.Text = "📦 ARCHIVE/STORAGE MODE"
-            ArchiveModeLabel.ForeColor = Color.OrangeRed
-
-        Else
-            ToggleArchiveBTN.Text = "📦 SHOW ARCHIVE/STORAGE"
-            ToggleArchiveBTN.BackColor = Color.DodgerBlue
-            ToggleArchiveBTN.ForeColor = Color.White
-            ArchiveModeLabel.Text = "👗 ACTIVE INVENTORY MODE"
-            ArchiveModeLabel.ForeColor = Color.Green
-
-        End If
-    End Sub
-    Private Sub LoadCurrentDGV()
-        If isArchiveMode Then
-            LoadArchiveClothes()
-        Else
-            LoadClothes()
-        End If
-    End Sub
-
-    Private Sub UpdateArchiveModeUI()
-        If isArchiveMode Then
-            ToggleArchiveBTN.Text = "📦 ACTIVE CLOTHES"
-            ToggleArchiveBTN.BackColor = Color.Orange
-            ToggleArchiveBTN.ForeColor = Color.White
-            ArchiveModeLabel.Text = "📦 ARCHIVE MODE - Storage"
-            ArchiveModeLabel.ForeColor = Color.Orange
-
-        Else
-            ToggleArchiveBTN.Text = "📦 ARCHIVE MODE"
-            ToggleArchiveBTN.BackColor = Color.DodgerBlue
-            ToggleArchiveBTN.ForeColor = Color.White
-            ArchiveModeLabel.Text = "👗 ACTIVE INVENTORY"
-            ArchiveModeLabel.ForeColor = Color.Green
-
-        End If
-    End Sub
-
-    Private Sub LoadCurrentView()
-        If ConnDB.IsOfflineMode Then
-            MessageBox.Show("Cannot load data while offline!", "Offline Mode")
-            Return
-        End If
-
-        If isArchiveMode Then
-            LoadArchiveClothes()
-        Else
-            LoadClothes()
-        End If
-    End Sub
-
 
 
     ' =========================
@@ -868,7 +484,6 @@ Public Class Form1
             Dim adapter As New MySqlDataAdapter(cmd)
             Dim dt As New DataTable
             adapter.Fill(dt)
-
             comboBox.DataSource = dt
             comboBox.DisplayMember = "Supplier_Name"
             comboBox.ValueMember = "Supplier_ID"
@@ -1440,7 +1055,7 @@ Public Class Form1
             ClearRentFields()
             LoadRentTransactions()
             LoadAvailableClothesToCombo()
-            LoadClothes()
+            clothesManager.LoadClothes()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -1513,7 +1128,7 @@ Public Class Form1
 
             LoadRentTransactions()
             LoadAvailableClothesToCombo()
-            LoadClothes()
+            clothesManager.LoadClothes()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -1568,7 +1183,7 @@ Public Class Form1
             MessageBox.Show("Item marked as lost!")
 
             LoadRentTransactions()
-            LoadClothes()
+            clothesManager.LoadClothes()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -2049,7 +1664,7 @@ Public Class Form1
 
             ClearTailoringFields()
             LoadTailoringTransactions()
-            LoadClothes()
+            clothesManager.LoadClothes()
 
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message)
@@ -2263,7 +1878,7 @@ Public Class Form1
 
             ' 🔄 FULL REFRESH
             LoadTailoringTransactions()
-            LoadClothes()
+            clothesManager.LoadClothes()
             If MaterialsPanel.Visible Then LoadMaterials()  ' Refresh stock display
             If TailoringPanel.Visible Then LoadAvailableClothesToTailoringCombo()
 
