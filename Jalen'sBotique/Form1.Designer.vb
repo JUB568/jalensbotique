@@ -23,42 +23,13 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ChartFont1 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont2 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont3 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont4 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid1 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick1 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont5 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid2 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick2 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont6 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid3 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim PointLabel1 As Guna.Charts.WinForms.PointLabel = New Guna.Charts.WinForms.PointLabel()
-        Dim ChartFont7 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Tick3 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont8 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont9 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont10 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont11 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim ChartFont12 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid4 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick4 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont13 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid5 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim Tick5 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont14 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Grid6 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
-        Dim PointLabel2 As Guna.Charts.WinForms.PointLabel = New Guna.Charts.WinForms.PointLabel()
-        Dim ChartFont15 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
-        Dim Tick6 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
-        Dim ChartFont16 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
         LogInPanel = New Panel()
         txtPass = New TextBox()
         txtUser = New TextBox()
         btnLogin = New Button()
         overlayPanel = New Panel()
         SidebarPanel = New Panel()
+        SettingsBTN = New Button()
         ReportsBTN = New Button()
         CustomerBTN = New Button()
         TailoringBTN = New Button()
@@ -68,80 +39,120 @@ Partial Class Form1
         DashboardBTN = New Button()
         SideBarLogoPanel = New Panel()
         MainPanel = New Panel()
-        TailoringPanel = New Panel()
-        Panel29 = New Panel()
-        Panel35 = New Panel()
-        TailoringMaterialsDGV = New DataGridView()
-        Panel34 = New Panel()
-        TailoringDGV = New DataGridView()
-        Panel33 = New Panel()
-        ClearTailoringBTN = New Button()
-        CreateTailoringRequestBTN = New Button()
-        Panel31 = New Panel()
-        TailoringStatusCMB = New ComboBox()
-        TailoringServiceIDTB = New TextBox()
-        Label61 = New Label()
-        Label60 = New Label()
-        Panel37 = New Panel()
-        Button17 = New Button()
-        UpdateTailoringStatusBTN = New Button()
-        Panel36 = New Panel()
-        Label37 = New Label()
-        Panel30 = New Panel()
-        Label38 = New Label()
-        TailoringClothesLabel = New Label()
-        CustomerOwnedToggleBTN = New Button()
-        TailoringCustomerClothesTB = New TextBox()
-        TailoringDescriptionTB = New TextBox()
-        TailoringTypeCMB = New ComboBox()
-        TailoringClothesCMB = New ComboBox()
-        TailoringCustomerCMB = New ComboBox()
-        TailoringEmployeeCMB = New ComboBox()
-        TailoringPriceTB = New TextBox()
-        Label54 = New Label()
-        Label53 = New Label()
-        Label52 = New Label()
-        Label51 = New Label()
-        Label50 = New Label()
-        Panel32 = New Panel()
-        Label57 = New Label()
         ReportsPanel = New Panel()
-        RentPanel = New Panel()
-        RentSearchTB = New TextBox()
-        ReturnItemPanel = New Panel()
-        ReturnItemStatusTB = New TextBox()
-        ReturnItemClothesNameTB = New TextBox()
-        ReturnItemCustomerNameTB = New TextBox()
-        Label102 = New Label()
-        ExtendItemBTN = New Button()
-        MarkLostItemBTN = New Button()
-        ReturnItemBTN = New Button()
-        ReturnItemRentIDTB = New TextBox()
-        Label36 = New Label()
-        Label35 = New Label()
-        Label34 = New Label()
-        Label33 = New Label()
-        Panel23 = New Panel()
-        ClearRentItemBTN = New Button()
-        RentItemBTN = New Button()
-        Panel22 = New Panel()
-        RentDGV = New DataGridView()
-        RentItemPanel = New Panel()
-        RentClothesCMB = New ComboBox()
-        RentCustomerNameCMB = New ComboBox()
-        Label101 = New Label()
-        RentExpectedReturnDTP = New DateTimePicker()
-        Label32 = New Label()
-        Label31 = New Label()
-        RentDateRentedDTP = New DateTimePicker()
-        Label30 = New Label()
-        Label29 = New Label()
+        Panel9 = New Panel()
+        ExportPDFBTN = New Button()
+        ReportsDGV = New DataGridView()
+        ReportTitleLabel = New Label()
+        GenerateReportBTN = New Button()
+        ReportDateToDTP = New DateTimePicker()
+        ReportDateFromDTP = New DateTimePicker()
+        ReportTypeCMB = New ComboBox()
+        AdminDashboardPanel = New Panel()
+        DashboardPanelContainer = New Panel()
+        ConnectionStatusLabel = New Label()
+        Panel3 = New Panel()
+        QuickReportsListBox = New ListBox()
+        Label8 = New Label()
+        Panel2 = New Panel()
+        LowStockListBox = New ListBox()
+        Label2 = New Label()
+        PieChartContainer = New Panel()
+        RecentActivityListBox = New ListBox()
+        Label1 = New Label()
+        CardDashboardContainer = New Panel()
+        Panel7 = New Panel()
+        RepairsLabel = New Label()
+        Label6 = New Label()
+        Panel6 = New Panel()
+        RentedLabel = New Label()
+        Label5 = New Label()
+        Panel5 = New Panel()
+        AvailableLabel = New Label()
+        Label4 = New Label()
+        Panel1 = New Panel()
+        TotalClothesLabel = New Label()
+        Label3 = New Label()
+        MaterialsPanel = New Panel()
+        MaterialSearchTB = New TextBox()
+        Label45 = New Label()
+        SupplierPanel = New Panel()
+        AddSuppliersBTN = New Button()
+        SupplierSearchTB = New TextBox()
+        SuppliersDGV = New DataGridView()
+        SuppliersEmailTB = New TextBox()
+        SuppliersAddressTB = New TextBox()
+        SuppliersContactTB = New TextBox()
+        SuppliersNameTB = New TextBox()
+        Label44 = New Label()
+        Label43 = New Label()
+        Label42 = New Label()
+        Label41 = New Label()
+        Label40 = New Label()
+        UpdateMaterialBTN = New Button()
+        AddMaterialBTN = New Button()
+        MaterialPanel = New Panel()
+        UpdateMaterialModalPanel = New Panel()
+        UpdateMaterialSupplierCMB = New ComboBox()
+        UpdateMaterialIDTB = New TextBox()
+        Label91 = New Label()
+        Label90 = New Label()
+        UpdateMaterialModalConfirmBTN = New Button()
+        UpdateMaterialModalCancelBTN = New Button()
+        UpdateMaterialUnitOfMeasureTB = New TextBox()
+        UpdateMaterialDescriptionTB = New RichTextBox()
+        UpdateMaterialQuantityOnStockTB = New TextBox()
+        UpdateMaterialNameTB = New TextBox()
+        Label84 = New Label()
+        Label85 = New Label()
+        Label86 = New Label()
+        Label87 = New Label()
+        Label88 = New Label()
+        AddMaterialModalPanel = New Panel()
+        AddMaterialSupplierCMB = New ComboBox()
+        Label89 = New Label()
+        AddMaterialModalConfirmBTN = New Button()
+        AddMaterialModalCancelBTN = New Button()
+        AddMaterialUnitOfMeasureTB = New TextBox()
+        AddMaterialDescriptionTB = New RichTextBox()
+        AddMaterialQuantityOnStockTB = New TextBox()
+        AddMaterialNameTB = New TextBox()
+        Label83 = New Label()
+        Label82 = New Label()
+        Label81 = New Label()
+        Label80 = New Label()
+        Label79 = New Label()
+        MaterialsDGV = New DataGridView()
+        SettingsPanel = New Panel()
+        Panel4 = New Panel()
+        ConfigStatusLabel = New Label()
+        Panel11 = New Panel()
+        BackupNowBTN = New Button()
+        Label16 = New Label()
+        Label15 = New Label()
+        Panel10 = New Panel()
+        SaveConfigBTN = New Button()
+        TestConnectionBTN = New Button()
+        PasswordTB = New TextBox()
+        UsernameTB = New TextBox()
+        DatabaseTB = New TextBox()
+        ServerTB = New TextBox()
+        Label14 = New Label()
+        Label13 = New Label()
+        Label12 = New Label()
+        Label11 = New Label()
+        Panel13 = New Panel()
+        Panel14 = New Panel()
+        Label10 = New Label()
+        Panel15 = New Panel()
+        Label18 = New Label()
+        Label17 = New Label()
+        RestoreNowBTN = New Button()
+        Panel12 = New Panel()
+        Panel16 = New Panel()
+        Label9 = New Label()
         ClothesPanel = New Panel()
         PictureBox1 = New PictureBox()
-        Label28 = New Label()
-        ClothesStatusCMB = New ComboBox()
-        Label27 = New Label()
-        ClothesCategoryCMB = New ComboBox()
         ClothesAddBTN = New Button()
         ClothesEditBTN = New Button()
         ClothesMarkAsRepairBTN = New Button()
@@ -187,84 +198,73 @@ Partial Class Form1
         ClothesDGV = New DataGridView()
         ArchiveClothesDGV = New DataGridView()
         RestoreFromArchiveBTN = New Button()
-        AdminDashboardPanel = New Panel()
-        DashboardPanelContainer = New Panel()
-        ConnectionStatusLabel = New Label()
-        Panel20 = New Panel()
-        Label26 = New Label()
-        GunaChart3 = New Guna.Charts.WinForms.GunaChart()
-        Panel4 = New Panel()
-        Label25 = New Label()
-        GunaChart1 = New Guna.Charts.WinForms.GunaChart()
-        ComboBox1 = New ComboBox()
-        Panel3 = New Panel()
-        Label8 = New Label()
-        Panel2 = New Panel()
-        Label2 = New Label()
-        PieChartContainer = New Panel()
-        Label1 = New Label()
-        CardDashboardContainer = New Panel()
-        Panel7 = New Panel()
-        Label12 = New Label()
-        Label6 = New Label()
-        Panel6 = New Panel()
-        Label11 = New Label()
-        Label5 = New Label()
-        Panel5 = New Panel()
-        Label10 = New Label()
-        Label4 = New Label()
-        Panel1 = New Panel()
-        Label9 = New Label()
-        Label3 = New Label()
-        MaterialsPanel = New Panel()
-        Label45 = New Label()
-        SupplierPanel = New Panel()
-        AddSuppliersBTN = New Button()
-        TextBox10 = New TextBox()
-        SuppliersDGV = New DataGridView()
-        SuppliersEmailTB = New TextBox()
-        SuppliersAddressTB = New TextBox()
-        SuppliersContactTB = New TextBox()
-        SuppliersNameTB = New TextBox()
-        Label44 = New Label()
-        Label43 = New Label()
-        Label42 = New Label()
-        Label41 = New Label()
-        Label40 = New Label()
-        UpdateMaterialBTN = New Button()
-        AddMaterialBTN = New Button()
-        MaterialPanel = New Panel()
-        UpdateMaterialModalPanel = New Panel()
-        UpdateMaterialSupplierCMB = New ComboBox()
-        UpdateMaterialIDTB = New TextBox()
-        Label91 = New Label()
-        Label90 = New Label()
-        UpdateMaterialModalConfirmBTN = New Button()
-        UpdateMaterialModalCancelBTN = New Button()
-        UpdateMaterialUnitOfMeasureTB = New TextBox()
-        UpdateMaterialDescriptionTB = New RichTextBox()
-        UpdateMaterialQuantityOnStockTB = New TextBox()
-        UpdateMaterialNameTB = New TextBox()
-        Label84 = New Label()
-        Label85 = New Label()
-        Label86 = New Label()
-        Label87 = New Label()
-        Label88 = New Label()
-        AddMaterialModalPanel = New Panel()
-        AddMaterialSupplierCMB = New ComboBox()
-        Label89 = New Label()
-        AddMaterialModalConfirmBTN = New Button()
-        AddMaterialModalCancelBTN = New Button()
-        AddMaterialUnitOfMeasureTB = New TextBox()
-        AddMaterialDescriptionTB = New RichTextBox()
-        AddMaterialQuantityOnStockTB = New TextBox()
-        AddMaterialNameTB = New TextBox()
-        Label83 = New Label()
-        Label82 = New Label()
-        Label81 = New Label()
-        Label80 = New Label()
-        Label79 = New Label()
-        MaterialsDGV = New DataGridView()
+        RentPanel = New Panel()
+        RentSearchTB = New TextBox()
+        ReturnItemPanel = New Panel()
+        ReturnItemStatusTB = New TextBox()
+        ReturnItemClothesNameTB = New TextBox()
+        ReturnItemCustomerNameTB = New TextBox()
+        Label102 = New Label()
+        ExtendItemBTN = New Button()
+        MarkLostItemBTN = New Button()
+        ReturnItemBTN = New Button()
+        ReturnItemRentIDTB = New TextBox()
+        Label36 = New Label()
+        Label35 = New Label()
+        Label34 = New Label()
+        Label33 = New Label()
+        Panel23 = New Panel()
+        ClearRentItemBTN = New Button()
+        RentItemBTN = New Button()
+        Panel22 = New Panel()
+        RentDGV = New DataGridView()
+        RentItemPanel = New Panel()
+        RentClothesCMB = New ComboBox()
+        RentCustomerNameCMB = New ComboBox()
+        Label101 = New Label()
+        RentExpectedReturnDTP = New DateTimePicker()
+        Label32 = New Label()
+        Label31 = New Label()
+        RentDateRentedDTP = New DateTimePicker()
+        Label30 = New Label()
+        Label29 = New Label()
+        TailoringPanel = New Panel()
+        Panel29 = New Panel()
+        Panel35 = New Panel()
+        TailoringMaterialsDGV = New DataGridView()
+        Panel34 = New Panel()
+        TailoringDGV = New DataGridView()
+        Panel33 = New Panel()
+        ClearTailoringBTN = New Button()
+        CreateTailoringRequestBTN = New Button()
+        Panel31 = New Panel()
+        TailoringStatusCMB = New ComboBox()
+        TailoringServiceIDTB = New TextBox()
+        Label61 = New Label()
+        Label60 = New Label()
+        Panel37 = New Panel()
+        Button17 = New Button()
+        UpdateTailoringStatusBTN = New Button()
+        Panel36 = New Panel()
+        Label37 = New Label()
+        Panel30 = New Panel()
+        Label38 = New Label()
+        TailoringClothesLabel = New Label()
+        CustomerOwnedToggleBTN = New Button()
+        TailoringCustomerClothesTB = New TextBox()
+        TailoringDescriptionTB = New TextBox()
+        TailoringTypeCMB = New ComboBox()
+        TailoringClothesCMB = New ComboBox()
+        TailoringCustomerCMB = New ComboBox()
+        TailoringEmployeeCMB = New ComboBox()
+        TailoringPriceTB = New TextBox()
+        Label54 = New Label()
+        Label53 = New Label()
+        Label52 = New Label()
+        Label51 = New Label()
+        Label50 = New Label()
+        Panel32 = New Panel()
+        Label57 = New Label()
         CustomerPanel = New Panel()
         UpdateCustomerBTN = New Button()
         DeleteCustomerBTN = New Button()
@@ -296,40 +296,16 @@ Partial Class Form1
         Label92 = New Label()
         CustomerDGV = New DataGridView()
         GunaAreaDataset1 = New Guna.Charts.WinForms.GunaAreaDataset()
+        UserPanel = New Button()
         LogInPanel.SuspendLayout()
         overlayPanel.SuspendLayout()
         SidebarPanel.SuspendLayout()
         MainPanel.SuspendLayout()
-        TailoringPanel.SuspendLayout()
-        Panel29.SuspendLayout()
-        Panel35.SuspendLayout()
-        CType(TailoringMaterialsDGV, ComponentModel.ISupportInitialize).BeginInit()
-        Panel34.SuspendLayout()
-        CType(TailoringDGV, ComponentModel.ISupportInitialize).BeginInit()
-        Panel33.SuspendLayout()
-        Panel31.SuspendLayout()
-        Panel37.SuspendLayout()
-        Panel36.SuspendLayout()
-        Panel30.SuspendLayout()
-        Panel32.SuspendLayout()
-        RentPanel.SuspendLayout()
-        ReturnItemPanel.SuspendLayout()
-        Panel23.SuspendLayout()
-        Panel22.SuspendLayout()
-        CType(RentDGV, ComponentModel.ISupportInitialize).BeginInit()
-        RentItemPanel.SuspendLayout()
-        ClothesPanel.SuspendLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        Panel8.SuspendLayout()
-        TableClotheContainer.SuspendLayout()
-        ClotheEditModalPanel.SuspendLayout()
-        ClotheAddModalPanel.SuspendLayout()
-        CType(ClothesDGV, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ArchiveClothesDGV, ComponentModel.ISupportInitialize).BeginInit()
+        ReportsPanel.SuspendLayout()
+        Panel9.SuspendLayout()
+        CType(ReportsDGV, ComponentModel.ISupportInitialize).BeginInit()
         AdminDashboardPanel.SuspendLayout()
         DashboardPanelContainer.SuspendLayout()
-        Panel20.SuspendLayout()
-        Panel4.SuspendLayout()
         Panel3.SuspendLayout()
         Panel2.SuspendLayout()
         PieChartContainer.SuspendLayout()
@@ -345,6 +321,40 @@ Partial Class Form1
         UpdateMaterialModalPanel.SuspendLayout()
         AddMaterialModalPanel.SuspendLayout()
         CType(MaterialsDGV, ComponentModel.ISupportInitialize).BeginInit()
+        SettingsPanel.SuspendLayout()
+        Panel4.SuspendLayout()
+        Panel11.SuspendLayout()
+        Panel10.SuspendLayout()
+        Panel13.SuspendLayout()
+        Panel14.SuspendLayout()
+        Panel15.SuspendLayout()
+        Panel16.SuspendLayout()
+        ClothesPanel.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        Panel8.SuspendLayout()
+        TableClotheContainer.SuspendLayout()
+        ClotheEditModalPanel.SuspendLayout()
+        ClotheAddModalPanel.SuspendLayout()
+        CType(ClothesDGV, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ArchiveClothesDGV, ComponentModel.ISupportInitialize).BeginInit()
+        RentPanel.SuspendLayout()
+        ReturnItemPanel.SuspendLayout()
+        Panel23.SuspendLayout()
+        Panel22.SuspendLayout()
+        CType(RentDGV, ComponentModel.ISupportInitialize).BeginInit()
+        RentItemPanel.SuspendLayout()
+        TailoringPanel.SuspendLayout()
+        Panel29.SuspendLayout()
+        Panel35.SuspendLayout()
+        CType(TailoringMaterialsDGV, ComponentModel.ISupportInitialize).BeginInit()
+        Panel34.SuspendLayout()
+        CType(TailoringDGV, ComponentModel.ISupportInitialize).BeginInit()
+        Panel33.SuspendLayout()
+        Panel31.SuspendLayout()
+        Panel37.SuspendLayout()
+        Panel36.SuspendLayout()
+        Panel30.SuspendLayout()
+        Panel32.SuspendLayout()
         CustomerPanel.SuspendLayout()
         Panel19.SuspendLayout()
         UpdateCustomerModalPanel.SuspendLayout()
@@ -384,7 +394,7 @@ Partial Class Form1
         btnLogin.Name = "btnLogin"
         btnLogin.Size = New Size(75, 23)
         btnLogin.TabIndex = 0
-        btnLogin.Text = "Button1"
+        btnLogin.Text = "Log In"
         btnLogin.UseVisualStyleBackColor = True
         ' 
         ' overlayPanel
@@ -398,6 +408,8 @@ Partial Class Form1
         ' SidebarPanel
         ' 
         SidebarPanel.BackColor = Color.FromArgb(CByte(248), CByte(194), CByte(145))
+        SidebarPanel.Controls.Add(UserPanel)
+        SidebarPanel.Controls.Add(SettingsBTN)
         SidebarPanel.Controls.Add(ReportsBTN)
         SidebarPanel.Controls.Add(CustomerBTN)
         SidebarPanel.Controls.Add(TailoringBTN)
@@ -411,6 +423,18 @@ Partial Class Form1
         SidebarPanel.Name = "SidebarPanel"
         SidebarPanel.Size = New Size(214, 796)
         SidebarPanel.TabIndex = 2
+        ' 
+        ' SettingsBTN
+        ' 
+        SettingsBTN.BackColor = Color.Lime
+        SettingsBTN.Dock = DockStyle.Top
+        SettingsBTN.FlatStyle = FlatStyle.Flat
+        SettingsBTN.Location = New Point(0, 665)
+        SettingsBTN.Name = "SettingsBTN"
+        SettingsBTN.Size = New Size(214, 81)
+        SettingsBTN.TabIndex = 8
+        SettingsBTN.Text = "SETTINGS"
+        SettingsBTN.UseVisualStyleBackColor = False
         ' 
         ' ReportsBTN
         ' 
@@ -515,12 +539,13 @@ Partial Class Form1
         ' MainPanel
         ' 
         MainPanel.BackColor = SystemColors.Info
-        MainPanel.Controls.Add(TailoringPanel)
         MainPanel.Controls.Add(ReportsPanel)
-        MainPanel.Controls.Add(RentPanel)
-        MainPanel.Controls.Add(ClothesPanel)
         MainPanel.Controls.Add(AdminDashboardPanel)
         MainPanel.Controls.Add(MaterialsPanel)
+        MainPanel.Controls.Add(SettingsPanel)
+        MainPanel.Controls.Add(ClothesPanel)
+        MainPanel.Controls.Add(RentPanel)
+        MainPanel.Controls.Add(TailoringPanel)
         MainPanel.Controls.Add(CustomerPanel)
         MainPanel.Dock = DockStyle.Fill
         MainPanel.Location = New Point(214, 0)
@@ -528,674 +553,1092 @@ Partial Class Form1
         MainPanel.Size = New Size(1380, 796)
         MainPanel.TabIndex = 3
         ' 
-        ' TailoringPanel
-        ' 
-        TailoringPanel.BackColor = Color.FromArgb(CByte(112), CByte(111), CByte(211))
-        TailoringPanel.Controls.Add(Panel29)
-        TailoringPanel.Dock = DockStyle.Fill
-        TailoringPanel.Location = New Point(0, 0)
-        TailoringPanel.Name = "TailoringPanel"
-        TailoringPanel.Size = New Size(1380, 796)
-        TailoringPanel.TabIndex = 4
-        ' 
-        ' Panel29
-        ' 
-        Panel29.BackColor = Color.White
-        Panel29.Controls.Add(Panel35)
-        Panel29.Controls.Add(Panel34)
-        Panel29.Controls.Add(Panel33)
-        Panel29.Controls.Add(Panel31)
-        Panel29.Controls.Add(Panel30)
-        Panel29.Location = New Point(29, 24)
-        Panel29.Name = "Panel29"
-        Panel29.Size = New Size(1328, 760)
-        Panel29.TabIndex = 0
-        ' 
-        ' Panel35
-        ' 
-        Panel35.BackColor = Color.RosyBrown
-        Panel35.Controls.Add(TailoringMaterialsDGV)
-        Panel35.Location = New Point(590, 443)
-        Panel35.Name = "Panel35"
-        Panel35.Size = New Size(716, 306)
-        Panel35.TabIndex = 3
-        ' 
-        ' TailoringMaterialsDGV
-        ' 
-        TailoringMaterialsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        TailoringMaterialsDGV.Location = New Point(11, 14)
-        TailoringMaterialsDGV.Name = "TailoringMaterialsDGV"
-        TailoringMaterialsDGV.Size = New Size(691, 280)
-        TailoringMaterialsDGV.TabIndex = 0
-        ' 
-        ' Panel34
-        ' 
-        Panel34.BackColor = Color.RosyBrown
-        Panel34.Controls.Add(TailoringDGV)
-        Panel34.Location = New Point(590, 15)
-        Panel34.Name = "Panel34"
-        Panel34.Size = New Size(716, 422)
-        Panel34.TabIndex = 2
-        ' 
-        ' TailoringDGV
-        ' 
-        TailoringDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        TailoringDGV.Location = New Point(11, 10)
-        TailoringDGV.Name = "TailoringDGV"
-        TailoringDGV.Size = New Size(691, 406)
-        TailoringDGV.TabIndex = 1
-        ' 
-        ' Panel33
-        ' 
-        Panel33.BackColor = Color.Black
-        Panel33.Controls.Add(ClearTailoringBTN)
-        Panel33.Controls.Add(CreateTailoringRequestBTN)
-        Panel33.Location = New Point(31, 386)
-        Panel33.Name = "Panel33"
-        Panel33.Size = New Size(528, 51)
-        Panel33.TabIndex = 1
-        ' 
-        ' ClearTailoringBTN
-        ' 
-        ClearTailoringBTN.Location = New Point(329, 12)
-        ClearTailoringBTN.Name = "ClearTailoringBTN"
-        ClearTailoringBTN.Size = New Size(75, 33)
-        ClearTailoringBTN.TabIndex = 1
-        ClearTailoringBTN.Text = "Clear"
-        ClearTailoringBTN.UseVisualStyleBackColor = True
-        ' 
-        ' CreateTailoringRequestBTN
-        ' 
-        CreateTailoringRequestBTN.Location = New Point(110, 12)
-        CreateTailoringRequestBTN.Name = "CreateTailoringRequestBTN"
-        CreateTailoringRequestBTN.Size = New Size(75, 33)
-        CreateTailoringRequestBTN.TabIndex = 0
-        CreateTailoringRequestBTN.Text = "Save Job"
-        CreateTailoringRequestBTN.UseVisualStyleBackColor = True
-        ' 
-        ' Panel31
-        ' 
-        Panel31.BackColor = Color.RosyBrown
-        Panel31.Controls.Add(TailoringStatusCMB)
-        Panel31.Controls.Add(TailoringServiceIDTB)
-        Panel31.Controls.Add(Label61)
-        Panel31.Controls.Add(Label60)
-        Panel31.Controls.Add(Panel37)
-        Panel31.Controls.Add(Panel36)
-        Panel31.Location = New Point(31, 443)
-        Panel31.Name = "Panel31"
-        Panel31.Size = New Size(528, 306)
-        Panel31.TabIndex = 1
-        ' 
-        ' TailoringStatusCMB
-        ' 
-        TailoringStatusCMB.FormattingEnabled = True
-        TailoringStatusCMB.Items.AddRange(New Object() {"In Progress", "Completed", "Cancelled"})
-        TailoringStatusCMB.Location = New Point(162, 140)
-        TailoringStatusCMB.Name = "TailoringStatusCMB"
-        TailoringStatusCMB.Size = New Size(121, 23)
-        TailoringStatusCMB.TabIndex = 19
-        ' 
-        ' TailoringServiceIDTB
-        ' 
-        TailoringServiceIDTB.Location = New Point(162, 98)
-        TailoringServiceIDTB.Name = "TailoringServiceIDTB"
-        TailoringServiceIDTB.Size = New Size(100, 23)
-        TailoringServiceIDTB.TabIndex = 15
-        ' 
-        ' Label61
-        ' 
-        Label61.AutoSize = True
-        Label61.Font = New Font("Segoe UI", 12F)
-        Label61.Location = New Point(101, 140)
-        Label61.Name = "Label61"
-        Label61.Size = New Size(55, 21)
-        Label61.TabIndex = 10
-        Label61.Text = "Status:"
-        ' 
-        ' Label60
-        ' 
-        Label60.AutoSize = True
-        Label60.Font = New Font("Segoe UI", 12F)
-        Label60.Location = New Point(34, 100)
-        Label60.Name = "Label60"
-        Label60.Size = New Size(122, 21)
-        Label60.TabIndex = 9
-        Label60.Text = " Selected Job ID:"
-        ' 
-        ' Panel37
-        ' 
-        Panel37.BackColor = Color.Black
-        Panel37.Controls.Add(Button17)
-        Panel37.Controls.Add(UpdateTailoringStatusBTN)
-        Panel37.Location = New Point(0, 255)
-        Panel37.Name = "Panel37"
-        Panel37.Size = New Size(528, 51)
-        Panel37.TabIndex = 1
-        ' 
-        ' Button17
-        ' 
-        Button17.Location = New Point(329, 3)
-        Button17.Name = "Button17"
-        Button17.Size = New Size(79, 45)
-        Button17.TabIndex = 3
-        Button17.Text = "Remove Selected"
-        Button17.UseVisualStyleBackColor = True
-        ' 
-        ' UpdateTailoringStatusBTN
-        ' 
-        UpdateTailoringStatusBTN.Location = New Point(110, 3)
-        UpdateTailoringStatusBTN.Name = "UpdateTailoringStatusBTN"
-        UpdateTailoringStatusBTN.Size = New Size(79, 45)
-        UpdateTailoringStatusBTN.TabIndex = 2
-        UpdateTailoringStatusBTN.Text = "Update Status"
-        UpdateTailoringStatusBTN.UseVisualStyleBackColor = True
-        ' 
-        ' Panel36
-        ' 
-        Panel36.BackColor = Color.Black
-        Panel36.Controls.Add(Label37)
-        Panel36.Location = New Point(0, 0)
-        Panel36.Name = "Panel36"
-        Panel36.Size = New Size(528, 51)
-        Panel36.TabIndex = 0
-        ' 
-        ' Label37
-        ' 
-        Label37.AutoSize = True
-        Label37.BackColor = Color.Black
-        Label37.Font = New Font("Segoe UI", 15F)
-        Label37.ForeColor = SystemColors.ControlLightLight
-        Label37.Location = New Point(150, 13)
-        Label37.Name = "Label37"
-        Label37.Size = New Size(185, 28)
-        Label37.TabIndex = 1
-        Label37.Text = "MATERIAL (STATUS)"
-        ' 
-        ' Panel30
-        ' 
-        Panel30.BackColor = Color.RosyBrown
-        Panel30.Controls.Add(Label38)
-        Panel30.Controls.Add(TailoringClothesLabel)
-        Panel30.Controls.Add(CustomerOwnedToggleBTN)
-        Panel30.Controls.Add(TailoringCustomerClothesTB)
-        Panel30.Controls.Add(TailoringDescriptionTB)
-        Panel30.Controls.Add(TailoringTypeCMB)
-        Panel30.Controls.Add(TailoringClothesCMB)
-        Panel30.Controls.Add(TailoringCustomerCMB)
-        Panel30.Controls.Add(TailoringEmployeeCMB)
-        Panel30.Controls.Add(TailoringPriceTB)
-        Panel30.Controls.Add(Label54)
-        Panel30.Controls.Add(Label53)
-        Panel30.Controls.Add(Label52)
-        Panel30.Controls.Add(Label51)
-        Panel30.Controls.Add(Label50)
-        Panel30.Controls.Add(Panel32)
-        Panel30.Location = New Point(31, 15)
-        Panel30.Name = "Panel30"
-        Panel30.Size = New Size(528, 419)
-        Panel30.TabIndex = 0
-        ' 
-        ' Label38
-        ' 
-        Label38.AutoSize = True
-        Label38.Font = New Font("Segoe UI", 12F)
-        Label38.Location = New Point(94, 276)
-        Label38.Name = "Label38"
-        Label38.Size = New Size(47, 21)
-        Label38.TabIndex = 23
-        Label38.Text = "Price:"
-        ' 
-        ' TailoringClothesLabel
-        ' 
-        TailoringClothesLabel.AutoSize = True
-        TailoringClothesLabel.Location = New Point(329, 169)
-        TailoringClothesLabel.Name = "TailoringClothesLabel"
-        TailoringClothesLabel.Size = New Size(47, 15)
-        TailoringClothesLabel.TabIndex = 21
-        TailoringClothesLabel.Text = "Label38"
-        ' 
-        ' CustomerOwnedToggleBTN
-        ' 
-        CustomerOwnedToggleBTN.Location = New Point(31, 59)
-        CustomerOwnedToggleBTN.Name = "CustomerOwnedToggleBTN"
-        CustomerOwnedToggleBTN.Size = New Size(187, 33)
-        CustomerOwnedToggleBTN.TabIndex = 2
-        CustomerOwnedToggleBTN.Text = "OwnedBy"
-        CustomerOwnedToggleBTN.UseVisualStyleBackColor = True
-        ' 
-        ' TailoringCustomerClothesTB
-        ' 
-        TailoringCustomerClothesTB.Location = New Point(329, 189)
-        TailoringCustomerClothesTB.Name = "TailoringCustomerClothesTB"
-        TailoringCustomerClothesTB.Size = New Size(155, 23)
-        TailoringCustomerClothesTB.TabIndex = 20
-        ' 
-        ' TailoringDescriptionTB
-        ' 
-        TailoringDescriptionTB.Location = New Point(147, 231)
-        TailoringDescriptionTB.Name = "TailoringDescriptionTB"
-        TailoringDescriptionTB.Size = New Size(155, 23)
-        TailoringDescriptionTB.TabIndex = 19
-        ' 
-        ' TailoringTypeCMB
-        ' 
-        TailoringTypeCMB.FormattingEnabled = True
-        TailoringTypeCMB.Location = New Point(147, 187)
-        TailoringTypeCMB.Name = "TailoringTypeCMB"
-        TailoringTypeCMB.Size = New Size(165, 23)
-        TailoringTypeCMB.TabIndex = 18
-        ' 
-        ' TailoringClothesCMB
-        ' 
-        TailoringClothesCMB.FormattingEnabled = True
-        TailoringClothesCMB.Location = New Point(329, 137)
-        TailoringClothesCMB.Name = "TailoringClothesCMB"
-        TailoringClothesCMB.Size = New Size(165, 23)
-        TailoringClothesCMB.TabIndex = 17
-        ' 
-        ' TailoringCustomerCMB
-        ' 
-        TailoringCustomerCMB.FormattingEnabled = True
-        TailoringCustomerCMB.Location = New Point(113, 111)
-        TailoringCustomerCMB.Name = "TailoringCustomerCMB"
-        TailoringCustomerCMB.Size = New Size(165, 23)
-        TailoringCustomerCMB.TabIndex = 16
-        ' 
-        ' TailoringEmployeeCMB
-        ' 
-        TailoringEmployeeCMB.FormattingEnabled = True
-        TailoringEmployeeCMB.Location = New Point(113, 152)
-        TailoringEmployeeCMB.Name = "TailoringEmployeeCMB"
-        TailoringEmployeeCMB.Size = New Size(165, 23)
-        TailoringEmployeeCMB.TabIndex = 15
-        ' 
-        ' TailoringPriceTB
-        ' 
-        TailoringPriceTB.Location = New Point(148, 272)
-        TailoringPriceTB.Name = "TailoringPriceTB"
-        TailoringPriceTB.ReadOnly = True
-        TailoringPriceTB.Size = New Size(155, 23)
-        TailoringPriceTB.TabIndex = 13
-        TailoringPriceTB.TabStop = False
-        ' 
-        ' Label54
-        ' 
-        Label54.AutoSize = True
-        Label54.Font = New Font("Segoe UI", 12F)
-        Label54.Location = New Point(40, 231)
-        Label54.Name = "Label54"
-        Label54.Size = New Size(92, 21)
-        Label54.TabIndex = 6
-        Label54.Text = "Description:"
-        ' 
-        ' Label53
-        ' 
-        Label53.AutoSize = True
-        Label53.Font = New Font("Segoe UI", 12F)
-        Label53.Location = New Point(15, 187)
-        Label53.Name = "Label53"
-        Label53.Size = New Size(117, 21)
-        Label53.TabIndex = 5
-        Label53.Text = "Alteration Type:"
-        ' 
-        ' Label52
-        ' 
-        Label52.AutoSize = True
-        Label52.Font = New Font("Segoe UI", 12F)
-        Label52.Location = New Point(24, 152)
-        Label52.Name = "Label52"
-        Label52.Size = New Size(81, 21)
-        Label52.TabIndex = 3
-        Label52.Text = "Employee:"
-        ' 
-        ' Label51
-        ' 
-        Label51.AutoSize = True
-        Label51.Font = New Font("Segoe UI", 12F)
-        Label51.Location = New Point(324, 113)
-        Label51.Name = "Label51"
-        Label51.Size = New Size(65, 21)
-        Label51.TabIndex = 2
-        Label51.Text = "Clothes:"
-        ' 
-        ' Label50
-        ' 
-        Label50.AutoSize = True
-        Label50.Font = New Font("Segoe UI", 12F)
-        Label50.Location = New Point(24, 115)
-        Label50.Name = "Label50"
-        Label50.Size = New Size(81, 21)
-        Label50.TabIndex = 1
-        Label50.Text = "Customer:"
-        ' 
-        ' Panel32
-        ' 
-        Panel32.BackColor = Color.Black
-        Panel32.Controls.Add(Label57)
-        Panel32.Location = New Point(0, 0)
-        Panel32.Name = "Panel32"
-        Panel32.Size = New Size(528, 53)
-        Panel32.TabIndex = 0
-        ' 
-        ' Label57
-        ' 
-        Label57.AutoSize = True
-        Label57.BackColor = Color.Black
-        Label57.Font = New Font("Segoe UI", 15F)
-        Label57.ForeColor = SystemColors.ControlLightLight
-        Label57.Location = New Point(159, 14)
-        Label57.Name = "Label57"
-        Label57.Size = New Size(193, 28)
-        Label57.TabIndex = 0
-        Label57.Text = " TAILORING (ORDER)"
-        ' 
         ' ReportsPanel
         ' 
-        ReportsPanel.BackColor = Color.FromArgb(CByte(235), CByte(47), CByte(6))
+        ReportsPanel.BackColor = Color.White
+        ReportsPanel.Controls.Add(Panel9)
         ReportsPanel.Dock = DockStyle.Fill
         ReportsPanel.Location = New Point(0, 0)
         ReportsPanel.Name = "ReportsPanel"
         ReportsPanel.Size = New Size(1380, 796)
         ReportsPanel.TabIndex = 3
         ' 
-        ' RentPanel
+        ' Panel9
         ' 
-        RentPanel.BackColor = Color.White
-        RentPanel.Controls.Add(RentSearchTB)
-        RentPanel.Controls.Add(ReturnItemPanel)
-        RentPanel.Controls.Add(Panel23)
-        RentPanel.Controls.Add(Panel22)
-        RentPanel.Controls.Add(RentItemPanel)
-        RentPanel.Dock = DockStyle.Fill
-        RentPanel.Location = New Point(0, 0)
-        RentPanel.Name = "RentPanel"
-        RentPanel.Size = New Size(1380, 796)
-        RentPanel.TabIndex = 5
+        Panel9.BackColor = Color.LightGray
+        Panel9.Controls.Add(ExportPDFBTN)
+        Panel9.Controls.Add(ReportsDGV)
+        Panel9.Controls.Add(ReportTitleLabel)
+        Panel9.Controls.Add(GenerateReportBTN)
+        Panel9.Controls.Add(ReportDateToDTP)
+        Panel9.Controls.Add(ReportDateFromDTP)
+        Panel9.Controls.Add(ReportTypeCMB)
+        Panel9.Location = New Point(136, 99)
+        Panel9.Name = "Panel9"
+        Panel9.Size = New Size(1156, 642)
+        Panel9.TabIndex = 0
         ' 
-        ' RentSearchTB
+        ' ExportPDFBTN
         ' 
-        RentSearchTB.Font = New Font("Segoe UI", 12F)
-        RentSearchTB.Location = New Point(1044, 311)
-        RentSearchTB.Name = "RentSearchTB"
-        RentSearchTB.Size = New Size(236, 29)
-        RentSearchTB.TabIndex = 18
+        ExportPDFBTN.Location = New Point(952, 226)
+        ExportPDFBTN.Name = "ExportPDFBTN"
+        ExportPDFBTN.Size = New Size(149, 23)
+        ExportPDFBTN.TabIndex = 6
+        ExportPDFBTN.Text = "Export Excel"
+        ExportPDFBTN.UseVisualStyleBackColor = True
         ' 
-        ' ReturnItemPanel
+        ' ReportsDGV
         ' 
-        ReturnItemPanel.BackColor = Color.LightGray
-        ReturnItemPanel.Controls.Add(ReturnItemStatusTB)
-        ReturnItemPanel.Controls.Add(ReturnItemClothesNameTB)
-        ReturnItemPanel.Controls.Add(ReturnItemCustomerNameTB)
-        ReturnItemPanel.Controls.Add(Label102)
-        ReturnItemPanel.Controls.Add(ExtendItemBTN)
-        ReturnItemPanel.Controls.Add(MarkLostItemBTN)
-        ReturnItemPanel.Controls.Add(ReturnItemBTN)
-        ReturnItemPanel.Controls.Add(ReturnItemRentIDTB)
-        ReturnItemPanel.Controls.Add(Label36)
-        ReturnItemPanel.Controls.Add(Label35)
-        ReturnItemPanel.Controls.Add(Label34)
-        ReturnItemPanel.Controls.Add(Label33)
-        ReturnItemPanel.Location = New Point(556, 27)
-        ReturnItemPanel.Name = "ReturnItemPanel"
-        ReturnItemPanel.Size = New Size(724, 257)
-        ReturnItemPanel.TabIndex = 3
+        ReportsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ReportsDGV.Location = New Point(135, 275)
+        ReportsDGV.Name = "ReportsDGV"
+        ReportsDGV.Size = New Size(966, 351)
+        ReportsDGV.TabIndex = 5
         ' 
-        ' ReturnItemStatusTB
+        ' ReportTitleLabel
         ' 
-        ReturnItemStatusTB.Location = New Point(202, 182)
-        ReturnItemStatusTB.Name = "ReturnItemStatusTB"
-        ReturnItemStatusTB.Size = New Size(162, 23)
-        ReturnItemStatusTB.TabIndex = 21
+        ReportTitleLabel.AutoSize = True
+        ReportTitleLabel.Font = New Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ReportTitleLabel.Location = New Point(135, 208)
+        ReportTitleLabel.Name = "ReportTitleLabel"
+        ReportTitleLabel.Size = New Size(20, 29)
+        ReportTitleLabel.TabIndex = 4
+        ReportTitleLabel.Text = " "
         ' 
-        ' ReturnItemClothesNameTB
+        ' GenerateReportBTN
         ' 
-        ReturnItemClothesNameTB.Location = New Point(202, 142)
-        ReturnItemClothesNameTB.Name = "ReturnItemClothesNameTB"
-        ReturnItemClothesNameTB.Size = New Size(162, 23)
-        ReturnItemClothesNameTB.TabIndex = 20
+        GenerateReportBTN.Location = New Point(131, 135)
+        GenerateReportBTN.Name = "GenerateReportBTN"
+        GenerateReportBTN.Size = New Size(149, 23)
+        GenerateReportBTN.TabIndex = 3
+        GenerateReportBTN.Text = "Generate Report"
+        GenerateReportBTN.UseVisualStyleBackColor = True
         ' 
-        ' ReturnItemCustomerNameTB
+        ' ReportDateToDTP
         ' 
-        ReturnItemCustomerNameTB.Location = New Point(201, 104)
-        ReturnItemCustomerNameTB.Name = "ReturnItemCustomerNameTB"
-        ReturnItemCustomerNameTB.Size = New Size(162, 23)
-        ReturnItemCustomerNameTB.TabIndex = 19
+        ReportDateToDTP.Location = New Point(586, 72)
+        ReportDateToDTP.Name = "ReportDateToDTP"
+        ReportDateToDTP.Size = New Size(200, 23)
+        ReportDateToDTP.TabIndex = 2
         ' 
-        ' Label102
+        ' ReportDateFromDTP
         ' 
-        Label102.AutoSize = True
-        Label102.Font = New Font("Segoe UI", 16F)
-        Label102.Location = New Point(260, 5)
-        Label102.Name = "Label102"
-        Label102.Size = New Size(148, 30)
-        Label102.TabIndex = 18
-        Label102.Text = "RETURN ITEM"
+        ReportDateFromDTP.Location = New Point(338, 74)
+        ReportDateFromDTP.Name = "ReportDateFromDTP"
+        ReportDateFromDTP.Size = New Size(200, 23)
+        ReportDateFromDTP.TabIndex = 1
         ' 
-        ' ExtendItemBTN
+        ' ReportTypeCMB
         ' 
-        ExtendItemBTN.Location = New Point(556, 190)
-        ExtendItemBTN.Name = "ExtendItemBTN"
-        ExtendItemBTN.Size = New Size(95, 52)
-        ExtendItemBTN.TabIndex = 17
-        ExtendItemBTN.Text = "Extend"
-        ExtendItemBTN.UseVisualStyleBackColor = True
+        ReportTypeCMB.FormattingEnabled = True
+        ReportTypeCMB.Location = New Point(135, 78)
+        ReportTypeCMB.Name = "ReportTypeCMB"
+        ReportTypeCMB.Size = New Size(121, 23)
+        ReportTypeCMB.TabIndex = 0
         ' 
-        ' MarkLostItemBTN
+        ' AdminDashboardPanel
         ' 
-        MarkLostItemBTN.Location = New Point(556, 124)
-        MarkLostItemBTN.Name = "MarkLostItemBTN"
-        MarkLostItemBTN.Size = New Size(95, 52)
-        MarkLostItemBTN.TabIndex = 16
-        MarkLostItemBTN.Text = "Mark Lost"
-        MarkLostItemBTN.UseVisualStyleBackColor = True
+        AdminDashboardPanel.BackColor = Color.FromArgb(CByte(250), CByte(211), CByte(144))
+        AdminDashboardPanel.Controls.Add(DashboardPanelContainer)
+        AdminDashboardPanel.Dock = DockStyle.Fill
+        AdminDashboardPanel.Location = New Point(0, 0)
+        AdminDashboardPanel.Name = "AdminDashboardPanel"
+        AdminDashboardPanel.Size = New Size(1380, 796)
+        AdminDashboardPanel.TabIndex = 0
         ' 
-        ' ReturnItemBTN
+        ' DashboardPanelContainer
         ' 
-        ReturnItemBTN.Location = New Point(556, 62)
-        ReturnItemBTN.Name = "ReturnItemBTN"
-        ReturnItemBTN.Size = New Size(95, 52)
-        ReturnItemBTN.TabIndex = 2
-        ReturnItemBTN.Text = "Return Item"
-        ReturnItemBTN.UseVisualStyleBackColor = True
+        DashboardPanelContainer.BackColor = Color.White
+        DashboardPanelContainer.Controls.Add(ConnectionStatusLabel)
+        DashboardPanelContainer.Controls.Add(Panel3)
+        DashboardPanelContainer.Controls.Add(Panel2)
+        DashboardPanelContainer.Controls.Add(PieChartContainer)
+        DashboardPanelContainer.Controls.Add(CardDashboardContainer)
+        DashboardPanelContainer.Dock = DockStyle.Fill
+        DashboardPanelContainer.Location = New Point(0, 0)
+        DashboardPanelContainer.Name = "DashboardPanelContainer"
+        DashboardPanelContainer.Size = New Size(1380, 796)
+        DashboardPanelContainer.TabIndex = 1
         ' 
-        ' ReturnItemRentIDTB
+        ' ConnectionStatusLabel
         ' 
-        ReturnItemRentIDTB.Location = New Point(202, 69)
-        ReturnItemRentIDTB.Name = "ReturnItemRentIDTB"
-        ReturnItemRentIDTB.Size = New Size(112, 23)
-        ReturnItemRentIDTB.TabIndex = 12
+        ConnectionStatusLabel.AutoSize = True
+        ConnectionStatusLabel.Location = New Point(7, 5)
+        ConnectionStatusLabel.Name = "ConnectionStatusLabel"
+        ConnectionStatusLabel.Size = New Size(53, 15)
+        ConnectionStatusLabel.TabIndex = 4
+        ConnectionStatusLabel.Text = "Label103"
         ' 
-        ' Label36
+        ' Panel3
         ' 
-        Label36.AutoSize = True
-        Label36.Font = New Font("Segoe UI", 12F)
-        Label36.Location = New Point(119, 182)
-        Label36.Name = "Label36"
-        Label36.Size = New Size(55, 21)
-        Label36.TabIndex = 11
-        Label36.Text = "Status:"
+        Panel3.BackColor = Color.LightGray
+        Panel3.Controls.Add(QuickReportsListBox)
+        Panel3.Controls.Add(Label8)
+        Panel3.Location = New Point(723, 87)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(514, 347)
+        Panel3.TabIndex = 3
         ' 
-        ' Label35
+        ' QuickReportsListBox
         ' 
-        Label35.AutoSize = True
-        Label35.Font = New Font("Segoe UI", 12F)
-        Label35.Location = New Point(63, 144)
-        Label35.Name = "Label35"
-        Label35.Size = New Size(111, 21)
-        Label35.TabIndex = 10
-        Label35.Text = "Clothes Name:"
+        QuickReportsListBox.FormattingEnabled = True
+        QuickReportsListBox.ItemHeight = 15
+        QuickReportsListBox.Location = New Point(40, 66)
+        QuickReportsListBox.Name = "QuickReportsListBox"
+        QuickReportsListBox.Size = New Size(437, 244)
+        QuickReportsListBox.TabIndex = 5
         ' 
-        ' Label34
+        ' Label8
         ' 
-        Label34.AutoSize = True
-        Label34.Font = New Font("Segoe UI", 12F)
-        Label34.Location = New Point(110, 71)
-        Label34.Name = "Label34"
-        Label34.Size = New Size(64, 21)
-        Label34.TabIndex = 9
-        Label34.Text = "Rent ID:"
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI", 20F)
+        Label8.Location = New Point(40, 9)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(210, 37)
+        Label8.TabIndex = 3
+        Label8.Text = "QUICK REPORTS"
         ' 
-        ' Label33
+        ' Panel2
         ' 
-        Label33.AutoSize = True
-        Label33.Font = New Font("Segoe UI", 12F)
-        Label33.Location = New Point(47, 102)
-        Label33.Name = "Label33"
-        Label33.Size = New Size(127, 21)
-        Label33.TabIndex = 8
-        Label33.Text = "Customer Name:"
+        Panel2.BackColor = Color.LightGray
+        Panel2.Controls.Add(LowStockListBox)
+        Panel2.Controls.Add(Label2)
+        Panel2.Location = New Point(75, 450)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(466, 294)
+        Panel2.TabIndex = 2
         ' 
-        ' Panel23
+        ' LowStockListBox
         ' 
-        Panel23.BackColor = Color.Black
-        Panel23.Controls.Add(ClearRentItemBTN)
-        Panel23.Controls.Add(RentItemBTN)
-        Panel23.Location = New Point(90, 284)
-        Panel23.Name = "Panel23"
-        Panel23.Size = New Size(439, 57)
-        Panel23.TabIndex = 2
+        LowStockListBox.FormattingEnabled = True
+        LowStockListBox.ItemHeight = 15
+        LowStockListBox.Location = New Point(29, 67)
+        LowStockListBox.Name = "LowStockListBox"
+        LowStockListBox.Size = New Size(401, 199)
+        LowStockListBox.TabIndex = 3
         ' 
-        ' ClearRentItemBTN
+        ' Label2
         ' 
-        ClearRentItemBTN.Location = New Point(94, 10)
-        ClearRentItemBTN.Name = "ClearRentItemBTN"
-        ClearRentItemBTN.Size = New Size(86, 38)
-        ClearRentItemBTN.TabIndex = 1
-        ClearRentItemBTN.Text = "Clear"
-        ClearRentItemBTN.UseVisualStyleBackColor = True
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 20F)
+        Label2.Location = New Point(64, 9)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(240, 37)
+        Label2.TabIndex = 2
+        Label2.Text = "LOW STOCK ALERT"
         ' 
-        ' RentItemBTN
+        ' PieChartContainer
         ' 
-        RentItemBTN.Location = New Point(288, 10)
-        RentItemBTN.Name = "RentItemBTN"
-        RentItemBTN.Size = New Size(86, 38)
-        RentItemBTN.TabIndex = 0
-        RentItemBTN.Text = "Rent Item"
-        RentItemBTN.UseVisualStyleBackColor = True
+        PieChartContainer.BackColor = Color.LightGray
+        PieChartContainer.Controls.Add(RecentActivityListBox)
+        PieChartContainer.Controls.Add(Label1)
+        PieChartContainer.Location = New Point(631, 450)
+        PieChartContainer.Name = "PieChartContainer"
+        PieChartContainer.Size = New Size(606, 297)
+        PieChartContainer.TabIndex = 1
         ' 
-        ' Panel22
+        ' RecentActivityListBox
         ' 
-        Panel22.BackColor = Color.LightGray
-        Panel22.Controls.Add(RentDGV)
-        Panel22.Location = New Point(91, 349)
-        Panel22.Name = "Panel22"
-        Panel22.Size = New Size(1189, 403)
-        Panel22.TabIndex = 1
+        RecentActivityListBox.FormattingEnabled = True
+        RecentActivityListBox.ItemHeight = 15
+        RecentActivityListBox.Location = New Point(58, 81)
+        RecentActivityListBox.Name = "RecentActivityListBox"
+        RecentActivityListBox.Size = New Size(497, 169)
+        RecentActivityListBox.TabIndex = 4
         ' 
-        ' RentDGV
+        ' Label1
         ' 
-        RentDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        RentDGV.Location = New Point(9, 1)
-        RentDGV.Name = "RentDGV"
-        RentDGV.Size = New Size(1158, 369)
-        RentDGV.TabIndex = 0
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 20F)
+        Label1.Location = New Point(23, 9)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(227, 37)
+        Label1.TabIndex = 1
+        Label1.Text = "RECENT ACTIVITY"
         ' 
-        ' RentItemPanel
+        ' CardDashboardContainer
         ' 
-        RentItemPanel.BackColor = Color.LightGray
-        RentItemPanel.Controls.Add(RentClothesCMB)
-        RentItemPanel.Controls.Add(RentCustomerNameCMB)
-        RentItemPanel.Controls.Add(Label101)
-        RentItemPanel.Controls.Add(RentExpectedReturnDTP)
-        RentItemPanel.Controls.Add(Label32)
-        RentItemPanel.Controls.Add(Label31)
-        RentItemPanel.Controls.Add(RentDateRentedDTP)
-        RentItemPanel.Controls.Add(Label30)
-        RentItemPanel.Controls.Add(Label29)
-        RentItemPanel.Location = New Point(91, 27)
-        RentItemPanel.Name = "RentItemPanel"
-        RentItemPanel.Size = New Size(438, 257)
-        RentItemPanel.TabIndex = 0
+        CardDashboardContainer.BackColor = Color.LightGray
+        CardDashboardContainer.Controls.Add(Panel7)
+        CardDashboardContainer.Controls.Add(Panel6)
+        CardDashboardContainer.Controls.Add(Panel5)
+        CardDashboardContainer.Controls.Add(Panel1)
+        CardDashboardContainer.Location = New Point(71, 87)
+        CardDashboardContainer.Name = "CardDashboardContainer"
+        CardDashboardContainer.Size = New Size(622, 347)
+        CardDashboardContainer.TabIndex = 0
         ' 
-        ' RentClothesCMB
+        ' Panel7
         ' 
-        RentClothesCMB.FormattingEnabled = True
-        RentClothesCMB.Location = New Point(168, 103)
-        RentClothesCMB.Name = "RentClothesCMB"
-        RentClothesCMB.Size = New Size(199, 23)
-        RentClothesCMB.TabIndex = 10
+        Panel7.BackColor = Color.Black
+        Panel7.Controls.Add(RepairsLabel)
+        Panel7.Controls.Add(Label6)
+        Panel7.Location = New Point(341, 180)
+        Panel7.Name = "Panel7"
+        Panel7.Size = New Size(256, 124)
+        Panel7.TabIndex = 3
         ' 
-        ' RentCustomerNameCMB
+        ' RepairsLabel
         ' 
-        RentCustomerNameCMB.FormattingEnabled = True
-        RentCustomerNameCMB.Location = New Point(171, 69)
-        RentCustomerNameCMB.Name = "RentCustomerNameCMB"
-        RentCustomerNameCMB.Size = New Size(199, 23)
-        RentCustomerNameCMB.TabIndex = 9
+        RepairsLabel.AutoSize = True
+        RepairsLabel.Font = New Font("Segoe UI", 45F)
+        RepairsLabel.ForeColor = SystemColors.ControlLightLight
+        RepairsLabel.Location = New Point(98, 33)
+        RepairsLabel.Name = "RepairsLabel"
+        RepairsLabel.Size = New Size(67, 81)
+        RepairsLabel.TabIndex = 6
+        RepairsLabel.Text = "0"
         ' 
-        ' Label101
+        ' Label6
         ' 
-        Label101.AutoSize = True
-        Label101.Font = New Font("Segoe UI", 16F)
-        Label101.Location = New Point(165, 10)
-        Label101.Name = "Label101"
-        Label101.Size = New Size(120, 30)
-        Label101.TabIndex = 8
-        Label101.Text = "RENT ITEM"
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI", 15F)
+        Label6.ForeColor = SystemColors.ControlLightLight
+        Label6.Location = New Point(98, 5)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(75, 28)
+        Label6.TabIndex = 5
+        Label6.Text = "Repairs"
         ' 
-        ' RentExpectedReturnDTP
+        ' Panel6
         ' 
-        RentExpectedReturnDTP.Location = New Point(176, 205)
-        RentExpectedReturnDTP.Name = "RentExpectedReturnDTP"
-        RentExpectedReturnDTP.Size = New Size(197, 23)
-        RentExpectedReturnDTP.TabIndex = 7
+        Panel6.BackColor = Color.Black
+        Panel6.Controls.Add(RentedLabel)
+        Panel6.Controls.Add(Label5)
+        Panel6.Location = New Point(31, 182)
+        Panel6.Name = "Panel6"
+        Panel6.Size = New Size(250, 124)
+        Panel6.TabIndex = 2
         ' 
-        ' Label32
+        ' RentedLabel
         ' 
-        Label32.AutoSize = True
-        Label32.Font = New Font("Segoe UI", 12F)
-        Label32.Location = New Point(45, 201)
-        Label32.Name = "Label32"
-        Label32.Size = New Size(125, 21)
-        Label32.TabIndex = 6
-        Label32.Text = "Expected Return:"
+        RentedLabel.AutoSize = True
+        RentedLabel.Font = New Font("Segoe UI", 45F)
+        RentedLabel.ForeColor = SystemColors.ControlLightLight
+        RentedLabel.Location = New Point(96, 33)
+        RentedLabel.Name = "RentedLabel"
+        RentedLabel.Size = New Size(67, 81)
+        RentedLabel.TabIndex = 5
+        RentedLabel.Text = "0"
         ' 
-        ' Label31
+        ' Label5
         ' 
-        Label31.AutoSize = True
-        Label31.Font = New Font("Segoe UI", 12F)
-        Label31.Location = New Point(101, 101)
-        Label31.Name = "Label31"
-        Label31.Size = New Size(65, 21)
-        Label31.TabIndex = 4
-        Label31.Text = "Clothes:"
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 15F)
+        Label5.ForeColor = SystemColors.ControlLightLight
+        Label5.Location = New Point(90, 5)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(73, 28)
+        Label5.TabIndex = 4
+        Label5.Text = "Rented"
         ' 
-        ' RentDateRentedDTP
+        ' Panel5
         ' 
-        RentDateRentedDTP.Location = New Point(173, 156)
-        RentDateRentedDTP.Name = "RentDateRentedDTP"
-        RentDateRentedDTP.Size = New Size(200, 23)
-        RentDateRentedDTP.TabIndex = 3
+        Panel5.BackColor = Color.Black
+        Panel5.Controls.Add(AvailableLabel)
+        Panel5.Controls.Add(Label4)
+        Panel5.Location = New Point(341, 31)
+        Panel5.Name = "Panel5"
+        Panel5.Size = New Size(256, 124)
+        Panel5.TabIndex = 1
         ' 
-        ' Label30
+        ' AvailableLabel
         ' 
-        Label30.AutoSize = True
-        Label30.Font = New Font("Segoe UI", 12F)
-        Label30.Location = New Point(68, 156)
-        Label30.Name = "Label30"
-        Label30.Size = New Size(98, 21)
-        Label30.TabIndex = 2
-        Label30.Text = "Date Rented:"
+        AvailableLabel.AutoSize = True
+        AvailableLabel.Font = New Font("Segoe UI", 45F)
+        AvailableLabel.ForeColor = SystemColors.ControlLightLight
+        AvailableLabel.Location = New Point(102, 33)
+        AvailableLabel.Name = "AvailableLabel"
+        AvailableLabel.Size = New Size(67, 81)
+        AvailableLabel.TabIndex = 4
+        AvailableLabel.Text = "0"
         ' 
-        ' Label29
+        ' Label4
         ' 
-        Label29.AutoSize = True
-        Label29.Font = New Font("Segoe UI", 12F)
-        Label29.Location = New Point(40, 67)
-        Label29.Name = "Label29"
-        Label29.Size = New Size(127, 21)
-        Label29.TabIndex = 1
-        Label29.Text = "Customer Name:"
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 15F)
+        Label4.ForeColor = SystemColors.ControlLightLight
+        Label4.Location = New Point(89, 5)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(92, 28)
+        Label4.TabIndex = 3
+        Label4.Text = "Available"
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.Black
+        Panel1.Controls.Add(TotalClothesLabel)
+        Panel1.Controls.Add(Label3)
+        Panel1.Location = New Point(30, 26)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(251, 124)
+        Panel1.TabIndex = 0
+        ' 
+        ' TotalClothesLabel
+        ' 
+        TotalClothesLabel.AutoSize = True
+        TotalClothesLabel.Font = New Font("Segoe UI", 45F)
+        TotalClothesLabel.ForeColor = SystemColors.ControlLightLight
+        TotalClothesLabel.Location = New Point(93, 33)
+        TotalClothesLabel.Name = "TotalClothesLabel"
+        TotalClothesLabel.Size = New Size(67, 81)
+        TotalClothesLabel.TabIndex = 3
+        TotalClothesLabel.Text = "0"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 15F)
+        Label3.ForeColor = SystemColors.ControlLightLight
+        Label3.Location = New Point(64, 5)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(124, 28)
+        Label3.TabIndex = 2
+        Label3.Text = "Total Clothes"
+        ' 
+        ' MaterialsPanel
+        ' 
+        MaterialsPanel.BackColor = Color.White
+        MaterialsPanel.Controls.Add(MaterialSearchTB)
+        MaterialsPanel.Controls.Add(Label45)
+        MaterialsPanel.Controls.Add(SupplierPanel)
+        MaterialsPanel.Controls.Add(UpdateMaterialBTN)
+        MaterialsPanel.Controls.Add(AddMaterialBTN)
+        MaterialsPanel.Controls.Add(MaterialPanel)
+        MaterialsPanel.Dock = DockStyle.Fill
+        MaterialsPanel.Location = New Point(0, 0)
+        MaterialsPanel.Name = "MaterialsPanel"
+        MaterialsPanel.Size = New Size(1380, 796)
+        MaterialsPanel.TabIndex = 2
+        ' 
+        ' MaterialSearchTB
+        ' 
+        MaterialSearchTB.Location = New Point(953, 287)
+        MaterialSearchTB.Name = "MaterialSearchTB"
+        MaterialSearchTB.Size = New Size(147, 23)
+        MaterialSearchTB.TabIndex = 11
+        ' 
+        ' Label45
+        ' 
+        Label45.AutoSize = True
+        Label45.Font = New Font("Segoe UI", 15F)
+        Label45.Location = New Point(133, 272)
+        Label45.Name = "Label45"
+        Label45.Size = New Size(112, 28)
+        Label45.TabIndex = 10
+        Label45.Text = "MATERIALS"
+        ' 
+        ' SupplierPanel
+        ' 
+        SupplierPanel.BackColor = Color.LightGray
+        SupplierPanel.Controls.Add(AddSuppliersBTN)
+        SupplierPanel.Controls.Add(SupplierSearchTB)
+        SupplierPanel.Controls.Add(SuppliersDGV)
+        SupplierPanel.Controls.Add(SuppliersEmailTB)
+        SupplierPanel.Controls.Add(SuppliersAddressTB)
+        SupplierPanel.Controls.Add(SuppliersContactTB)
+        SupplierPanel.Controls.Add(SuppliersNameTB)
+        SupplierPanel.Controls.Add(Label44)
+        SupplierPanel.Controls.Add(Label43)
+        SupplierPanel.Controls.Add(Label42)
+        SupplierPanel.Controls.Add(Label41)
+        SupplierPanel.Controls.Add(Label40)
+        SupplierPanel.Location = New Point(75, 24)
+        SupplierPanel.Name = "SupplierPanel"
+        SupplierPanel.Size = New Size(1055, 225)
+        SupplierPanel.TabIndex = 3
+        ' 
+        ' AddSuppliersBTN
+        ' 
+        AddSuppliersBTN.Location = New Point(196, 22)
+        AddSuppliersBTN.Name = "AddSuppliersBTN"
+        AddSuppliersBTN.Size = New Size(92, 35)
+        AddSuppliersBTN.TabIndex = 11
+        AddSuppliersBTN.Text = "Add Supplier"
+        AddSuppliersBTN.UseVisualStyleBackColor = True
+        ' 
+        ' SupplierSearchTB
+        ' 
+        SupplierSearchTB.Location = New Point(875, 17)
+        SupplierSearchTB.Name = "SupplierSearchTB"
+        SupplierSearchTB.Size = New Size(150, 23)
+        SupplierSearchTB.TabIndex = 10
+        ' 
+        ' SuppliersDGV
+        ' 
+        SuppliersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        SuppliersDGV.Location = New Point(367, 46)
+        SuppliersDGV.Name = "SuppliersDGV"
+        SuppliersDGV.Size = New Size(658, 150)
+        SuppliersDGV.TabIndex = 9
+        ' 
+        ' SuppliersEmailTB
+        ' 
+        SuppliersEmailTB.Location = New Point(108, 168)
+        SuppliersEmailTB.Name = "SuppliersEmailTB"
+        SuppliersEmailTB.Size = New Size(178, 23)
+        SuppliersEmailTB.TabIndex = 8
+        ' 
+        ' SuppliersAddressTB
+        ' 
+        SuppliersAddressTB.Location = New Point(108, 139)
+        SuppliersAddressTB.Name = "SuppliersAddressTB"
+        SuppliersAddressTB.Size = New Size(178, 23)
+        SuppliersAddressTB.TabIndex = 7
+        ' 
+        ' SuppliersContactTB
+        ' 
+        SuppliersContactTB.Location = New Point(109, 105)
+        SuppliersContactTB.Name = "SuppliersContactTB"
+        SuppliersContactTB.Size = New Size(178, 23)
+        SuppliersContactTB.TabIndex = 6
+        ' 
+        ' SuppliersNameTB
+        ' 
+        SuppliersNameTB.Location = New Point(108, 66)
+        SuppliersNameTB.Name = "SuppliersNameTB"
+        SuppliersNameTB.Size = New Size(178, 23)
+        SuppliersNameTB.TabIndex = 5
+        ' 
+        ' Label44
+        ' 
+        Label44.AutoSize = True
+        Label44.Font = New Font("Segoe UI", 12F)
+        Label44.Location = New Point(41, 168)
+        Label44.Name = "Label44"
+        Label44.Size = New Size(51, 21)
+        Label44.TabIndex = 4
+        Label44.Text = "Email:"
+        ' 
+        ' Label43
+        ' 
+        Label43.AutoSize = True
+        Label43.Font = New Font("Segoe UI", 12F)
+        Label43.Location = New Point(26, 134)
+        Label43.Name = "Label43"
+        Label43.Size = New Size(69, 21)
+        Label43.TabIndex = 3
+        Label43.Text = "Address:"
+        ' 
+        ' Label42
+        ' 
+        Label42.AutoSize = True
+        Label42.Font = New Font("Segoe UI", 12F)
+        Label42.Location = New Point(29, 105)
+        Label42.Name = "Label42"
+        Label42.Size = New Size(66, 21)
+        Label42.TabIndex = 2
+        Label42.Text = "Contact:"
+        ' 
+        ' Label41
+        ' 
+        Label41.AutoSize = True
+        Label41.Font = New Font("Segoe UI", 15F)
+        Label41.Location = New Point(26, 15)
+        Label41.Name = "Label41"
+        Label41.Size = New Size(106, 28)
+        Label41.TabIndex = 1
+        Label41.Text = "SUPPLIERS"
+        ' 
+        ' Label40
+        ' 
+        Label40.AutoSize = True
+        Label40.Font = New Font("Segoe UI", 12F)
+        Label40.Location = New Point(37, 71)
+        Label40.Name = "Label40"
+        Label40.Size = New Size(55, 21)
+        Label40.TabIndex = 0
+        Label40.Text = "Name:"
+        ' 
+        ' UpdateMaterialBTN
+        ' 
+        UpdateMaterialBTN.Location = New Point(515, 263)
+        UpdateMaterialBTN.Name = "UpdateMaterialBTN"
+        UpdateMaterialBTN.Size = New Size(143, 46)
+        UpdateMaterialBTN.TabIndex = 2
+        UpdateMaterialBTN.Text = "Update Stock"
+        UpdateMaterialBTN.UseVisualStyleBackColor = True
+        ' 
+        ' AddMaterialBTN
+        ' 
+        AddMaterialBTN.Location = New Point(341, 263)
+        AddMaterialBTN.Name = "AddMaterialBTN"
+        AddMaterialBTN.Size = New Size(143, 46)
+        AddMaterialBTN.TabIndex = 1
+        AddMaterialBTN.Text = "Add Material"
+        AddMaterialBTN.UseVisualStyleBackColor = True
+        ' 
+        ' MaterialPanel
+        ' 
+        MaterialPanel.BackColor = Color.LightGray
+        MaterialPanel.Controls.Add(UpdateMaterialModalPanel)
+        MaterialPanel.Controls.Add(AddMaterialModalPanel)
+        MaterialPanel.Controls.Add(MaterialsDGV)
+        MaterialPanel.Location = New Point(72, 315)
+        MaterialPanel.Name = "MaterialPanel"
+        MaterialPanel.Size = New Size(1052, 426)
+        MaterialPanel.TabIndex = 0
+        ' 
+        ' UpdateMaterialModalPanel
+        ' 
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialSupplierCMB)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialIDTB)
+        UpdateMaterialModalPanel.Controls.Add(Label91)
+        UpdateMaterialModalPanel.Controls.Add(Label90)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialModalConfirmBTN)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialModalCancelBTN)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialUnitOfMeasureTB)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialDescriptionTB)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialQuantityOnStockTB)
+        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialNameTB)
+        UpdateMaterialModalPanel.Controls.Add(Label84)
+        UpdateMaterialModalPanel.Controls.Add(Label85)
+        UpdateMaterialModalPanel.Controls.Add(Label86)
+        UpdateMaterialModalPanel.Controls.Add(Label87)
+        UpdateMaterialModalPanel.Controls.Add(Label88)
+        UpdateMaterialModalPanel.Location = New Point(459, 55)
+        UpdateMaterialModalPanel.Name = "UpdateMaterialModalPanel"
+        UpdateMaterialModalPanel.Size = New Size(254, 280)
+        UpdateMaterialModalPanel.TabIndex = 12
+        ' 
+        ' UpdateMaterialSupplierCMB
+        ' 
+        UpdateMaterialSupplierCMB.FormattingEnabled = True
+        UpdateMaterialSupplierCMB.Location = New Point(124, 213)
+        UpdateMaterialSupplierCMB.Name = "UpdateMaterialSupplierCMB"
+        UpdateMaterialSupplierCMB.Size = New Size(103, 23)
+        UpdateMaterialSupplierCMB.TabIndex = 14
+        ' 
+        ' UpdateMaterialIDTB
+        ' 
+        UpdateMaterialIDTB.Location = New Point(127, 44)
+        UpdateMaterialIDTB.Name = "UpdateMaterialIDTB"
+        UpdateMaterialIDTB.Size = New Size(100, 23)
+        UpdateMaterialIDTB.TabIndex = 15
+        ' 
+        ' Label91
+        ' 
+        Label91.AutoSize = True
+        Label91.Location = New Point(53, 52)
+        Label91.Name = "Label91"
+        Label91.Size = New Size(67, 15)
+        Label91.TabIndex = 14
+        Label91.Text = "Material ID:"
+        ' 
+        ' Label90
+        ' 
+        Label90.AutoSize = True
+        Label90.Font = New Font("Segoe UI", 12F)
+        Label90.Location = New Point(63, 16)
+        Label90.Name = "Label90"
+        Label90.Size = New Size(141, 21)
+        Label90.TabIndex = 13
+        Label90.Text = "UPDATE MATERIAL"
+        ' 
+        ' UpdateMaterialModalConfirmBTN
+        ' 
+        UpdateMaterialModalConfirmBTN.Location = New Point(175, 244)
+        UpdateMaterialModalConfirmBTN.Name = "UpdateMaterialModalConfirmBTN"
+        UpdateMaterialModalConfirmBTN.Size = New Size(75, 23)
+        UpdateMaterialModalConfirmBTN.TabIndex = 11
+        UpdateMaterialModalConfirmBTN.Text = "Confirm"
+        UpdateMaterialModalConfirmBTN.UseVisualStyleBackColor = True
+        ' 
+        ' UpdateMaterialModalCancelBTN
+        ' 
+        UpdateMaterialModalCancelBTN.Location = New Point(8, 244)
+        UpdateMaterialModalCancelBTN.Name = "UpdateMaterialModalCancelBTN"
+        UpdateMaterialModalCancelBTN.Size = New Size(75, 23)
+        UpdateMaterialModalCancelBTN.TabIndex = 10
+        UpdateMaterialModalCancelBTN.Text = "Cancel"
+        UpdateMaterialModalCancelBTN.UseVisualStyleBackColor = True
+        ' 
+        ' UpdateMaterialUnitOfMeasureTB
+        ' 
+        UpdateMaterialUnitOfMeasureTB.Location = New Point(124, 176)
+        UpdateMaterialUnitOfMeasureTB.Name = "UpdateMaterialUnitOfMeasureTB"
+        UpdateMaterialUnitOfMeasureTB.Size = New Size(100, 23)
+        UpdateMaterialUnitOfMeasureTB.TabIndex = 8
+        ' 
+        ' UpdateMaterialDescriptionTB
+        ' 
+        UpdateMaterialDescriptionTB.Location = New Point(124, 111)
+        UpdateMaterialDescriptionTB.Name = "UpdateMaterialDescriptionTB"
+        UpdateMaterialDescriptionTB.Size = New Size(100, 30)
+        UpdateMaterialDescriptionTB.TabIndex = 7
+        UpdateMaterialDescriptionTB.Text = ""
+        ' 
+        ' UpdateMaterialQuantityOnStockTB
+        ' 
+        UpdateMaterialQuantityOnStockTB.Location = New Point(124, 147)
+        UpdateMaterialQuantityOnStockTB.Name = "UpdateMaterialQuantityOnStockTB"
+        UpdateMaterialQuantityOnStockTB.Size = New Size(100, 23)
+        UpdateMaterialQuantityOnStockTB.TabIndex = 6
+        ' 
+        ' UpdateMaterialNameTB
+        ' 
+        UpdateMaterialNameTB.Location = New Point(127, 77)
+        UpdateMaterialNameTB.Name = "UpdateMaterialNameTB"
+        UpdateMaterialNameTB.Size = New Size(100, 23)
+        UpdateMaterialNameTB.TabIndex = 5
+        ' 
+        ' Label84
+        ' 
+        Label84.AutoSize = True
+        Label84.Location = New Point(68, 216)
+        Label84.Name = "Label84"
+        Label84.Size = New Size(53, 15)
+        Label84.TabIndex = 4
+        Label84.Text = "Supplier:"
+        ' 
+        ' Label85
+        ' 
+        Label85.AutoSize = True
+        Label85.Location = New Point(27, 182)
+        Label85.Name = "Label85"
+        Label85.Size = New Size(94, 15)
+        Label85.TabIndex = 3
+        Label85.Text = "Unit of measure:"
+        ' 
+        ' Label86
+        ' 
+        Label86.AutoSize = True
+        Label86.Location = New Point(13, 155)
+        Label86.Name = "Label86"
+        Label86.Size = New Size(108, 15)
+        Label86.TabIndex = 2
+        Label86.Text = "Quantitiy on Stock:"
+        ' 
+        ' Label87
+        ' 
+        Label87.AutoSize = True
+        Label87.Location = New Point(50, 123)
+        Label87.Name = "Label87"
+        Label87.Size = New Size(70, 15)
+        Label87.TabIndex = 1
+        Label87.Text = "Description:"
+        ' 
+        ' Label88
+        ' 
+        Label88.AutoSize = True
+        Label88.Location = New Point(33, 84)
+        Label88.Name = "Label88"
+        Label88.Size = New Size(88, 15)
+        Label88.TabIndex = 0
+        Label88.Text = "Material Name:"
+        ' 
+        ' AddMaterialModalPanel
+        ' 
+        AddMaterialModalPanel.Controls.Add(AddMaterialSupplierCMB)
+        AddMaterialModalPanel.Controls.Add(Label89)
+        AddMaterialModalPanel.Controls.Add(AddMaterialModalConfirmBTN)
+        AddMaterialModalPanel.Controls.Add(AddMaterialModalCancelBTN)
+        AddMaterialModalPanel.Controls.Add(AddMaterialUnitOfMeasureTB)
+        AddMaterialModalPanel.Controls.Add(AddMaterialDescriptionTB)
+        AddMaterialModalPanel.Controls.Add(AddMaterialQuantityOnStockTB)
+        AddMaterialModalPanel.Controls.Add(AddMaterialNameTB)
+        AddMaterialModalPanel.Controls.Add(Label83)
+        AddMaterialModalPanel.Controls.Add(Label82)
+        AddMaterialModalPanel.Controls.Add(Label81)
+        AddMaterialModalPanel.Controls.Add(Label80)
+        AddMaterialModalPanel.Controls.Add(Label79)
+        AddMaterialModalPanel.Location = New Point(179, 56)
+        AddMaterialModalPanel.Name = "AddMaterialModalPanel"
+        AddMaterialModalPanel.Size = New Size(254, 280)
+        AddMaterialModalPanel.TabIndex = 1
+        ' 
+        ' AddMaterialSupplierCMB
+        ' 
+        AddMaterialSupplierCMB.FormattingEnabled = True
+        AddMaterialSupplierCMB.Location = New Point(125, 192)
+        AddMaterialSupplierCMB.Name = "AddMaterialSupplierCMB"
+        AddMaterialSupplierCMB.Size = New Size(103, 23)
+        AddMaterialSupplierCMB.TabIndex = 13
+        ' 
+        ' Label89
+        ' 
+        Label89.AutoSize = True
+        Label89.Font = New Font("Segoe UI", 12F)
+        Label89.Location = New Point(70, 17)
+        Label89.Name = "Label89"
+        Label89.Size = New Size(117, 21)
+        Label89.TabIndex = 12
+        Label89.Text = "ADD MATERIAL"
+        ' 
+        ' AddMaterialModalConfirmBTN
+        ' 
+        AddMaterialModalConfirmBTN.Location = New Point(175, 244)
+        AddMaterialModalConfirmBTN.Name = "AddMaterialModalConfirmBTN"
+        AddMaterialModalConfirmBTN.Size = New Size(75, 23)
+        AddMaterialModalConfirmBTN.TabIndex = 11
+        AddMaterialModalConfirmBTN.Text = "Confirm"
+        AddMaterialModalConfirmBTN.UseVisualStyleBackColor = True
+        ' 
+        ' AddMaterialModalCancelBTN
+        ' 
+        AddMaterialModalCancelBTN.Location = New Point(8, 244)
+        AddMaterialModalCancelBTN.Name = "AddMaterialModalCancelBTN"
+        AddMaterialModalCancelBTN.Size = New Size(75, 23)
+        AddMaterialModalCancelBTN.TabIndex = 10
+        AddMaterialModalCancelBTN.Text = "Cancel"
+        AddMaterialModalCancelBTN.UseVisualStyleBackColor = True
+        ' 
+        ' AddMaterialUnitOfMeasureTB
+        ' 
+        AddMaterialUnitOfMeasureTB.Location = New Point(125, 154)
+        AddMaterialUnitOfMeasureTB.Name = "AddMaterialUnitOfMeasureTB"
+        AddMaterialUnitOfMeasureTB.Size = New Size(100, 23)
+        AddMaterialUnitOfMeasureTB.TabIndex = 8
+        ' 
+        ' AddMaterialDescriptionTB
+        ' 
+        AddMaterialDescriptionTB.Location = New Point(125, 89)
+        AddMaterialDescriptionTB.Name = "AddMaterialDescriptionTB"
+        AddMaterialDescriptionTB.Size = New Size(100, 30)
+        AddMaterialDescriptionTB.TabIndex = 7
+        AddMaterialDescriptionTB.Text = ""
+        ' 
+        ' AddMaterialQuantityOnStockTB
+        ' 
+        AddMaterialQuantityOnStockTB.Location = New Point(125, 125)
+        AddMaterialQuantityOnStockTB.Name = "AddMaterialQuantityOnStockTB"
+        AddMaterialQuantityOnStockTB.Size = New Size(100, 23)
+        AddMaterialQuantityOnStockTB.TabIndex = 6
+        ' 
+        ' AddMaterialNameTB
+        ' 
+        AddMaterialNameTB.Location = New Point(128, 55)
+        AddMaterialNameTB.Name = "AddMaterialNameTB"
+        AddMaterialNameTB.Size = New Size(100, 23)
+        AddMaterialNameTB.TabIndex = 5
+        ' 
+        ' Label83
+        ' 
+        Label83.AutoSize = True
+        Label83.Location = New Point(69, 194)
+        Label83.Name = "Label83"
+        Label83.Size = New Size(53, 15)
+        Label83.TabIndex = 4
+        Label83.Text = "Supplier:"
+        ' 
+        ' Label82
+        ' 
+        Label82.AutoSize = True
+        Label82.Location = New Point(28, 160)
+        Label82.Name = "Label82"
+        Label82.Size = New Size(94, 15)
+        Label82.TabIndex = 3
+        Label82.Text = "Unit of measure:"
+        ' 
+        ' Label81
+        ' 
+        Label81.AutoSize = True
+        Label81.Location = New Point(14, 133)
+        Label81.Name = "Label81"
+        Label81.Size = New Size(108, 15)
+        Label81.TabIndex = 2
+        Label81.Text = "Quantitiy on Stock:"
+        ' 
+        ' Label80
+        ' 
+        Label80.AutoSize = True
+        Label80.Location = New Point(51, 101)
+        Label80.Name = "Label80"
+        Label80.Size = New Size(70, 15)
+        Label80.TabIndex = 1
+        Label80.Text = "Description:"
+        ' 
+        ' Label79
+        ' 
+        Label79.AutoSize = True
+        Label79.Location = New Point(34, 62)
+        Label79.Name = "Label79"
+        Label79.Size = New Size(88, 15)
+        Label79.TabIndex = 0
+        Label79.Text = "Material Name:"
+        ' 
+        ' MaterialsDGV
+        ' 
+        MaterialsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        MaterialsDGV.Location = New Point(12, 7)
+        MaterialsDGV.Name = "MaterialsDGV"
+        MaterialsDGV.Size = New Size(1016, 390)
+        MaterialsDGV.TabIndex = 0
+        ' 
+        ' SettingsPanel
+        ' 
+        SettingsPanel.BackColor = Color.White
+        SettingsPanel.Controls.Add(Panel4)
+        SettingsPanel.Dock = DockStyle.Fill
+        SettingsPanel.Location = New Point(0, 0)
+        SettingsPanel.Name = "SettingsPanel"
+        SettingsPanel.Size = New Size(1380, 796)
+        SettingsPanel.TabIndex = 4
+        ' 
+        ' Panel4
+        ' 
+        Panel4.BackColor = Color.LightGray
+        Panel4.Controls.Add(ConfigStatusLabel)
+        Panel4.Controls.Add(Panel11)
+        Panel4.Controls.Add(Panel10)
+        Panel4.Controls.Add(Panel13)
+        Panel4.Controls.Add(Panel16)
+        Panel4.Location = New Point(192, 96)
+        Panel4.Name = "Panel4"
+        Panel4.Size = New Size(888, 586)
+        Panel4.TabIndex = 0
+        ' 
+        ' ConfigStatusLabel
+        ' 
+        ConfigStatusLabel.AutoSize = True
+        ConfigStatusLabel.ForeColor = Color.Black
+        ConfigStatusLabel.Location = New Point(17, 558)
+        ConfigStatusLabel.Name = "ConfigStatusLabel"
+        ConfigStatusLabel.Size = New Size(10, 15)
+        ConfigStatusLabel.TabIndex = 3
+        ConfigStatusLabel.Text = " "
+        ' 
+        ' Panel11
+        ' 
+        Panel11.BackColor = Color.White
+        Panel11.Controls.Add(BackupNowBTN)
+        Panel11.Controls.Add(Label16)
+        Panel11.Controls.Add(Label15)
+        Panel11.Location = New Point(449, 81)
+        Panel11.Name = "Panel11"
+        Panel11.Size = New Size(391, 194)
+        Panel11.TabIndex = 1
+        ' 
+        ' BackupNowBTN
+        ' 
+        BackupNowBTN.Location = New Point(147, 117)
+        BackupNowBTN.Name = "BackupNowBTN"
+        BackupNowBTN.Size = New Size(99, 23)
+        BackupNowBTN.TabIndex = 2
+        BackupNowBTN.Text = "Backup now"
+        BackupNowBTN.UseVisualStyleBackColor = True
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Location = New Point(45, 76)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(312, 15)
+        Label16.TabIndex = 1
+        Label16.Text = "Create a backup of your entire database to a safe location."
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Font = New Font("Segoe UI", 11F)
+        Label15.Location = New Point(166, 40)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(64, 20)
+        Label15.TabIndex = 0
+        Label15.Text = "BACKUP"
+        ' 
+        ' Panel10
+        ' 
+        Panel10.BackColor = Color.White
+        Panel10.Controls.Add(SaveConfigBTN)
+        Panel10.Controls.Add(TestConnectionBTN)
+        Panel10.Controls.Add(PasswordTB)
+        Panel10.Controls.Add(UsernameTB)
+        Panel10.Controls.Add(DatabaseTB)
+        Panel10.Controls.Add(ServerTB)
+        Panel10.Controls.Add(Label14)
+        Panel10.Controls.Add(Label13)
+        Panel10.Controls.Add(Label12)
+        Panel10.Controls.Add(Label11)
+        Panel10.Location = New Point(31, 81)
+        Panel10.Name = "Panel10"
+        Panel10.Size = New Size(355, 434)
+        Panel10.TabIndex = 0
+        ' 
+        ' SaveConfigBTN
+        ' 
+        SaveConfigBTN.Location = New Point(208, 365)
+        SaveConfigBTN.Name = "SaveConfigBTN"
+        SaveConfigBTN.Size = New Size(105, 23)
+        SaveConfigBTN.TabIndex = 9
+        SaveConfigBTN.Text = "SAVE CONFIG"
+        SaveConfigBTN.UseVisualStyleBackColor = True
+        ' 
+        ' TestConnectionBTN
+        ' 
+        TestConnectionBTN.Location = New Point(37, 365)
+        TestConnectionBTN.Name = "TestConnectionBTN"
+        TestConnectionBTN.Size = New Size(115, 23)
+        TestConnectionBTN.TabIndex = 8
+        TestConnectionBTN.Text = "TEST CONN"
+        TestConnectionBTN.UseVisualStyleBackColor = True
+        ' 
+        ' PasswordTB
+        ' 
+        PasswordTB.Location = New Point(149, 279)
+        PasswordTB.Name = "PasswordTB"
+        PasswordTB.Size = New Size(134, 23)
+        PasswordTB.TabIndex = 7
+        ' 
+        ' UsernameTB
+        ' 
+        UsernameTB.Location = New Point(149, 216)
+        UsernameTB.Name = "UsernameTB"
+        UsernameTB.Size = New Size(134, 23)
+        UsernameTB.TabIndex = 6
+        ' 
+        ' DatabaseTB
+        ' 
+        DatabaseTB.Location = New Point(149, 136)
+        DatabaseTB.Name = "DatabaseTB"
+        DatabaseTB.Size = New Size(134, 23)
+        DatabaseTB.TabIndex = 5
+        ' 
+        ' ServerTB
+        ' 
+        ServerTB.Location = New Point(149, 51)
+        ServerTB.Name = "ServerTB"
+        ServerTB.Size = New Size(134, 23)
+        ServerTB.TabIndex = 4
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Location = New Point(37, 288)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(71, 15)
+        Label14.TabIndex = 3
+        Label14.Text = "PASSWORD:"
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Location = New Point(37, 217)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(71, 15)
+        Label13.TabIndex = 2
+        Label13.Text = "USERNAME:"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(37, 137)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(66, 15)
+        Label12.TabIndex = 1
+        Label12.Text = "DATABASE:"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(37, 59)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(49, 15)
+        Label11.TabIndex = 0
+        Label11.Text = "SERVER:"
+        ' 
+        ' Panel13
+        ' 
+        Panel13.BackColor = Color.Black
+        Panel13.Controls.Add(Panel14)
+        Panel13.Controls.Add(Panel12)
+        Panel13.Location = New Point(417, 37)
+        Panel13.Name = "Panel13"
+        Panel13.Size = New Size(456, 497)
+        Panel13.TabIndex = 1
+        ' 
+        ' Panel14
+        ' 
+        Panel14.BackColor = Color.Black
+        Panel14.Controls.Add(Label10)
+        Panel14.Controls.Add(Panel15)
+        Panel14.Location = New Point(8, 8)
+        Panel14.Name = "Panel14"
+        Panel14.Size = New Size(456, 497)
+        Panel14.TabIndex = 3
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 15F)
+        Label10.ForeColor = SystemColors.ControlLightLight
+        Label10.Location = New Point(113, 3)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(216, 28)
+        Label10.TabIndex = 3
+        Label10.Text = "BACKUP AND RESTORE"
+        ' 
+        ' Panel15
+        ' 
+        Panel15.BackColor = Color.White
+        Panel15.Controls.Add(Label18)
+        Panel15.Controls.Add(Label17)
+        Panel15.Controls.Add(RestoreNowBTN)
+        Panel15.Location = New Point(24, 245)
+        Panel15.Name = "Panel15"
+        Panel15.Size = New Size(391, 225)
+        Panel15.TabIndex = 2
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Font = New Font("Segoe UI", 11F)
+        Label18.Location = New Point(161, 46)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(69, 20)
+        Label18.TabIndex = 3
+        Label18.Text = "RESTORE"
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Location = New Point(48, 88)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(297, 30)
+        Label17.TabIndex = 3
+        Label17.Text = "Restore database from a previously created backup file." & vbCrLf & "     ⚠️ WARNING: This will overwrite all current data!" & vbCrLf
+        ' 
+        ' RestoreNowBTN
+        ' 
+        RestoreNowBTN.Location = New Point(148, 149)
+        RestoreNowBTN.Name = "RestoreNowBTN"
+        RestoreNowBTN.Size = New Size(93, 23)
+        RestoreNowBTN.TabIndex = 0
+        RestoreNowBTN.Text = "Restore Now"
+        RestoreNowBTN.UseVisualStyleBackColor = True
+        ' 
+        ' Panel12
+        ' 
+        Panel12.BackColor = Color.White
+        Panel12.Location = New Point(32, 259)
+        Panel12.Name = "Panel12"
+        Panel12.Size = New Size(391, 225)
+        Panel12.TabIndex = 2
+        ' 
+        ' Panel16
+        ' 
+        Panel16.BackColor = Color.Black
+        Panel16.Controls.Add(Label9)
+        Panel16.Location = New Point(18, 37)
+        Panel16.Name = "Panel16"
+        Panel16.Size = New Size(384, 497)
+        Panel16.TabIndex = 1
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 15F)
+        Label9.ForeColor = SystemColors.ControlLightLight
+        Label9.Location = New Point(105, 8)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(165, 28)
+        Label9.TabIndex = 0
+        Label9.Text = "CONFIGURATION"
         ' 
         ' ClothesPanel
         ' 
         ClothesPanel.BackColor = Color.White
         ClothesPanel.Controls.Add(PictureBox1)
-        ClothesPanel.Controls.Add(Label28)
-        ClothesPanel.Controls.Add(ClothesStatusCMB)
-        ClothesPanel.Controls.Add(Label27)
-        ClothesPanel.Controls.Add(ClothesCategoryCMB)
         ClothesPanel.Controls.Add(ClothesAddBTN)
         ClothesPanel.Controls.Add(ClothesEditBTN)
         ClothesPanel.Controls.Add(ClothesMarkAsRepairBTN)
@@ -1219,42 +1662,6 @@ Partial Class Form1
         PictureBox1.Size = New Size(72, 73)
         PictureBox1.TabIndex = 14
         PictureBox1.TabStop = False
-        ' 
-        ' Label28
-        ' 
-        Label28.AutoSize = True
-        Label28.Font = New Font("Segoe UI", 11F)
-        Label28.Location = New Point(630, 89)
-        Label28.Name = "Label28"
-        Label28.Size = New Size(52, 20)
-        Label28.TabIndex = 13
-        Label28.Text = "Status:"
-        ' 
-        ' ClothesStatusCMB
-        ' 
-        ClothesStatusCMB.FormattingEnabled = True
-        ClothesStatusCMB.Location = New Point(688, 90)
-        ClothesStatusCMB.Name = "ClothesStatusCMB"
-        ClothesStatusCMB.Size = New Size(19, 23)
-        ClothesStatusCMB.TabIndex = 12
-        ' 
-        ' Label27
-        ' 
-        Label27.AutoSize = True
-        Label27.Font = New Font("Segoe UI", 11F)
-        Label27.Location = New Point(502, 89)
-        Label27.Name = "Label27"
-        Label27.Size = New Size(72, 20)
-        Label27.TabIndex = 11
-        Label27.Text = "Category:"
-        ' 
-        ' ClothesCategoryCMB
-        ' 
-        ClothesCategoryCMB.FormattingEnabled = True
-        ClothesCategoryCMB.Location = New Point(575, 90)
-        ClothesCategoryCMB.Name = "ClothesCategoryCMB"
-        ClothesCategoryCMB.Size = New Size(19, 23)
-        ClothesCategoryCMB.TabIndex = 10
         ' 
         ' ClothesAddBTN
         ' 
@@ -1686,807 +2093,656 @@ Partial Class Form1
         RestoreFromArchiveBTN.Text = "RESTORE"
         RestoreFromArchiveBTN.UseVisualStyleBackColor = False
         ' 
-        ' AdminDashboardPanel
-        ' 
-        AdminDashboardPanel.BackColor = Color.FromArgb(CByte(250), CByte(211), CByte(144))
-        AdminDashboardPanel.Controls.Add(DashboardPanelContainer)
-        AdminDashboardPanel.Dock = DockStyle.Fill
-        AdminDashboardPanel.Location = New Point(0, 0)
-        AdminDashboardPanel.Name = "AdminDashboardPanel"
-        AdminDashboardPanel.Size = New Size(1380, 796)
-        AdminDashboardPanel.TabIndex = 0
-        ' 
-        ' DashboardPanelContainer
-        ' 
-        DashboardPanelContainer.Controls.Add(ConnectionStatusLabel)
-        DashboardPanelContainer.Controls.Add(Panel20)
-        DashboardPanelContainer.Controls.Add(Panel4)
-        DashboardPanelContainer.Controls.Add(Panel3)
-        DashboardPanelContainer.Controls.Add(Panel2)
-        DashboardPanelContainer.Controls.Add(PieChartContainer)
-        DashboardPanelContainer.Controls.Add(CardDashboardContainer)
-        DashboardPanelContainer.Dock = DockStyle.Fill
-        DashboardPanelContainer.Location = New Point(0, 0)
-        DashboardPanelContainer.Name = "DashboardPanelContainer"
-        DashboardPanelContainer.Size = New Size(1380, 796)
-        DashboardPanelContainer.TabIndex = 1
-        ' 
-        ' ConnectionStatusLabel
-        ' 
-        ConnectionStatusLabel.AutoSize = True
-        ConnectionStatusLabel.Location = New Point(7, 5)
-        ConnectionStatusLabel.Name = "ConnectionStatusLabel"
-        ConnectionStatusLabel.Size = New Size(53, 15)
-        ConnectionStatusLabel.TabIndex = 4
-        ConnectionStatusLabel.Text = "Label103"
-        ' 
-        ' Panel20
-        ' 
-        Panel20.BackColor = Color.White
-        Panel20.Controls.Add(Label26)
-        Panel20.Controls.Add(GunaChart3)
-        Panel20.Location = New Point(722, 530)
-        Panel20.Name = "Panel20"
-        Panel20.Size = New Size(613, 254)
-        Panel20.TabIndex = 3
-        ' 
-        ' Label26
-        ' 
-        Label26.AutoSize = True
-        Label26.Font = New Font("Segoe UI", 12F)
-        Label26.Location = New Point(36, 25)
-        Label26.Name = "Label26"
-        Label26.Size = New Size(125, 21)
-        Label26.TabIndex = 4
-        Label26.Text = "Materials Usage "
-        ' 
-        ' GunaChart3
-        ' 
-        ChartFont1.FontName = "Arial"
-        GunaChart3.Legend.LabelFont = ChartFont1
-        GunaChart3.Location = New Point(12, 59)
-        GunaChart3.Name = "GunaChart3"
-        GunaChart3.Size = New Size(587, 184)
-        GunaChart3.TabIndex = 2
-        ChartFont2.FontName = "Arial"
-        ChartFont2.Size = 12
-        ChartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart3.Title.Font = ChartFont2
-        ChartFont3.FontName = "Arial"
-        GunaChart3.Tooltips.BodyFont = ChartFont3
-        ChartFont4.FontName = "Arial"
-        ChartFont4.Size = 9
-        ChartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart3.Tooltips.TitleFont = ChartFont4
-        GunaChart3.XAxes.GridLines = Grid1
-        ChartFont5.FontName = "Arial"
-        Tick1.Font = ChartFont5
-        GunaChart3.XAxes.Ticks = Tick1
-        GunaChart3.YAxes.GridLines = Grid2
-        ChartFont6.FontName = "Arial"
-        Tick2.Font = ChartFont6
-        GunaChart3.YAxes.Ticks = Tick2
-        GunaChart3.ZAxes.GridLines = Grid3
-        ChartFont7.FontName = "Arial"
-        PointLabel1.Font = ChartFont7
-        GunaChart3.ZAxes.PointLabels = PointLabel1
-        ChartFont8.FontName = "Arial"
-        Tick3.Font = ChartFont8
-        GunaChart3.ZAxes.Ticks = Tick3
-        ' 
-        ' Panel4
-        ' 
-        Panel4.BackColor = Color.White
-        Panel4.Controls.Add(Label25)
-        Panel4.Controls.Add(GunaChart1)
-        Panel4.Controls.Add(ComboBox1)
-        Panel4.Location = New Point(60, 530)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(614, 254)
-        Panel4.TabIndex = 2
-        ' 
-        ' Label25
-        ' 
-        Label25.AutoSize = True
-        Label25.Font = New Font("Segoe UI", 12F)
-        Label25.Location = New Point(31, 21)
-        Label25.Name = "Label25"
-        Label25.Size = New Size(87, 21)
-        Label25.TabIndex = 3
-        Label25.Text = "Rentals Per"
-        ' 
-        ' GunaChart1
-        ' 
-        ChartFont9.FontName = "Arial"
-        GunaChart1.Legend.LabelFont = ChartFont9
-        GunaChart1.Location = New Point(12, 59)
-        GunaChart1.Name = "GunaChart1"
-        GunaChart1.Size = New Size(587, 184)
-        GunaChart1.TabIndex = 2
-        ChartFont10.FontName = "Arial"
-        ChartFont10.Size = 12
-        ChartFont10.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart1.Title.Font = ChartFont10
-        ChartFont11.FontName = "Arial"
-        GunaChart1.Tooltips.BodyFont = ChartFont11
-        ChartFont12.FontName = "Arial"
-        ChartFont12.Size = 9
-        ChartFont12.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
-        GunaChart1.Tooltips.TitleFont = ChartFont12
-        GunaChart1.XAxes.GridLines = Grid4
-        ChartFont13.FontName = "Arial"
-        Tick4.Font = ChartFont13
-        GunaChart1.XAxes.Ticks = Tick4
-        GunaChart1.YAxes.GridLines = Grid5
-        ChartFont14.FontName = "Arial"
-        Tick5.Font = ChartFont14
-        GunaChart1.YAxes.Ticks = Tick5
-        GunaChart1.ZAxes.GridLines = Grid6
-        ChartFont15.FontName = "Arial"
-        PointLabel2.Font = ChartFont15
-        GunaChart1.ZAxes.PointLabels = PointLabel2
-        ChartFont16.FontName = "Arial"
-        Tick6.Font = ChartFont16
-        GunaChart1.ZAxes.Ticks = Tick6
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Items.AddRange(New Object() {"Day", "Week", "Monthly", "Yearly"})
-        ComboBox1.Location = New Point(123, 23)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(86, 23)
-        ComboBox1.TabIndex = 1
-        ' 
-        ' Panel3
-        ' 
-        Panel3.BackColor = Color.White
-        Panel3.Controls.Add(Label8)
-        Panel3.Location = New Point(801, 226)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(537, 277)
-        Panel3.TabIndex = 3
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI", 20F)
-        Label8.Location = New Point(40, 9)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(289, 37)
-        Label8.TabIndex = 3
-        Label8.Text = "Employee Performance"
-        ' 
-        ' Panel2
-        ' 
-        Panel2.BackColor = Color.White
-        Panel2.Controls.Add(Label2)
-        Panel2.Location = New Point(426, 226)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(330, 277)
-        Panel2.TabIndex = 2
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 20F)
-        Label2.Location = New Point(64, 9)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(197, 37)
-        Label2.TabIndex = 2
-        Label2.Text = "Tailoring Status"
-        ' 
-        ' PieChartContainer
-        ' 
-        PieChartContainer.BackColor = Color.White
-        PieChartContainer.Controls.Add(Label1)
-        PieChartContainer.Location = New Point(60, 226)
-        PieChartContainer.Name = "PieChartContainer"
-        PieChartContainer.Size = New Size(325, 277)
-        PieChartContainer.TabIndex = 1
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 20F)
-        Label1.Location = New Point(23, 9)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(279, 37)
-        Label1.TabIndex = 1
-        Label1.Text = "Overdue Rentals Table"
-        ' 
-        ' CardDashboardContainer
-        ' 
-        CardDashboardContainer.BackColor = Color.White
-        CardDashboardContainer.Controls.Add(Panel7)
-        CardDashboardContainer.Controls.Add(Panel6)
-        CardDashboardContainer.Controls.Add(Panel5)
-        CardDashboardContainer.Controls.Add(Panel1)
-        CardDashboardContainer.Location = New Point(60, 39)
-        CardDashboardContainer.Name = "CardDashboardContainer"
-        CardDashboardContainer.Size = New Size(1278, 164)
-        CardDashboardContainer.TabIndex = 0
-        ' 
-        ' Panel7
-        ' 
-        Panel7.BackColor = Color.IndianRed
-        Panel7.Controls.Add(Label12)
-        Panel7.Controls.Add(Label6)
-        Panel7.Location = New Point(992, 26)
-        Panel7.Name = "Panel7"
-        Panel7.Size = New Size(256, 124)
-        Panel7.TabIndex = 3
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 45F)
-        Label12.Location = New Point(98, 33)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(67, 81)
-        Label12.TabIndex = 6
-        Label12.Text = "0"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 15F)
-        Label6.Location = New Point(98, 5)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(75, 28)
-        Label6.TabIndex = 5
-        Label6.Text = "Repairs"
-        ' 
-        ' Panel6
-        ' 
-        Panel6.BackColor = Color.IndianRed
-        Panel6.Controls.Add(Label11)
-        Panel6.Controls.Add(Label5)
-        Panel6.Location = New Point(681, 26)
-        Panel6.Name = "Panel6"
-        Panel6.Size = New Size(250, 124)
-        Panel6.TabIndex = 2
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 45F)
-        Label11.Location = New Point(96, 33)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(67, 81)
-        Label11.TabIndex = 5
-        Label11.Text = "0"
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 15F)
-        Label5.Location = New Point(90, 5)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(73, 28)
-        Label5.TabIndex = 4
-        Label5.Text = "Rented"
-        ' 
-        ' Panel5
-        ' 
-        Panel5.BackColor = Color.IndianRed
-        Panel5.Controls.Add(Label10)
-        Panel5.Controls.Add(Label4)
-        Panel5.Location = New Point(353, 26)
-        Panel5.Name = "Panel5"
-        Panel5.Size = New Size(261, 124)
-        Panel5.TabIndex = 1
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 45F)
-        Label10.Location = New Point(102, 33)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(67, 81)
-        Label10.TabIndex = 4
-        Label10.Text = "0"
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 15F)
-        Label4.Location = New Point(89, 5)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(92, 28)
-        Label4.TabIndex = 3
-        Label4.Text = "Available"
-        ' 
-        ' Panel1
-        ' 
-        Panel1.BackColor = Color.IndianRed
-        Panel1.Controls.Add(Label9)
-        Panel1.Controls.Add(Label3)
-        Panel1.Location = New Point(30, 26)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(251, 124)
-        Panel1.TabIndex = 0
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 45F)
-        Label9.Location = New Point(93, 33)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(67, 81)
-        Label9.TabIndex = 3
-        Label9.Text = "0"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 15F)
-        Label3.Location = New Point(64, 5)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(124, 28)
-        Label3.TabIndex = 2
-        Label3.Text = "Total Clothes"
-        ' 
-        ' MaterialsPanel
-        ' 
-        MaterialsPanel.BackColor = Color.White
-        MaterialsPanel.Controls.Add(Label45)
-        MaterialsPanel.Controls.Add(SupplierPanel)
-        MaterialsPanel.Controls.Add(UpdateMaterialBTN)
-        MaterialsPanel.Controls.Add(AddMaterialBTN)
-        MaterialsPanel.Controls.Add(MaterialPanel)
-        MaterialsPanel.Dock = DockStyle.Fill
-        MaterialsPanel.Location = New Point(0, 0)
-        MaterialsPanel.Name = "MaterialsPanel"
-        MaterialsPanel.Size = New Size(1380, 796)
-        MaterialsPanel.TabIndex = 2
-        ' 
-        ' Label45
-        ' 
-        Label45.AutoSize = True
-        Label45.Font = New Font("Segoe UI", 15F)
-        Label45.Location = New Point(133, 272)
-        Label45.Name = "Label45"
-        Label45.Size = New Size(112, 28)
-        Label45.TabIndex = 10
-        Label45.Text = "MATERIALS"
-        ' 
-        ' SupplierPanel
-        ' 
-        SupplierPanel.BackColor = Color.LightGray
-        SupplierPanel.Controls.Add(AddSuppliersBTN)
-        SupplierPanel.Controls.Add(TextBox10)
-        SupplierPanel.Controls.Add(SuppliersDGV)
-        SupplierPanel.Controls.Add(SuppliersEmailTB)
-        SupplierPanel.Controls.Add(SuppliersAddressTB)
-        SupplierPanel.Controls.Add(SuppliersContactTB)
-        SupplierPanel.Controls.Add(SuppliersNameTB)
-        SupplierPanel.Controls.Add(Label44)
-        SupplierPanel.Controls.Add(Label43)
-        SupplierPanel.Controls.Add(Label42)
-        SupplierPanel.Controls.Add(Label41)
-        SupplierPanel.Controls.Add(Label40)
-        SupplierPanel.Location = New Point(75, 24)
-        SupplierPanel.Name = "SupplierPanel"
-        SupplierPanel.Size = New Size(1055, 225)
-        SupplierPanel.TabIndex = 3
-        ' 
-        ' AddSuppliersBTN
-        ' 
-        AddSuppliersBTN.Location = New Point(196, 22)
-        AddSuppliersBTN.Name = "AddSuppliersBTN"
-        AddSuppliersBTN.Size = New Size(92, 35)
-        AddSuppliersBTN.TabIndex = 11
-        AddSuppliersBTN.Text = "Add Supplier"
-        AddSuppliersBTN.UseVisualStyleBackColor = True
-        ' 
-        ' TextBox10
-        ' 
-        TextBox10.Location = New Point(875, 17)
-        TextBox10.Name = "TextBox10"
-        TextBox10.Size = New Size(150, 23)
-        TextBox10.TabIndex = 10
-        ' 
-        ' SuppliersDGV
-        ' 
-        SuppliersDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        SuppliersDGV.Location = New Point(367, 46)
-        SuppliersDGV.Name = "SuppliersDGV"
-        SuppliersDGV.Size = New Size(658, 150)
-        SuppliersDGV.TabIndex = 9
-        ' 
-        ' SuppliersEmailTB
-        ' 
-        SuppliersEmailTB.Location = New Point(108, 168)
-        SuppliersEmailTB.Name = "SuppliersEmailTB"
-        SuppliersEmailTB.Size = New Size(178, 23)
-        SuppliersEmailTB.TabIndex = 8
-        ' 
-        ' SuppliersAddressTB
-        ' 
-        SuppliersAddressTB.Location = New Point(108, 139)
-        SuppliersAddressTB.Name = "SuppliersAddressTB"
-        SuppliersAddressTB.Size = New Size(178, 23)
-        SuppliersAddressTB.TabIndex = 7
-        ' 
-        ' SuppliersContactTB
-        ' 
-        SuppliersContactTB.Location = New Point(109, 105)
-        SuppliersContactTB.Name = "SuppliersContactTB"
-        SuppliersContactTB.Size = New Size(178, 23)
-        SuppliersContactTB.TabIndex = 6
-        ' 
-        ' SuppliersNameTB
-        ' 
-        SuppliersNameTB.Location = New Point(108, 66)
-        SuppliersNameTB.Name = "SuppliersNameTB"
-        SuppliersNameTB.Size = New Size(178, 23)
-        SuppliersNameTB.TabIndex = 5
-        ' 
-        ' Label44
-        ' 
-        Label44.AutoSize = True
-        Label44.Font = New Font("Segoe UI", 12F)
-        Label44.Location = New Point(41, 168)
-        Label44.Name = "Label44"
-        Label44.Size = New Size(51, 21)
-        Label44.TabIndex = 4
-        Label44.Text = "Email:"
-        ' 
-        ' Label43
-        ' 
-        Label43.AutoSize = True
-        Label43.Font = New Font("Segoe UI", 12F)
-        Label43.Location = New Point(26, 134)
-        Label43.Name = "Label43"
-        Label43.Size = New Size(69, 21)
-        Label43.TabIndex = 3
-        Label43.Text = "Address:"
-        ' 
-        ' Label42
-        ' 
-        Label42.AutoSize = True
-        Label42.Font = New Font("Segoe UI", 12F)
-        Label42.Location = New Point(29, 105)
-        Label42.Name = "Label42"
-        Label42.Size = New Size(66, 21)
-        Label42.TabIndex = 2
-        Label42.Text = "Contact:"
-        ' 
-        ' Label41
-        ' 
-        Label41.AutoSize = True
-        Label41.Font = New Font("Segoe UI", 15F)
-        Label41.Location = New Point(26, 15)
-        Label41.Name = "Label41"
-        Label41.Size = New Size(106, 28)
-        Label41.TabIndex = 1
-        Label41.Text = "SUPPLIERS"
-        ' 
-        ' Label40
-        ' 
-        Label40.AutoSize = True
-        Label40.Font = New Font("Segoe UI", 12F)
-        Label40.Location = New Point(37, 71)
-        Label40.Name = "Label40"
-        Label40.Size = New Size(55, 21)
-        Label40.TabIndex = 0
-        Label40.Text = "Name:"
-        ' 
-        ' UpdateMaterialBTN
-        ' 
-        UpdateMaterialBTN.Location = New Point(515, 263)
-        UpdateMaterialBTN.Name = "UpdateMaterialBTN"
-        UpdateMaterialBTN.Size = New Size(143, 46)
-        UpdateMaterialBTN.TabIndex = 2
-        UpdateMaterialBTN.Text = "Update Stock"
-        UpdateMaterialBTN.UseVisualStyleBackColor = True
-        ' 
-        ' AddMaterialBTN
-        ' 
-        AddMaterialBTN.Location = New Point(341, 263)
-        AddMaterialBTN.Name = "AddMaterialBTN"
-        AddMaterialBTN.Size = New Size(143, 46)
-        AddMaterialBTN.TabIndex = 1
-        AddMaterialBTN.Text = "Add Material"
-        AddMaterialBTN.UseVisualStyleBackColor = True
-        ' 
-        ' MaterialPanel
-        ' 
-        MaterialPanel.BackColor = Color.LightGray
-        MaterialPanel.Controls.Add(UpdateMaterialModalPanel)
-        MaterialPanel.Controls.Add(AddMaterialModalPanel)
-        MaterialPanel.Controls.Add(MaterialsDGV)
-        MaterialPanel.Location = New Point(72, 315)
-        MaterialPanel.Name = "MaterialPanel"
-        MaterialPanel.Size = New Size(1052, 426)
-        MaterialPanel.TabIndex = 0
-        ' 
-        ' UpdateMaterialModalPanel
-        ' 
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialSupplierCMB)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialIDTB)
-        UpdateMaterialModalPanel.Controls.Add(Label91)
-        UpdateMaterialModalPanel.Controls.Add(Label90)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialModalConfirmBTN)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialModalCancelBTN)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialUnitOfMeasureTB)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialDescriptionTB)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialQuantityOnStockTB)
-        UpdateMaterialModalPanel.Controls.Add(UpdateMaterialNameTB)
-        UpdateMaterialModalPanel.Controls.Add(Label84)
-        UpdateMaterialModalPanel.Controls.Add(Label85)
-        UpdateMaterialModalPanel.Controls.Add(Label86)
-        UpdateMaterialModalPanel.Controls.Add(Label87)
-        UpdateMaterialModalPanel.Controls.Add(Label88)
-        UpdateMaterialModalPanel.Location = New Point(459, 55)
-        UpdateMaterialModalPanel.Name = "UpdateMaterialModalPanel"
-        UpdateMaterialModalPanel.Size = New Size(254, 280)
-        UpdateMaterialModalPanel.TabIndex = 12
-        ' 
-        ' UpdateMaterialSupplierCMB
-        ' 
-        UpdateMaterialSupplierCMB.FormattingEnabled = True
-        UpdateMaterialSupplierCMB.Location = New Point(124, 213)
-        UpdateMaterialSupplierCMB.Name = "UpdateMaterialSupplierCMB"
-        UpdateMaterialSupplierCMB.Size = New Size(103, 23)
-        UpdateMaterialSupplierCMB.TabIndex = 14
-        ' 
-        ' UpdateMaterialIDTB
-        ' 
-        UpdateMaterialIDTB.Location = New Point(127, 44)
-        UpdateMaterialIDTB.Name = "UpdateMaterialIDTB"
-        UpdateMaterialIDTB.Size = New Size(100, 23)
-        UpdateMaterialIDTB.TabIndex = 15
-        ' 
-        ' Label91
-        ' 
-        Label91.AutoSize = True
-        Label91.Location = New Point(53, 52)
-        Label91.Name = "Label91"
-        Label91.Size = New Size(67, 15)
-        Label91.TabIndex = 14
-        Label91.Text = "Material ID:"
-        ' 
-        ' Label90
-        ' 
-        Label90.AutoSize = True
-        Label90.Font = New Font("Segoe UI", 12F)
-        Label90.Location = New Point(63, 16)
-        Label90.Name = "Label90"
-        Label90.Size = New Size(141, 21)
-        Label90.TabIndex = 13
-        Label90.Text = "UPDATE MATERIAL"
-        ' 
-        ' UpdateMaterialModalConfirmBTN
-        ' 
-        UpdateMaterialModalConfirmBTN.Location = New Point(175, 244)
-        UpdateMaterialModalConfirmBTN.Name = "UpdateMaterialModalConfirmBTN"
-        UpdateMaterialModalConfirmBTN.Size = New Size(75, 23)
-        UpdateMaterialModalConfirmBTN.TabIndex = 11
-        UpdateMaterialModalConfirmBTN.Text = "Confirm"
-        UpdateMaterialModalConfirmBTN.UseVisualStyleBackColor = True
-        ' 
-        ' UpdateMaterialModalCancelBTN
-        ' 
-        UpdateMaterialModalCancelBTN.Location = New Point(8, 244)
-        UpdateMaterialModalCancelBTN.Name = "UpdateMaterialModalCancelBTN"
-        UpdateMaterialModalCancelBTN.Size = New Size(75, 23)
-        UpdateMaterialModalCancelBTN.TabIndex = 10
-        UpdateMaterialModalCancelBTN.Text = "Cancel"
-        UpdateMaterialModalCancelBTN.UseVisualStyleBackColor = True
-        ' 
-        ' UpdateMaterialUnitOfMeasureTB
-        ' 
-        UpdateMaterialUnitOfMeasureTB.Location = New Point(124, 176)
-        UpdateMaterialUnitOfMeasureTB.Name = "UpdateMaterialUnitOfMeasureTB"
-        UpdateMaterialUnitOfMeasureTB.Size = New Size(100, 23)
-        UpdateMaterialUnitOfMeasureTB.TabIndex = 8
-        ' 
-        ' UpdateMaterialDescriptionTB
-        ' 
-        UpdateMaterialDescriptionTB.Location = New Point(124, 111)
-        UpdateMaterialDescriptionTB.Name = "UpdateMaterialDescriptionTB"
-        UpdateMaterialDescriptionTB.Size = New Size(100, 30)
-        UpdateMaterialDescriptionTB.TabIndex = 7
-        UpdateMaterialDescriptionTB.Text = ""
-        ' 
-        ' UpdateMaterialQuantityOnStockTB
-        ' 
-        UpdateMaterialQuantityOnStockTB.Location = New Point(124, 147)
-        UpdateMaterialQuantityOnStockTB.Name = "UpdateMaterialQuantityOnStockTB"
-        UpdateMaterialQuantityOnStockTB.Size = New Size(100, 23)
-        UpdateMaterialQuantityOnStockTB.TabIndex = 6
-        ' 
-        ' UpdateMaterialNameTB
-        ' 
-        UpdateMaterialNameTB.Location = New Point(127, 77)
-        UpdateMaterialNameTB.Name = "UpdateMaterialNameTB"
-        UpdateMaterialNameTB.Size = New Size(100, 23)
-        UpdateMaterialNameTB.TabIndex = 5
-        ' 
-        ' Label84
-        ' 
-        Label84.AutoSize = True
-        Label84.Location = New Point(68, 216)
-        Label84.Name = "Label84"
-        Label84.Size = New Size(53, 15)
-        Label84.TabIndex = 4
-        Label84.Text = "Supplier:"
-        ' 
-        ' Label85
-        ' 
-        Label85.AutoSize = True
-        Label85.Location = New Point(27, 182)
-        Label85.Name = "Label85"
-        Label85.Size = New Size(94, 15)
-        Label85.TabIndex = 3
-        Label85.Text = "Unit of measure:"
-        ' 
-        ' Label86
-        ' 
-        Label86.AutoSize = True
-        Label86.Location = New Point(13, 155)
-        Label86.Name = "Label86"
-        Label86.Size = New Size(108, 15)
-        Label86.TabIndex = 2
-        Label86.Text = "Quantitiy on Stock:"
-        ' 
-        ' Label87
-        ' 
-        Label87.AutoSize = True
-        Label87.Location = New Point(50, 123)
-        Label87.Name = "Label87"
-        Label87.Size = New Size(70, 15)
-        Label87.TabIndex = 1
-        Label87.Text = "Description:"
-        ' 
-        ' Label88
-        ' 
-        Label88.AutoSize = True
-        Label88.Location = New Point(33, 84)
-        Label88.Name = "Label88"
-        Label88.Size = New Size(88, 15)
-        Label88.TabIndex = 0
-        Label88.Text = "Material Name:"
-        ' 
-        ' AddMaterialModalPanel
-        ' 
-        AddMaterialModalPanel.Controls.Add(AddMaterialSupplierCMB)
-        AddMaterialModalPanel.Controls.Add(Label89)
-        AddMaterialModalPanel.Controls.Add(AddMaterialModalConfirmBTN)
-        AddMaterialModalPanel.Controls.Add(AddMaterialModalCancelBTN)
-        AddMaterialModalPanel.Controls.Add(AddMaterialUnitOfMeasureTB)
-        AddMaterialModalPanel.Controls.Add(AddMaterialDescriptionTB)
-        AddMaterialModalPanel.Controls.Add(AddMaterialQuantityOnStockTB)
-        AddMaterialModalPanel.Controls.Add(AddMaterialNameTB)
-        AddMaterialModalPanel.Controls.Add(Label83)
-        AddMaterialModalPanel.Controls.Add(Label82)
-        AddMaterialModalPanel.Controls.Add(Label81)
-        AddMaterialModalPanel.Controls.Add(Label80)
-        AddMaterialModalPanel.Controls.Add(Label79)
-        AddMaterialModalPanel.Location = New Point(179, 56)
-        AddMaterialModalPanel.Name = "AddMaterialModalPanel"
-        AddMaterialModalPanel.Size = New Size(254, 280)
-        AddMaterialModalPanel.TabIndex = 1
-        ' 
-        ' AddMaterialSupplierCMB
-        ' 
-        AddMaterialSupplierCMB.FormattingEnabled = True
-        AddMaterialSupplierCMB.Location = New Point(125, 192)
-        AddMaterialSupplierCMB.Name = "AddMaterialSupplierCMB"
-        AddMaterialSupplierCMB.Size = New Size(103, 23)
-        AddMaterialSupplierCMB.TabIndex = 13
-        ' 
-        ' Label89
-        ' 
-        Label89.AutoSize = True
-        Label89.Font = New Font("Segoe UI", 12F)
-        Label89.Location = New Point(70, 17)
-        Label89.Name = "Label89"
-        Label89.Size = New Size(117, 21)
-        Label89.TabIndex = 12
-        Label89.Text = "ADD MATERIAL"
-        ' 
-        ' AddMaterialModalConfirmBTN
-        ' 
-        AddMaterialModalConfirmBTN.Location = New Point(175, 244)
-        AddMaterialModalConfirmBTN.Name = "AddMaterialModalConfirmBTN"
-        AddMaterialModalConfirmBTN.Size = New Size(75, 23)
-        AddMaterialModalConfirmBTN.TabIndex = 11
-        AddMaterialModalConfirmBTN.Text = "Confirm"
-        AddMaterialModalConfirmBTN.UseVisualStyleBackColor = True
-        ' 
-        ' AddMaterialModalCancelBTN
-        ' 
-        AddMaterialModalCancelBTN.Location = New Point(8, 244)
-        AddMaterialModalCancelBTN.Name = "AddMaterialModalCancelBTN"
-        AddMaterialModalCancelBTN.Size = New Size(75, 23)
-        AddMaterialModalCancelBTN.TabIndex = 10
-        AddMaterialModalCancelBTN.Text = "Cancel"
-        AddMaterialModalCancelBTN.UseVisualStyleBackColor = True
-        ' 
-        ' AddMaterialUnitOfMeasureTB
-        ' 
-        AddMaterialUnitOfMeasureTB.Location = New Point(125, 154)
-        AddMaterialUnitOfMeasureTB.Name = "AddMaterialUnitOfMeasureTB"
-        AddMaterialUnitOfMeasureTB.Size = New Size(100, 23)
-        AddMaterialUnitOfMeasureTB.TabIndex = 8
-        ' 
-        ' AddMaterialDescriptionTB
-        ' 
-        AddMaterialDescriptionTB.Location = New Point(125, 89)
-        AddMaterialDescriptionTB.Name = "AddMaterialDescriptionTB"
-        AddMaterialDescriptionTB.Size = New Size(100, 30)
-        AddMaterialDescriptionTB.TabIndex = 7
-        AddMaterialDescriptionTB.Text = ""
-        ' 
-        ' AddMaterialQuantityOnStockTB
-        ' 
-        AddMaterialQuantityOnStockTB.Location = New Point(125, 125)
-        AddMaterialQuantityOnStockTB.Name = "AddMaterialQuantityOnStockTB"
-        AddMaterialQuantityOnStockTB.Size = New Size(100, 23)
-        AddMaterialQuantityOnStockTB.TabIndex = 6
-        ' 
-        ' AddMaterialNameTB
-        ' 
-        AddMaterialNameTB.Location = New Point(128, 55)
-        AddMaterialNameTB.Name = "AddMaterialNameTB"
-        AddMaterialNameTB.Size = New Size(100, 23)
-        AddMaterialNameTB.TabIndex = 5
-        ' 
-        ' Label83
-        ' 
-        Label83.AutoSize = True
-        Label83.Location = New Point(69, 194)
-        Label83.Name = "Label83"
-        Label83.Size = New Size(53, 15)
-        Label83.TabIndex = 4
-        Label83.Text = "Supplier:"
-        ' 
-        ' Label82
-        ' 
-        Label82.AutoSize = True
-        Label82.Location = New Point(28, 160)
-        Label82.Name = "Label82"
-        Label82.Size = New Size(94, 15)
-        Label82.TabIndex = 3
-        Label82.Text = "Unit of measure:"
-        ' 
-        ' Label81
-        ' 
-        Label81.AutoSize = True
-        Label81.Location = New Point(14, 133)
-        Label81.Name = "Label81"
-        Label81.Size = New Size(108, 15)
-        Label81.TabIndex = 2
-        Label81.Text = "Quantitiy on Stock:"
-        ' 
-        ' Label80
-        ' 
-        Label80.AutoSize = True
-        Label80.Location = New Point(51, 101)
-        Label80.Name = "Label80"
-        Label80.Size = New Size(70, 15)
-        Label80.TabIndex = 1
-        Label80.Text = "Description:"
-        ' 
-        ' Label79
-        ' 
-        Label79.AutoSize = True
-        Label79.Location = New Point(34, 62)
-        Label79.Name = "Label79"
-        Label79.Size = New Size(88, 15)
-        Label79.TabIndex = 0
-        Label79.Text = "Material Name:"
-        ' 
-        ' MaterialsDGV
-        ' 
-        MaterialsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        MaterialsDGV.Location = New Point(12, 7)
-        MaterialsDGV.Name = "MaterialsDGV"
-        MaterialsDGV.Size = New Size(1016, 390)
-        MaterialsDGV.TabIndex = 0
+        ' RentPanel
+        ' 
+        RentPanel.BackColor = Color.White
+        RentPanel.Controls.Add(RentSearchTB)
+        RentPanel.Controls.Add(ReturnItemPanel)
+        RentPanel.Controls.Add(Panel23)
+        RentPanel.Controls.Add(Panel22)
+        RentPanel.Controls.Add(RentItemPanel)
+        RentPanel.Dock = DockStyle.Fill
+        RentPanel.Location = New Point(0, 0)
+        RentPanel.Name = "RentPanel"
+        RentPanel.Size = New Size(1380, 796)
+        RentPanel.TabIndex = 5
+        ' 
+        ' RentSearchTB
+        ' 
+        RentSearchTB.Font = New Font("Segoe UI", 12F)
+        RentSearchTB.Location = New Point(1044, 311)
+        RentSearchTB.Name = "RentSearchTB"
+        RentSearchTB.Size = New Size(236, 29)
+        RentSearchTB.TabIndex = 18
+        ' 
+        ' ReturnItemPanel
+        ' 
+        ReturnItemPanel.BackColor = Color.LightGray
+        ReturnItemPanel.Controls.Add(ReturnItemStatusTB)
+        ReturnItemPanel.Controls.Add(ReturnItemClothesNameTB)
+        ReturnItemPanel.Controls.Add(ReturnItemCustomerNameTB)
+        ReturnItemPanel.Controls.Add(Label102)
+        ReturnItemPanel.Controls.Add(ExtendItemBTN)
+        ReturnItemPanel.Controls.Add(MarkLostItemBTN)
+        ReturnItemPanel.Controls.Add(ReturnItemBTN)
+        ReturnItemPanel.Controls.Add(ReturnItemRentIDTB)
+        ReturnItemPanel.Controls.Add(Label36)
+        ReturnItemPanel.Controls.Add(Label35)
+        ReturnItemPanel.Controls.Add(Label34)
+        ReturnItemPanel.Controls.Add(Label33)
+        ReturnItemPanel.Location = New Point(556, 27)
+        ReturnItemPanel.Name = "ReturnItemPanel"
+        ReturnItemPanel.Size = New Size(724, 257)
+        ReturnItemPanel.TabIndex = 3
+        ' 
+        ' ReturnItemStatusTB
+        ' 
+        ReturnItemStatusTB.Location = New Point(202, 182)
+        ReturnItemStatusTB.Name = "ReturnItemStatusTB"
+        ReturnItemStatusTB.Size = New Size(162, 23)
+        ReturnItemStatusTB.TabIndex = 21
+        ' 
+        ' ReturnItemClothesNameTB
+        ' 
+        ReturnItemClothesNameTB.Location = New Point(202, 142)
+        ReturnItemClothesNameTB.Name = "ReturnItemClothesNameTB"
+        ReturnItemClothesNameTB.Size = New Size(162, 23)
+        ReturnItemClothesNameTB.TabIndex = 20
+        ' 
+        ' ReturnItemCustomerNameTB
+        ' 
+        ReturnItemCustomerNameTB.Location = New Point(201, 104)
+        ReturnItemCustomerNameTB.Name = "ReturnItemCustomerNameTB"
+        ReturnItemCustomerNameTB.Size = New Size(162, 23)
+        ReturnItemCustomerNameTB.TabIndex = 19
+        ' 
+        ' Label102
+        ' 
+        Label102.AutoSize = True
+        Label102.Font = New Font("Segoe UI", 16F)
+        Label102.Location = New Point(260, 5)
+        Label102.Name = "Label102"
+        Label102.Size = New Size(148, 30)
+        Label102.TabIndex = 18
+        Label102.Text = "RETURN ITEM"
+        ' 
+        ' ExtendItemBTN
+        ' 
+        ExtendItemBTN.Location = New Point(556, 190)
+        ExtendItemBTN.Name = "ExtendItemBTN"
+        ExtendItemBTN.Size = New Size(95, 52)
+        ExtendItemBTN.TabIndex = 17
+        ExtendItemBTN.Text = "Extend"
+        ExtendItemBTN.UseVisualStyleBackColor = True
+        ' 
+        ' MarkLostItemBTN
+        ' 
+        MarkLostItemBTN.Location = New Point(556, 124)
+        MarkLostItemBTN.Name = "MarkLostItemBTN"
+        MarkLostItemBTN.Size = New Size(95, 52)
+        MarkLostItemBTN.TabIndex = 16
+        MarkLostItemBTN.Text = "Mark Lost"
+        MarkLostItemBTN.UseVisualStyleBackColor = True
+        ' 
+        ' ReturnItemBTN
+        ' 
+        ReturnItemBTN.Location = New Point(556, 62)
+        ReturnItemBTN.Name = "ReturnItemBTN"
+        ReturnItemBTN.Size = New Size(95, 52)
+        ReturnItemBTN.TabIndex = 2
+        ReturnItemBTN.Text = "Return Item"
+        ReturnItemBTN.UseVisualStyleBackColor = True
+        ' 
+        ' ReturnItemRentIDTB
+        ' 
+        ReturnItemRentIDTB.Location = New Point(202, 69)
+        ReturnItemRentIDTB.Name = "ReturnItemRentIDTB"
+        ReturnItemRentIDTB.Size = New Size(112, 23)
+        ReturnItemRentIDTB.TabIndex = 12
+        ' 
+        ' Label36
+        ' 
+        Label36.AutoSize = True
+        Label36.Font = New Font("Segoe UI", 12F)
+        Label36.Location = New Point(119, 182)
+        Label36.Name = "Label36"
+        Label36.Size = New Size(55, 21)
+        Label36.TabIndex = 11
+        Label36.Text = "Status:"
+        ' 
+        ' Label35
+        ' 
+        Label35.AutoSize = True
+        Label35.Font = New Font("Segoe UI", 12F)
+        Label35.Location = New Point(63, 144)
+        Label35.Name = "Label35"
+        Label35.Size = New Size(111, 21)
+        Label35.TabIndex = 10
+        Label35.Text = "Clothes Name:"
+        ' 
+        ' Label34
+        ' 
+        Label34.AutoSize = True
+        Label34.Font = New Font("Segoe UI", 12F)
+        Label34.Location = New Point(110, 71)
+        Label34.Name = "Label34"
+        Label34.Size = New Size(64, 21)
+        Label34.TabIndex = 9
+        Label34.Text = "Rent ID:"
+        ' 
+        ' Label33
+        ' 
+        Label33.AutoSize = True
+        Label33.Font = New Font("Segoe UI", 12F)
+        Label33.Location = New Point(47, 102)
+        Label33.Name = "Label33"
+        Label33.Size = New Size(127, 21)
+        Label33.TabIndex = 8
+        Label33.Text = "Customer Name:"
+        ' 
+        ' Panel23
+        ' 
+        Panel23.BackColor = Color.Black
+        Panel23.Controls.Add(ClearRentItemBTN)
+        Panel23.Controls.Add(RentItemBTN)
+        Panel23.Location = New Point(90, 284)
+        Panel23.Name = "Panel23"
+        Panel23.Size = New Size(439, 57)
+        Panel23.TabIndex = 2
+        ' 
+        ' ClearRentItemBTN
+        ' 
+        ClearRentItemBTN.Location = New Point(94, 10)
+        ClearRentItemBTN.Name = "ClearRentItemBTN"
+        ClearRentItemBTN.Size = New Size(86, 38)
+        ClearRentItemBTN.TabIndex = 1
+        ClearRentItemBTN.Text = "Clear"
+        ClearRentItemBTN.UseVisualStyleBackColor = True
+        ' 
+        ' RentItemBTN
+        ' 
+        RentItemBTN.Location = New Point(288, 10)
+        RentItemBTN.Name = "RentItemBTN"
+        RentItemBTN.Size = New Size(86, 38)
+        RentItemBTN.TabIndex = 0
+        RentItemBTN.Text = "Rent Item"
+        RentItemBTN.UseVisualStyleBackColor = True
+        ' 
+        ' Panel22
+        ' 
+        Panel22.BackColor = Color.LightGray
+        Panel22.Controls.Add(RentDGV)
+        Panel22.Location = New Point(91, 349)
+        Panel22.Name = "Panel22"
+        Panel22.Size = New Size(1189, 403)
+        Panel22.TabIndex = 1
+        ' 
+        ' RentDGV
+        ' 
+        RentDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        RentDGV.Location = New Point(9, 1)
+        RentDGV.Name = "RentDGV"
+        RentDGV.Size = New Size(1158, 369)
+        RentDGV.TabIndex = 0
+        ' 
+        ' RentItemPanel
+        ' 
+        RentItemPanel.BackColor = Color.LightGray
+        RentItemPanel.Controls.Add(RentClothesCMB)
+        RentItemPanel.Controls.Add(RentCustomerNameCMB)
+        RentItemPanel.Controls.Add(Label101)
+        RentItemPanel.Controls.Add(RentExpectedReturnDTP)
+        RentItemPanel.Controls.Add(Label32)
+        RentItemPanel.Controls.Add(Label31)
+        RentItemPanel.Controls.Add(RentDateRentedDTP)
+        RentItemPanel.Controls.Add(Label30)
+        RentItemPanel.Controls.Add(Label29)
+        RentItemPanel.Location = New Point(91, 27)
+        RentItemPanel.Name = "RentItemPanel"
+        RentItemPanel.Size = New Size(438, 257)
+        RentItemPanel.TabIndex = 0
+        ' 
+        ' RentClothesCMB
+        ' 
+        RentClothesCMB.FormattingEnabled = True
+        RentClothesCMB.Location = New Point(168, 103)
+        RentClothesCMB.Name = "RentClothesCMB"
+        RentClothesCMB.Size = New Size(199, 23)
+        RentClothesCMB.TabIndex = 10
+        ' 
+        ' RentCustomerNameCMB
+        ' 
+        RentCustomerNameCMB.FormattingEnabled = True
+        RentCustomerNameCMB.Location = New Point(171, 69)
+        RentCustomerNameCMB.Name = "RentCustomerNameCMB"
+        RentCustomerNameCMB.Size = New Size(199, 23)
+        RentCustomerNameCMB.TabIndex = 9
+        ' 
+        ' Label101
+        ' 
+        Label101.AutoSize = True
+        Label101.Font = New Font("Segoe UI", 16F)
+        Label101.Location = New Point(165, 10)
+        Label101.Name = "Label101"
+        Label101.Size = New Size(120, 30)
+        Label101.TabIndex = 8
+        Label101.Text = "RENT ITEM"
+        ' 
+        ' RentExpectedReturnDTP
+        ' 
+        RentExpectedReturnDTP.Location = New Point(176, 205)
+        RentExpectedReturnDTP.Name = "RentExpectedReturnDTP"
+        RentExpectedReturnDTP.Size = New Size(197, 23)
+        RentExpectedReturnDTP.TabIndex = 7
+        ' 
+        ' Label32
+        ' 
+        Label32.AutoSize = True
+        Label32.Font = New Font("Segoe UI", 12F)
+        Label32.Location = New Point(45, 201)
+        Label32.Name = "Label32"
+        Label32.Size = New Size(125, 21)
+        Label32.TabIndex = 6
+        Label32.Text = "Expected Return:"
+        ' 
+        ' Label31
+        ' 
+        Label31.AutoSize = True
+        Label31.Font = New Font("Segoe UI", 12F)
+        Label31.Location = New Point(101, 101)
+        Label31.Name = "Label31"
+        Label31.Size = New Size(65, 21)
+        Label31.TabIndex = 4
+        Label31.Text = "Clothes:"
+        ' 
+        ' RentDateRentedDTP
+        ' 
+        RentDateRentedDTP.Location = New Point(173, 156)
+        RentDateRentedDTP.Name = "RentDateRentedDTP"
+        RentDateRentedDTP.Size = New Size(200, 23)
+        RentDateRentedDTP.TabIndex = 3
+        ' 
+        ' Label30
+        ' 
+        Label30.AutoSize = True
+        Label30.Font = New Font("Segoe UI", 12F)
+        Label30.Location = New Point(68, 156)
+        Label30.Name = "Label30"
+        Label30.Size = New Size(98, 21)
+        Label30.TabIndex = 2
+        Label30.Text = "Date Rented:"
+        ' 
+        ' Label29
+        ' 
+        Label29.AutoSize = True
+        Label29.Font = New Font("Segoe UI", 12F)
+        Label29.Location = New Point(40, 67)
+        Label29.Name = "Label29"
+        Label29.Size = New Size(127, 21)
+        Label29.TabIndex = 1
+        Label29.Text = "Customer Name:"
+        ' 
+        ' TailoringPanel
+        ' 
+        TailoringPanel.BackColor = Color.White
+        TailoringPanel.Controls.Add(Panel29)
+        TailoringPanel.Dock = DockStyle.Fill
+        TailoringPanel.Location = New Point(0, 0)
+        TailoringPanel.Name = "TailoringPanel"
+        TailoringPanel.Size = New Size(1380, 796)
+        TailoringPanel.TabIndex = 4
+        ' 
+        ' Panel29
+        ' 
+        Panel29.BackColor = Color.White
+        Panel29.Controls.Add(Panel35)
+        Panel29.Controls.Add(Panel34)
+        Panel29.Controls.Add(Panel33)
+        Panel29.Controls.Add(Panel31)
+        Panel29.Controls.Add(Panel30)
+        Panel29.Location = New Point(29, 24)
+        Panel29.Name = "Panel29"
+        Panel29.Size = New Size(1328, 760)
+        Panel29.TabIndex = 0
+        ' 
+        ' Panel35
+        ' 
+        Panel35.BackColor = Color.LightGray
+        Panel35.Controls.Add(TailoringMaterialsDGV)
+        Panel35.Location = New Point(590, 443)
+        Panel35.Name = "Panel35"
+        Panel35.Size = New Size(716, 306)
+        Panel35.TabIndex = 3
+        ' 
+        ' TailoringMaterialsDGV
+        ' 
+        TailoringMaterialsDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        TailoringMaterialsDGV.Location = New Point(11, 14)
+        TailoringMaterialsDGV.Name = "TailoringMaterialsDGV"
+        TailoringMaterialsDGV.Size = New Size(691, 280)
+        TailoringMaterialsDGV.TabIndex = 0
+        ' 
+        ' Panel34
+        ' 
+        Panel34.BackColor = Color.LightGray
+        Panel34.Controls.Add(TailoringDGV)
+        Panel34.Location = New Point(590, 15)
+        Panel34.Name = "Panel34"
+        Panel34.Size = New Size(716, 422)
+        Panel34.TabIndex = 2
+        ' 
+        ' TailoringDGV
+        ' 
+        TailoringDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        TailoringDGV.Location = New Point(11, 10)
+        TailoringDGV.Name = "TailoringDGV"
+        TailoringDGV.Size = New Size(691, 406)
+        TailoringDGV.TabIndex = 1
+        ' 
+        ' Panel33
+        ' 
+        Panel33.BackColor = Color.Black
+        Panel33.Controls.Add(ClearTailoringBTN)
+        Panel33.Controls.Add(CreateTailoringRequestBTN)
+        Panel33.Location = New Point(31, 386)
+        Panel33.Name = "Panel33"
+        Panel33.Size = New Size(528, 51)
+        Panel33.TabIndex = 1
+        ' 
+        ' ClearTailoringBTN
+        ' 
+        ClearTailoringBTN.Location = New Point(329, 12)
+        ClearTailoringBTN.Name = "ClearTailoringBTN"
+        ClearTailoringBTN.Size = New Size(75, 33)
+        ClearTailoringBTN.TabIndex = 1
+        ClearTailoringBTN.Text = "Clear"
+        ClearTailoringBTN.UseVisualStyleBackColor = True
+        ' 
+        ' CreateTailoringRequestBTN
+        ' 
+        CreateTailoringRequestBTN.Location = New Point(110, 12)
+        CreateTailoringRequestBTN.Name = "CreateTailoringRequestBTN"
+        CreateTailoringRequestBTN.Size = New Size(75, 33)
+        CreateTailoringRequestBTN.TabIndex = 0
+        CreateTailoringRequestBTN.Text = "Save Job"
+        CreateTailoringRequestBTN.UseVisualStyleBackColor = True
+        ' 
+        ' Panel31
+        ' 
+        Panel31.BackColor = Color.LightGray
+        Panel31.Controls.Add(TailoringStatusCMB)
+        Panel31.Controls.Add(TailoringServiceIDTB)
+        Panel31.Controls.Add(Label61)
+        Panel31.Controls.Add(Label60)
+        Panel31.Controls.Add(Panel37)
+        Panel31.Controls.Add(Panel36)
+        Panel31.Location = New Point(31, 443)
+        Panel31.Name = "Panel31"
+        Panel31.Size = New Size(528, 306)
+        Panel31.TabIndex = 1
+        ' 
+        ' TailoringStatusCMB
+        ' 
+        TailoringStatusCMB.FormattingEnabled = True
+        TailoringStatusCMB.Items.AddRange(New Object() {"In Progress", "Completed", "Cancelled"})
+        TailoringStatusCMB.Location = New Point(162, 140)
+        TailoringStatusCMB.Name = "TailoringStatusCMB"
+        TailoringStatusCMB.Size = New Size(121, 23)
+        TailoringStatusCMB.TabIndex = 19
+        ' 
+        ' TailoringServiceIDTB
+        ' 
+        TailoringServiceIDTB.Location = New Point(162, 98)
+        TailoringServiceIDTB.Name = "TailoringServiceIDTB"
+        TailoringServiceIDTB.Size = New Size(100, 23)
+        TailoringServiceIDTB.TabIndex = 15
+        ' 
+        ' Label61
+        ' 
+        Label61.AutoSize = True
+        Label61.Font = New Font("Segoe UI", 12F)
+        Label61.Location = New Point(101, 140)
+        Label61.Name = "Label61"
+        Label61.Size = New Size(55, 21)
+        Label61.TabIndex = 10
+        Label61.Text = "Status:"
+        ' 
+        ' Label60
+        ' 
+        Label60.AutoSize = True
+        Label60.Font = New Font("Segoe UI", 12F)
+        Label60.Location = New Point(34, 100)
+        Label60.Name = "Label60"
+        Label60.Size = New Size(122, 21)
+        Label60.TabIndex = 9
+        Label60.Text = " Selected Job ID:"
+        ' 
+        ' Panel37
+        ' 
+        Panel37.BackColor = Color.Black
+        Panel37.Controls.Add(Button17)
+        Panel37.Controls.Add(UpdateTailoringStatusBTN)
+        Panel37.Location = New Point(0, 255)
+        Panel37.Name = "Panel37"
+        Panel37.Size = New Size(528, 51)
+        Panel37.TabIndex = 1
+        ' 
+        ' Button17
+        ' 
+        Button17.Location = New Point(329, 3)
+        Button17.Name = "Button17"
+        Button17.Size = New Size(79, 45)
+        Button17.TabIndex = 3
+        Button17.Text = "Remove Selected"
+        Button17.UseVisualStyleBackColor = True
+        ' 
+        ' UpdateTailoringStatusBTN
+        ' 
+        UpdateTailoringStatusBTN.Location = New Point(110, 3)
+        UpdateTailoringStatusBTN.Name = "UpdateTailoringStatusBTN"
+        UpdateTailoringStatusBTN.Size = New Size(79, 45)
+        UpdateTailoringStatusBTN.TabIndex = 2
+        UpdateTailoringStatusBTN.Text = "Update Status"
+        UpdateTailoringStatusBTN.UseVisualStyleBackColor = True
+        ' 
+        ' Panel36
+        ' 
+        Panel36.BackColor = Color.Black
+        Panel36.Controls.Add(Label37)
+        Panel36.Location = New Point(0, 0)
+        Panel36.Name = "Panel36"
+        Panel36.Size = New Size(528, 51)
+        Panel36.TabIndex = 0
+        ' 
+        ' Label37
+        ' 
+        Label37.AutoSize = True
+        Label37.BackColor = Color.Black
+        Label37.Font = New Font("Segoe UI", 15F)
+        Label37.ForeColor = SystemColors.ControlLightLight
+        Label37.Location = New Point(150, 13)
+        Label37.Name = "Label37"
+        Label37.Size = New Size(185, 28)
+        Label37.TabIndex = 1
+        Label37.Text = "MATERIAL (STATUS)"
+        ' 
+        ' Panel30
+        ' 
+        Panel30.BackColor = Color.LightGray
+        Panel30.Controls.Add(Label38)
+        Panel30.Controls.Add(TailoringClothesLabel)
+        Panel30.Controls.Add(CustomerOwnedToggleBTN)
+        Panel30.Controls.Add(TailoringCustomerClothesTB)
+        Panel30.Controls.Add(TailoringDescriptionTB)
+        Panel30.Controls.Add(TailoringTypeCMB)
+        Panel30.Controls.Add(TailoringClothesCMB)
+        Panel30.Controls.Add(TailoringCustomerCMB)
+        Panel30.Controls.Add(TailoringEmployeeCMB)
+        Panel30.Controls.Add(TailoringPriceTB)
+        Panel30.Controls.Add(Label54)
+        Panel30.Controls.Add(Label53)
+        Panel30.Controls.Add(Label52)
+        Panel30.Controls.Add(Label51)
+        Panel30.Controls.Add(Label50)
+        Panel30.Controls.Add(Panel32)
+        Panel30.Location = New Point(31, 15)
+        Panel30.Name = "Panel30"
+        Panel30.Size = New Size(528, 419)
+        Panel30.TabIndex = 0
+        ' 
+        ' Label38
+        ' 
+        Label38.AutoSize = True
+        Label38.Font = New Font("Segoe UI", 12F)
+        Label38.Location = New Point(94, 276)
+        Label38.Name = "Label38"
+        Label38.Size = New Size(47, 21)
+        Label38.TabIndex = 23
+        Label38.Text = "Price:"
+        ' 
+        ' TailoringClothesLabel
+        ' 
+        TailoringClothesLabel.AutoSize = True
+        TailoringClothesLabel.Location = New Point(329, 169)
+        TailoringClothesLabel.Name = "TailoringClothesLabel"
+        TailoringClothesLabel.Size = New Size(47, 15)
+        TailoringClothesLabel.TabIndex = 21
+        TailoringClothesLabel.Text = "Label38"
+        ' 
+        ' CustomerOwnedToggleBTN
+        ' 
+        CustomerOwnedToggleBTN.Location = New Point(31, 59)
+        CustomerOwnedToggleBTN.Name = "CustomerOwnedToggleBTN"
+        CustomerOwnedToggleBTN.Size = New Size(187, 33)
+        CustomerOwnedToggleBTN.TabIndex = 2
+        CustomerOwnedToggleBTN.Text = "OwnedBy"
+        CustomerOwnedToggleBTN.UseVisualStyleBackColor = True
+        ' 
+        ' TailoringCustomerClothesTB
+        ' 
+        TailoringCustomerClothesTB.Location = New Point(329, 189)
+        TailoringCustomerClothesTB.Name = "TailoringCustomerClothesTB"
+        TailoringCustomerClothesTB.Size = New Size(155, 23)
+        TailoringCustomerClothesTB.TabIndex = 20
+        ' 
+        ' TailoringDescriptionTB
+        ' 
+        TailoringDescriptionTB.Location = New Point(147, 231)
+        TailoringDescriptionTB.Name = "TailoringDescriptionTB"
+        TailoringDescriptionTB.Size = New Size(155, 23)
+        TailoringDescriptionTB.TabIndex = 19
+        ' 
+        ' TailoringTypeCMB
+        ' 
+        TailoringTypeCMB.FormattingEnabled = True
+        TailoringTypeCMB.Location = New Point(147, 187)
+        TailoringTypeCMB.Name = "TailoringTypeCMB"
+        TailoringTypeCMB.Size = New Size(165, 23)
+        TailoringTypeCMB.TabIndex = 18
+        ' 
+        ' TailoringClothesCMB
+        ' 
+        TailoringClothesCMB.FormattingEnabled = True
+        TailoringClothesCMB.Location = New Point(329, 137)
+        TailoringClothesCMB.Name = "TailoringClothesCMB"
+        TailoringClothesCMB.Size = New Size(165, 23)
+        TailoringClothesCMB.TabIndex = 17
+        ' 
+        ' TailoringCustomerCMB
+        ' 
+        TailoringCustomerCMB.FormattingEnabled = True
+        TailoringCustomerCMB.Location = New Point(113, 111)
+        TailoringCustomerCMB.Name = "TailoringCustomerCMB"
+        TailoringCustomerCMB.Size = New Size(165, 23)
+        TailoringCustomerCMB.TabIndex = 16
+        ' 
+        ' TailoringEmployeeCMB
+        ' 
+        TailoringEmployeeCMB.FormattingEnabled = True
+        TailoringEmployeeCMB.Location = New Point(113, 152)
+        TailoringEmployeeCMB.Name = "TailoringEmployeeCMB"
+        TailoringEmployeeCMB.Size = New Size(165, 23)
+        TailoringEmployeeCMB.TabIndex = 15
+        ' 
+        ' TailoringPriceTB
+        ' 
+        TailoringPriceTB.Location = New Point(148, 272)
+        TailoringPriceTB.Name = "TailoringPriceTB"
+        TailoringPriceTB.ReadOnly = True
+        TailoringPriceTB.Size = New Size(155, 23)
+        TailoringPriceTB.TabIndex = 13
+        TailoringPriceTB.TabStop = False
+        ' 
+        ' Label54
+        ' 
+        Label54.AutoSize = True
+        Label54.Font = New Font("Segoe UI", 12F)
+        Label54.Location = New Point(40, 231)
+        Label54.Name = "Label54"
+        Label54.Size = New Size(92, 21)
+        Label54.TabIndex = 6
+        Label54.Text = "Description:"
+        ' 
+        ' Label53
+        ' 
+        Label53.AutoSize = True
+        Label53.Font = New Font("Segoe UI", 12F)
+        Label53.Location = New Point(15, 187)
+        Label53.Name = "Label53"
+        Label53.Size = New Size(117, 21)
+        Label53.TabIndex = 5
+        Label53.Text = "Alteration Type:"
+        ' 
+        ' Label52
+        ' 
+        Label52.AutoSize = True
+        Label52.Font = New Font("Segoe UI", 12F)
+        Label52.Location = New Point(24, 152)
+        Label52.Name = "Label52"
+        Label52.Size = New Size(81, 21)
+        Label52.TabIndex = 3
+        Label52.Text = "Employee:"
+        ' 
+        ' Label51
+        ' 
+        Label51.AutoSize = True
+        Label51.Font = New Font("Segoe UI", 12F)
+        Label51.Location = New Point(324, 113)
+        Label51.Name = "Label51"
+        Label51.Size = New Size(65, 21)
+        Label51.TabIndex = 2
+        Label51.Text = "Clothes:"
+        ' 
+        ' Label50
+        ' 
+        Label50.AutoSize = True
+        Label50.Font = New Font("Segoe UI", 12F)
+        Label50.Location = New Point(24, 115)
+        Label50.Name = "Label50"
+        Label50.Size = New Size(81, 21)
+        Label50.TabIndex = 1
+        Label50.Text = "Customer:"
+        ' 
+        ' Panel32
+        ' 
+        Panel32.BackColor = Color.Black
+        Panel32.Controls.Add(Label57)
+        Panel32.Location = New Point(0, 0)
+        Panel32.Name = "Panel32"
+        Panel32.Size = New Size(528, 53)
+        Panel32.TabIndex = 0
+        ' 
+        ' Label57
+        ' 
+        Label57.AutoSize = True
+        Label57.BackColor = Color.Black
+        Label57.Font = New Font("Segoe UI", 15F)
+        Label57.ForeColor = SystemColors.ControlLightLight
+        Label57.Location = New Point(159, 14)
+        Label57.Name = "Label57"
+        Label57.Size = New Size(193, 28)
+        Label57.TabIndex = 0
+        Label57.Text = " TAILORING (ORDER)"
         ' 
         ' CustomerPanel
         ' 
@@ -2777,6 +3033,18 @@ Partial Class Form1
         GunaAreaDataset1.FillColor = Color.Empty
         GunaAreaDataset1.Label = "Area1"
         ' 
+        ' UserPanel
+        ' 
+        UserPanel.BackColor = Color.RoyalBlue
+        UserPanel.Dock = DockStyle.Top
+        UserPanel.FlatStyle = FlatStyle.Flat
+        UserPanel.Location = New Point(0, 746)
+        UserPanel.Name = "UserPanel"
+        UserPanel.Size = New Size(214, 81)
+        UserPanel.TabIndex = 9
+        UserPanel.Text = "USERS"
+        UserPanel.UseVisualStyleBackColor = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -2794,50 +3062,13 @@ Partial Class Form1
         overlayPanel.ResumeLayout(False)
         SidebarPanel.ResumeLayout(False)
         MainPanel.ResumeLayout(False)
-        TailoringPanel.ResumeLayout(False)
-        Panel29.ResumeLayout(False)
-        Panel35.ResumeLayout(False)
-        CType(TailoringMaterialsDGV, ComponentModel.ISupportInitialize).EndInit()
-        Panel34.ResumeLayout(False)
-        CType(TailoringDGV, ComponentModel.ISupportInitialize).EndInit()
-        Panel33.ResumeLayout(False)
-        Panel31.ResumeLayout(False)
-        Panel31.PerformLayout()
-        Panel37.ResumeLayout(False)
-        Panel36.ResumeLayout(False)
-        Panel36.PerformLayout()
-        Panel30.ResumeLayout(False)
-        Panel30.PerformLayout()
-        Panel32.ResumeLayout(False)
-        Panel32.PerformLayout()
-        RentPanel.ResumeLayout(False)
-        RentPanel.PerformLayout()
-        ReturnItemPanel.ResumeLayout(False)
-        ReturnItemPanel.PerformLayout()
-        Panel23.ResumeLayout(False)
-        Panel22.ResumeLayout(False)
-        CType(RentDGV, ComponentModel.ISupportInitialize).EndInit()
-        RentItemPanel.ResumeLayout(False)
-        RentItemPanel.PerformLayout()
-        ClothesPanel.ResumeLayout(False)
-        ClothesPanel.PerformLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        Panel8.ResumeLayout(False)
-        TableClotheContainer.ResumeLayout(False)
-        TableClotheContainer.PerformLayout()
-        ClotheEditModalPanel.ResumeLayout(False)
-        ClotheEditModalPanel.PerformLayout()
-        ClotheAddModalPanel.ResumeLayout(False)
-        ClotheAddModalPanel.PerformLayout()
-        CType(ClothesDGV, ComponentModel.ISupportInitialize).EndInit()
-        CType(ArchiveClothesDGV, ComponentModel.ISupportInitialize).EndInit()
+        ReportsPanel.ResumeLayout(False)
+        Panel9.ResumeLayout(False)
+        Panel9.PerformLayout()
+        CType(ReportsDGV, ComponentModel.ISupportInitialize).EndInit()
         AdminDashboardPanel.ResumeLayout(False)
         DashboardPanelContainer.ResumeLayout(False)
         DashboardPanelContainer.PerformLayout()
-        Panel20.ResumeLayout(False)
-        Panel20.PerformLayout()
-        Panel4.ResumeLayout(False)
-        Panel4.PerformLayout()
         Panel3.ResumeLayout(False)
         Panel3.PerformLayout()
         Panel2.ResumeLayout(False)
@@ -2864,6 +3095,57 @@ Partial Class Form1
         AddMaterialModalPanel.ResumeLayout(False)
         AddMaterialModalPanel.PerformLayout()
         CType(MaterialsDGV, ComponentModel.ISupportInitialize).EndInit()
+        SettingsPanel.ResumeLayout(False)
+        Panel4.ResumeLayout(False)
+        Panel4.PerformLayout()
+        Panel11.ResumeLayout(False)
+        Panel11.PerformLayout()
+        Panel10.ResumeLayout(False)
+        Panel10.PerformLayout()
+        Panel13.ResumeLayout(False)
+        Panel14.ResumeLayout(False)
+        Panel14.PerformLayout()
+        Panel15.ResumeLayout(False)
+        Panel15.PerformLayout()
+        Panel16.ResumeLayout(False)
+        Panel16.PerformLayout()
+        ClothesPanel.ResumeLayout(False)
+        ClothesPanel.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        Panel8.ResumeLayout(False)
+        TableClotheContainer.ResumeLayout(False)
+        TableClotheContainer.PerformLayout()
+        ClotheEditModalPanel.ResumeLayout(False)
+        ClotheEditModalPanel.PerformLayout()
+        ClotheAddModalPanel.ResumeLayout(False)
+        ClotheAddModalPanel.PerformLayout()
+        CType(ClothesDGV, ComponentModel.ISupportInitialize).EndInit()
+        CType(ArchiveClothesDGV, ComponentModel.ISupportInitialize).EndInit()
+        RentPanel.ResumeLayout(False)
+        RentPanel.PerformLayout()
+        ReturnItemPanel.ResumeLayout(False)
+        ReturnItemPanel.PerformLayout()
+        Panel23.ResumeLayout(False)
+        Panel22.ResumeLayout(False)
+        CType(RentDGV, ComponentModel.ISupportInitialize).EndInit()
+        RentItemPanel.ResumeLayout(False)
+        RentItemPanel.PerformLayout()
+        TailoringPanel.ResumeLayout(False)
+        Panel29.ResumeLayout(False)
+        Panel35.ResumeLayout(False)
+        CType(TailoringMaterialsDGV, ComponentModel.ISupportInitialize).EndInit()
+        Panel34.ResumeLayout(False)
+        CType(TailoringDGV, ComponentModel.ISupportInitialize).EndInit()
+        Panel33.ResumeLayout(False)
+        Panel31.ResumeLayout(False)
+        Panel31.PerformLayout()
+        Panel37.ResumeLayout(False)
+        Panel36.ResumeLayout(False)
+        Panel36.PerformLayout()
+        Panel30.ResumeLayout(False)
+        Panel30.PerformLayout()
+        Panel32.ResumeLayout(False)
+        Panel32.PerformLayout()
         CustomerPanel.ResumeLayout(False)
         CustomerPanel.PerformLayout()
         Panel19.ResumeLayout(False)
@@ -2901,7 +3183,6 @@ Partial Class Form1
     Friend WithEvents DashboardPanelContainer As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents PieChartContainer As Panel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel5 As Panel
@@ -2916,10 +3197,10 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents GunaAreaDataset1 As Guna.Charts.WinForms.GunaAreaDataset
 
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label10 As Label
+    Friend WithEvents TotalClothesLabel As Label
+    Friend WithEvents RepairsLabel As Label
+    Friend WithEvents RentedLabel As Label
+    Friend WithEvents AvailableLabel As Label
     Friend WithEvents TableClotheContainer As Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents ClotheSearchTB As TextBox
@@ -2931,16 +3212,6 @@ Partial Class Form1
     Friend WithEvents Panel19 As Panel
     Friend WithEvents Label23 As Label
     Friend WithEvents CustomerSearchTB As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Panel20 As Panel
-    Friend WithEvents GunaChart3 As Guna.Charts.WinForms.GunaChart
-    Friend WithEvents GunaChart1 As Guna.Charts.WinForms.GunaChart
-    Friend WithEvents Label26 As Label
-    Friend WithEvents Label25 As Label
-    Friend WithEvents Label28 As Label
-    Friend WithEvents ClothesStatusCMB As ComboBox
-    Friend WithEvents Label27 As Label
-    Friend WithEvents ClothesCategoryCMB As ComboBox
     Friend WithEvents RentItemPanel As Panel
     Friend WithEvents Panel22 As Panel
     Friend WithEvents RentDateRentedDTP As DateTimePicker
@@ -2981,7 +3252,7 @@ Partial Class Form1
     Friend WithEvents SuppliersNameTB As TextBox
     Friend WithEvents Label44 As Label
     Friend WithEvents Label43 As Label
-    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents SupplierSearchTB As TextBox
     Friend WithEvents Panel29 As Panel
     Friend WithEvents Panel30 As Panel
     Friend WithEvents Panel31 As Panel
@@ -3121,5 +3392,47 @@ Partial Class Form1
     Friend WithEvents CustomerOwnedToggleBTN As Button
     Friend WithEvents TailoringClothesLabel As Label
     Friend WithEvents Label38 As Label
+    Friend WithEvents MaterialSearchTB As TextBox
+    Friend WithEvents SettingsBTN As Button
+    Friend WithEvents SettingsPanel As Panel
+    Friend WithEvents Panel9 As Panel
+    Friend WithEvents ReportDateToDTP As DateTimePicker
+    Friend WithEvents ReportDateFromDTP As DateTimePicker
+    Friend WithEvents ReportTypeCMB As ComboBox
+    Friend WithEvents ReportsDGV As DataGridView
+    Friend WithEvents ReportTitleLabel As Label
+    Friend WithEvents GenerateReportBTN As Button
+    Friend WithEvents ExportPDFBTN As Button
+    Friend WithEvents LowStockListBox As ListBox
+    Friend WithEvents RecentActivityListBox As ListBox
+    Friend WithEvents QuickReportsListBox As ListBox
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents Panel11 As Panel
+    Friend WithEvents Panel12 As Panel
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Panel14 As Panel
+    Friend WithEvents Panel15 As Panel
+    Friend WithEvents Panel16 As Panel
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents SaveConfigBTN As Button
+    Friend WithEvents TestConnectionBTN As Button
+    Friend WithEvents PasswordTB As TextBox
+    Friend WithEvents UsernameTB As TextBox
+    Friend WithEvents DatabaseTB As TextBox
+    Friend WithEvents ServerTB As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents BackupNowBTN As Button
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents RestoreNowBTN As Button
+    Friend WithEvents ConfigStatusLabel As Label
+    Friend WithEvents UserPanel As Button
 
 End Class

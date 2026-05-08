@@ -3,209 +3,80 @@
 
 Public Class Form1
 
-    Private clothesManager As ClothesInventoryManager
-
-    Public Class TailoringService
-        Public Property CatalogID As Integer
-        Public Property ServiceName As String
-        Public Property Description As String
-        Public Property BasePrice As Decimal
-        Public Property EstimatedTime As String
-    End Class
-
-    Public Class ServiceRequirement
-        Public Property CatalogID As Integer
-        Public Property MaterialName As String
-        Public Property DefaultQuantity As Integer
-        Public Property UnitMeasure As String
-
-        Public Property MaterialID As Integer
-    End Class
-
-    Private ReadOnly TailoringCatalog As New List(Of TailoringService) From {
-    New TailoringService With {.CatalogID = 1, .ServiceName = "Hemming Pants", .Description = "Shorten pants legs", .BasePrice = 150D, .EstimatedTime = "1 day"},
-    New TailoringService With {.CatalogID = 2, .ServiceName = "Zipper Replacement", .Description = "Replace broken zipper", .BasePrice = 250D, .EstimatedTime = "2 days"},
-    New TailoringService With {.CatalogID = 3, .ServiceName = "Button Replacement", .Description = "Replace missing buttons", .BasePrice = 80D, .EstimatedTime = "1 hour"},
-    New TailoringService With {.CatalogID = 4, .ServiceName = "Taking In Waist", .Description = "Reduce waist size", .BasePrice = 200D, .EstimatedTime = "2 days"},
-    New TailoringService With {.CatalogID = 5, .ServiceName = "Tapering Legs", .Description = "Slim fit leg taper", .BasePrice = 300D, .EstimatedTime = "3 days"},
-    New TailoringService With {.CatalogID = 6, .ServiceName = "Shorten Sleeves", .Description = "Shorten shirt/jacket sleeves", .BasePrice = 180D, .EstimatedTime = "1 day"},
-    New TailoringService With {.CatalogID = 7, .ServiceName = "Lengthen Hem", .Description = "Add fabric to hem", .BasePrice = 220D, .EstimatedTime = "2 days"}
-}
-
-    Private ServiceRequirements As New Dictionary(Of String, Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))))
-
-
-    Private Sub InitializeServiceRequirements()
-        ServiceRequirements = New Dictionary(Of String, Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement)))) From {
-        {"Pants", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
-            {"Cotton", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {1, New List(Of ServiceRequirement) From {  ' Hemming Pants
-                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"},
-                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 7, .MaterialName = "Cotton Fabric Patch", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
-                }},
-                {2, New List(Of ServiceRequirement) From {  ' Zipper Replacement (Pants only)
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
-                }}
-            }},
-            {"Denim", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {1, New List(Of ServiceRequirement) From {  ' Hemming Pants
-                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"},
-                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 8, .MaterialName = "Denim Patch Material", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
-                }},
-                {2, New List(Of ServiceRequirement) From {  ' Zipper Replacement
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }},
-            {"Gabardine", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {1, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 1, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
-                }},
-                {2, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 5, .MaterialName = "Zipper 7 inch Metal", .DefaultQuantity = 1, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 2, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }}
-        }},
-        {"Top", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
-            {"Cotton", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {3, New List(Of ServiceRequirement) From {  ' Button Replacement (Tops only)
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
-                }},
-                {6, New List(Of ServiceRequirement) From {  ' Shorten Sleeves (Tops only)
-                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }},
-            {"Silk", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {3, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
-                }},
-                {6, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 2, .UnitMeasure = "rolls"},
-                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 10, .MaterialName = "Silk Fabric Patch", .DefaultQuantity = 1, .UnitMeasure = "pieces"}
-                }}
-            }},
-            {"Polyester", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {3, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 6, .MaterialName = "Buttons Plastic 15mm", .DefaultQuantity = 4, .UnitMeasure = "pieces"},
-                    New ServiceRequirement With {.CatalogID = 3, .MaterialID = 2, .MaterialName = "Polyester Thread Black", .DefaultQuantity = 1, .UnitMeasure = "rolls"}
-                }},
-                {6, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 6, .MaterialID = 2, .MaterialName = "Polyester Thread Black", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }}
-        }},
-        {"Dress", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
-            {"Silk", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {4, New List(Of ServiceRequirement) From {  ' Taking In Waist (Dress)
-                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
-                }},
-                {7, New List(Of ServiceRequirement) From {  ' Lengthen Hem (Dress)
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 15, .MaterialName = "Silk Fabric Roll", .DefaultQuantity = 1, .UnitMeasure = "yards"},
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 4, .MaterialName = "Silk Thread Fine", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }},
-            {"Linen", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {4, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 3, .UnitMeasure = "rolls"}
-                }},
-                {7, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 17, .MaterialName = "Linen Fabric Roll", .DefaultQuantity = 2, .UnitMeasure = "yards"},
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 1, .MaterialName = "Cotton Thread White", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }}
-        }},
-        {"Suit", New Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) From {
-            {"Twill", New Dictionary(Of Integer, List(Of ServiceRequirement)) From {
-                {4, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 3, .UnitMeasure = "rolls"},
-                    New ServiceRequirement With {.CatalogID = 4, .MaterialID = 11, .MaterialName = "Interfacing Cloth", .DefaultQuantity = 1, .UnitMeasure = "meters"}
-                }},
-                {7, New List(Of ServiceRequirement) From {
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 16, .MaterialName = "Twill Fabric Roll", .DefaultQuantity = 2, .UnitMeasure = "yards"},
-                    New ServiceRequirement With {.CatalogID = 7, .MaterialID = 3, .MaterialName = "Heavy Duty Thread", .DefaultQuantity = 2, .UnitMeasure = "rolls"}
-                }}
-            }}
-        }}
-    }
+    Public materialsManager As MaterialsAndSuppliersManager
+    Public clothesManager As ClothesInventoryManager
+    Public tailoringCatalogManager As TailoringCatalogManager
+    Public rentManager As RentManager
+    Public tailoringManager As TailoringManager
+    Public reportsManager As ReportsManager
+    Public dashboardManager As DashboardManager
+    Public Sub New()
+        InitializeComponent()
+        materialsManager = New MaterialsAndSuppliersManager(Me)
+        clothesManager = New ClothesInventoryManager(Me)
+        tailoringCatalogManager = New TailoringCatalogManager()
+        rentManager = New RentManager(Me)
+        tailoringManager = New TailoringManager(Me)
+        reportsManager = New ReportsManager(Me)
     End Sub
 
-
-    ' Tailoring mode tracking
-    Private isCustomerOwnedMode As Boolean = False
-
-    ' Dragging variables
     Private isDragging As Boolean = False
     Private dragOffset As Point
 
-    Public userRole As String = "admin" ' 👉 set default for testing asd
+    Private hasRefreshedAfterReconnect As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        clothesManager = New ClothesInventoryManager(Me)
-
+        ConnDB.LoadConfig()
         ConnDB.TestConnection()
         UpdateConnectionStatus()
-
-        clothesManager.UpdateArchiveModeUI()
-
-        clothesManager.LoadClothes()
-        LoadMaterials()
-        LoadSuppliers()
-
-        InitializeServiceRequirements()
-        ClotheAddModalPanel.Visible = False
-        ClotheEditModalPanel.Visible = False
-        AddMaterialModalPanel.Visible = False
-        UpdateMaterialModalPanel.Visible = False
-        AddCustomerModalPanel.Visible = False
-        UpdateCustomerModalPanel.Visible = False
-        ' =========================
-        ' ❌ DISABLED LOGIN SYSTEM
-        ' =========================
-
-        'MainPanel.Visible = False
-        'SidebarPanel.Visible = False
-
-        'overlayPanel.Parent = Me
-        'overlayPanel.Dock = DockStyle.Fill
-        'overlayPanel.Visible = True
-        'overlayPanel.BringToFront()
-
-        'LogInPanel.Visible = True
-        'LogInPanel.BringToFront()
-        'CenterLoginPanel()
-
-        ' =========================
-        ' ✅ DEBUG MODE (SHOW EVERYTHING)
-        ' =========================
-        MainPanel.Visible = True
-        SidebarPanel.Visible = True
-
-        ' Form settings
-        Me.WindowState = FormWindowState.Maximized
-        Me.FormBorderStyle = FormBorderStyle.Sizable
-
+        dashboardManager = New DashboardManager(Me)
+        dashboardManager.LoadDashboard()
+        InitializeManagers()
+        InitializeUI()
+        LoadInitialData()
 
     End Sub
 
-    ' =========================
-    ' ❌ LOGIN DISABLED
-    ' =========================
-    'Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-    'End Sub
+    Private Sub InitializeManagers()
+        clothesManager.UpdateArchiveModeUI()
+    End Sub
 
-    ' =========================
-    ' ROLE-BASED UI
-    ' =========================
+    Private Sub InitializeUI()
 
+        Me.WindowState = FormWindowState.Maximized
+        Me.FormBorderStyle = FormBorderStyle.Sizable
 
-    ' =========================
-    ' PANEL SWITCHING
-    ' =========================
+        MainPanel.Visible = True
+        SidebarPanel.Visible = True
+
+        HideAllModals()
+
+    End Sub
+
+    Private Sub LoadInitialData()
+        clothesManager.LoadClothes()
+        materialsManager.LoadMaterials()
+        materialsManager.LoadSuppliers()
+    End Sub
+
+    Private Sub HideAllModals()
+
+        Dim modals As Panel() = {
+        ClotheAddModalPanel,
+        ClotheEditModalPanel,
+        AddMaterialModalPanel,
+        UpdateMaterialModalPanel,
+        AddCustomerModalPanel,
+        UpdateCustomerModalPanel
+    }
+
+        For Each pnl In modals
+            pnl.Visible = False
+        Next
+
+    End Sub
+
     Private Sub ShowPanel(panel As Panel)
 
         For Each ctrl As Control In MainPanel.Controls
@@ -219,17 +90,22 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub LoadConfigToUI()
+
+        ServerTB.Text = ConnDB.serverName
+        DatabaseTB.Text = ConnDB.databaseName
+        UsernameTB.Text = ConnDB.dbUsername
+        PasswordTB.Text = ConnDB.dbPassword
+
+    End Sub
+
+
     ' =========================
     ' BUTTON EVENTS
     ' =========================
     Private Sub DashboardBTN_Click(sender As Object, e As EventArgs) Handles DashboardBTN.Click
-
-        If userRole = "admin" Then
-            ShowPanel(AdminDashboardPanel)
-        Else
-
-        End If
-
+        ShowPanel(AdminDashboardPanel)
     End Sub
 
     Private Sub ClothesBTN_Click(sender As Object, e As EventArgs) Handles ClothesBTN.Click
@@ -252,15 +128,13 @@ Public Class Form1
         ShowPanel(MaterialsPanel)
     End Sub
 
+    Private Sub SettingsBTN_Click(sender As Object, e As EventArgs) Handles SettingsBTN.Click
+        ShowPanel(SettingsPanel)
+        LoadConfigToUI()
+    End Sub
+
     Private Sub ReportsBTN_Click(sender As Object, e As EventArgs) Handles ReportsBTN.Click
-
-        If userRole <> "admin" Then
-            MessageBox.Show("Access Denied!")
-            Exit Sub
-        End If
-
         ShowPanel(ReportsPanel)
-
     End Sub
 
     ' =========================
@@ -283,6 +157,7 @@ Public Class Form1
         ClotheEditModalPanel.Visible = True
         ClotheEditModalPanel.BringToFront()
     End Sub
+
 
     Private Sub ClothesAddBTN_Click(sender As Object, e As EventArgs) Handles ClothesAddBTN.Click
         ClotheAddModalPanel.Visible = True
@@ -336,7 +211,7 @@ Public Class Form1
 
     Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles _
     ClothesDGV.CellClick, ArchiveClothesDGV.CellClick, MaterialsDGV.CellClick,
-    SuppliersDGV.CellClick, CustomerDGV.CellClick, RentDGV.CellClick, TailoringDGV.CellClick
+     CustomerDGV.CellClick, RentDGV.CellClick, TailoringDGV.CellClick
 
         Dim dgv As DataGridView = DirectCast(sender, DataGridView)
         If e.RowIndex >= 0 Then
@@ -361,10 +236,9 @@ Public Class Form1
                     LoadCustomerEditFields(row)
 
                 Case "RentDGV"
-                    LoadRentEditFields(row)
-
+                    rentManager.LoadRentEditFields(row)
                 Case "TailoringDGV"
-                    LoadTailoringEditFields(row)
+                    tailoringManager.LoadEditFields(row)
             End Select
         Catch ex As Exception
             Debug.WriteLine($"LoadFieldsFromRow Error ({dgv.Name}): {ex.Message}")
@@ -400,14 +274,6 @@ Public Class Form1
         UpdateCustomerModalAddressTB.Text = GetCellValue(row.Cells("Address"))
     End Sub
 
-    ' Rent Edit Fields
-    Private Sub LoadRentEditFields(row As DataGridViewRow)
-        ReturnItemRentIDTB.Text = GetCellValue(row.Cells("Rent_ID"))
-        ReturnItemCustomerNameTB.Text = GetCellValue(row.Cells("Full_Name"))
-        ReturnItemClothesNameTB.Text = GetCellValue(row.Cells("Clothes_Name"))
-        ReturnItemStatusTB.Text = GetCellValue(row.Cells("Rental_Status"))
-    End Sub
-
     ' Tailoring Edit Fields
     Private Sub LoadTailoringEditFields(row As DataGridViewRow)
         TailoringServiceIDTB.Text = GetCellValue(row.Cells("Tailoring_Services_ID"))
@@ -417,7 +283,7 @@ Public Class Form1
     Private Sub ClearAllEditFields()
         clothesManager.ClearEditFields()
         ClearUpdateMaterialFields()
-        ClearSupplierFields()
+        materialsManager.ClearSupplierFields()
         UpdateCustomerModalIDTB.Clear()
         ReturnItemRentIDTB.Clear()
         TailoringServiceIDTB.Clear()
@@ -461,79 +327,46 @@ Public Class Form1
     ' MATERIALS INVENTORY PANEL
     ' =========================
 
-    Private Sub LoadMaterials()
-        Dim query As String = "SELECT m.*, s.Supplier_Name 
-                          FROM Materials m 
-                          LEFT JOIN Supplier s ON m.Supplier_ID = s.Supplier_ID 
-                          ORDER BY m.Material_ID DESC"
-        LoadToDGV(query, MaterialsDGV)
-        AutoSelectFirstRow(MaterialsDGV)
-    End Sub
+    Public Sub LoadSuppliersToComboBox(comboBox As ComboBox)
 
-    Private Sub LoadSuppliers()
-        Dim query As String = "SELECT * FROM Supplier ORDER BY Supplier_Name"
-        LoadToDGV(query, SuppliersDGV)
-        AutoSelectFirstRow(SuppliersDGV)
-    End Sub
-
-    Private Sub LoadSuppliersToComboBox(comboBox As ComboBox)
         Try
-            OpenConn()
-            Dim query As String = "SELECT Supplier_ID, Supplier_Name FROM Supplier ORDER BY Supplier_Name"
-            cmd = New MySqlCommand(query, conn)
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            adapter.Fill(dt)
+
+            Dim dt As DataTable = materialsManager.GetSuppliers()
+
+            ' check if no data returned
+            If dt Is Nothing Then
+                comboBox.DataSource = Nothing
+                Return
+            End If
+
+            ' check if required columns exist
+            If Not dt.Columns.Contains("Supplier_Name") OrElse
+           Not dt.Columns.Contains("Supplier_ID") Then
+
+                comboBox.DataSource = Nothing
+                Return
+            End If
+
             comboBox.DataSource = dt
             comboBox.DisplayMember = "Supplier_Name"
             comboBox.ValueMember = "Supplier_ID"
             comboBox.SelectedIndex = -1
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
+
+            comboBox.DataSource = Nothing
+
+            Debug.WriteLine("LoadSuppliersToComboBox Error: " & ex.Message)
+
         End Try
+
     End Sub
 
     ' =========================
     ' SUPPLIER PANEL EVENTS
     ' =========================
-
     Private Sub AddSuppliersBTN_Click(sender As Object, e As EventArgs) Handles AddSuppliersBTN.Click
-        Try
-            OpenConn()
-
-            Dim query As String = "INSERT INTO Supplier (Supplier_Name, Contact_Number, Address, Email) 
-                              VALUES (@name, @contact, @address, @email)"
-
-            cmd = New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@name", SuppliersNameTB.Text)
-            cmd.Parameters.AddWithValue("@contact", SuppliersContactTB.Text)
-            cmd.Parameters.AddWithValue("@address", SuppliersAddressTB.Text)
-            cmd.Parameters.AddWithValue("@email", If(SuppliersEmailTB.Text = "", DBNull.Value, SuppliersEmailTB.Text))
-
-            cmd.ExecuteNonQuery()
-            MessageBox.Show("Supplier added successfully!")
-
-            ClearSupplierFields()
-            LoadSuppliers()
-            LoadSuppliersToComboBox(AddMaterialSupplierCMB)
-            LoadSuppliersToComboBox(UpdateMaterialSupplierCMB)
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-    End Sub
-
-
-    Private Sub ClearSupplierFields()
-        SuppliersNameTB.Clear()
-        SuppliersContactTB.Clear()
-        SuppliersAddressTB.Clear()
-        SuppliersEmailTB.Clear()
+        materialsManager.AddSuppliers()
     End Sub
 
     ' =========================
@@ -543,7 +376,7 @@ Public Class Form1
     Private Sub AddMaterialBTN_Click(sender As Object, e As EventArgs) Handles AddMaterialBTN.Click
         AddMaterialModalPanel.Visible = True
         AddMaterialModalPanel.BringToFront()
-        ClearAddMaterialFields()
+        materialsManager.ClearAddMaterialFields()
         LoadSuppliersToComboBox(AddMaterialSupplierCMB)
     End Sub
 
@@ -559,7 +392,7 @@ Public Class Form1
 
     Private Sub AddMaterialModalCancelBTN_Click(sender As Object, e As EventArgs) Handles AddMaterialModalCancelBTN.Click
         AddMaterialModalPanel.Visible = False
-        ClearAddMaterialFields()
+        materialsManager.ClearAddMaterialFields()
     End Sub
 
     Private Sub UpdateMaterialModalCancelBTN_Click(sender As Object, e As EventArgs) Handles UpdateMaterialModalCancelBTN.Click
@@ -567,92 +400,10 @@ Public Class Form1
     End Sub
 
     Private Sub AddMaterialModalConfirmBTN_Click(sender As Object, e As EventArgs) Handles AddMaterialModalConfirmBTN.Click
-        If AddMaterialSupplierCMB.SelectedIndex = -1 Then
-            MessageBox.Show("Please select a supplier")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim query As String = "INSERT INTO Materials 
-                              (Material_Name, Description, Quantity_in_Stock, Unit_of_Measure, Supplier_ID)
-                              VALUES (@name, @desc, @qty, @unit, @supplierId)"
-
-            cmd = New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@name", AddMaterialNameTB.Text)
-            cmd.Parameters.AddWithValue("@desc", If(AddMaterialDescriptionTB.Text = "", DBNull.Value, AddMaterialDescriptionTB.Text))
-            cmd.Parameters.AddWithValue("@qty", Convert.ToInt32(AddMaterialQuantityOnStockTB.Text))
-            cmd.Parameters.AddWithValue("@unit", AddMaterialUnitOfMeasureTB.Text)
-            cmd.Parameters.AddWithValue("@supplierId", AddMaterialSupplierCMB.SelectedValue)
-
-            cmd.ExecuteNonQuery()
-            MessageBox.Show("Material added successfully!")
-
-            AddMaterialModalPanel.Visible = False
-            ClearAddMaterialFields()
-            LoadMaterials()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
+        materialsManager.AddMaterial()
     End Sub
-
-
-
     Private Sub UpdateMaterialModalConfirmBTN_Click(sender As Object, e As EventArgs) Handles UpdateMaterialModalConfirmBTN.Click
-        If UpdateMaterialSupplierCMB.SelectedIndex = -1 Then
-            MessageBox.Show("Please select a supplier")
-            Return
-        End If
-
-        If UpdateMaterialIDTB Is Nothing OrElse UpdateMaterialIDTB.Text = "" Then
-            MessageBox.Show("No material selected")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim query As String = "UPDATE Materials SET 
-                              Material_Name=@name,
-                              Description=@desc,
-                              Quantity_in_Stock=@qty,
-                              Unit_of_Measure=@unit,
-                              Supplier_ID=@supplierId
-                              WHERE Material_ID=@id"
-
-            cmd = New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(UpdateMaterialIDTB.Text))
-            cmd.Parameters.AddWithValue("@name", UpdateMaterialNameTB.Text)
-            cmd.Parameters.AddWithValue("@desc", If(UpdateMaterialDescriptionTB.Text = "", DBNull.Value, UpdateMaterialDescriptionTB.Text))
-            cmd.Parameters.AddWithValue("@qty", Convert.ToInt32(UpdateMaterialQuantityOnStockTB.Text))
-            cmd.Parameters.AddWithValue("@unit", UpdateMaterialUnitOfMeasureTB.Text)
-            cmd.Parameters.AddWithValue("@supplierId", UpdateMaterialSupplierCMB.SelectedValue)
-
-            cmd.ExecuteNonQuery()
-            MessageBox.Show("Material updated successfully!")
-
-            UpdateMaterialModalPanel.Visible = False
-            LoadMaterials()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-    End Sub
-
-    Private Sub ClearAddMaterialFields()
-        AddMaterialNameTB.Clear()
-        AddMaterialDescriptionTB.Clear()
-        AddMaterialQuantityOnStockTB.Clear()
-        AddMaterialUnitOfMeasureTB.Clear()
-        If AddMaterialSupplierCMB IsNot Nothing Then
-            AddMaterialSupplierCMB.SelectedIndex = -1
-        End If
+        materialsManager.updateMaterials()
     End Sub
 
     Private Sub ClearUpdateMaterialFields()
@@ -667,39 +418,35 @@ Public Class Form1
     End Sub
 
     ' =========================
-    ' SEARCH FUNCTIONALITY (Optional - Add TextBox for search)
+    ' SEARCH FUNCTIONALITY 
     ' =========================
-    ' Uncomment and add search textbox event if you have one
-    'Private Sub MaterialSearchTB_TextChanged(sender As Object, e As EventArgs) Handles MaterialSearchTB.TextChanged
-    '    Dim searchText As String = MaterialSearchTB.Text
-    '    Dim query As String = "SELECT m.*, s.Supplier_Name 
-    '                          FROM Materials m 
-    '                          LEFT JOIN Suppliers s ON m.Supplier_ID = s.Supplier_ID 
-    '                          WHERE m.Material_Name LIKE '%" & searchText & "%' 
-    '                          OR m.Description LIKE '%" & searchText & "%'
-    '                          OR s.Supplier_Name LIKE '%" & searchText & "%'
-    '                          ORDER BY m.Material_ID DESC"
-    '    LoadToDGV(query, MaterialsDGV)
-    'End Sub
+    Private Sub MaterialSearchTB_TextChanged(sender As Object, e As EventArgs) Handles MaterialSearchTB.TextChanged
+        materialsManager.SearchMaterials(MaterialSearchTB.Text)
+    End Sub
+
+    Private Sub SupplierSearchTB_TextChanged(sender As Object, e As EventArgs) Handles SupplierSearchTB.TextChanged
+        materialsManager.SearchSuppliers(SupplierSearchTB.Text)
+    End Sub
 
     ' =========================
     ' LOAD DATA WHEN MATERIALS PANEL IS SHOWN
     ' =========================
     Private Sub MaterialsPanel_VisibleChanged(sender As Object, e As EventArgs) Handles MaterialsPanel.VisibleChanged
         If MaterialsPanel.Visible Then
-            LoadMaterials()
-            LoadSuppliers()
+            CheckAndUpdateConnectionStatus()
+            If materialsManager Is Nothing Then
+                materialsManager = New MaterialsAndSuppliersManager(Me)
+            End If
+            materialsManager.LoadMaterialsSuppliers()
             LoadSuppliersToComboBox(AddMaterialSupplierCMB)
             LoadSuppliersToComboBox(UpdateMaterialSupplierCMB)
         End If
     End Sub
 
 
-
     ' =========================
     ' CUSTOMER MANAGEMENT PANEL
     ' =========================
-
     Private Sub LoadCustomers()
         Dim query As String = "SELECT * FROM customer ORDER BY Customer_ID DESC"
         LoadToDGV(query, CustomerDGV)
@@ -864,11 +611,6 @@ Public Class Form1
         End Try
     End Sub
 
-    ' =========================
-    ' DGV CELL CLICK - POPULATE UPDATE FIELDS
-    ' =========================
-
-
 
     ' =========================
     ' SEARCH FUNCTIONALITY
@@ -900,6 +642,7 @@ Public Class Form1
 
     Private Sub CustomerPanel_VisibleChanged(sender As Object, e As EventArgs) Handles CustomerPanel.VisibleChanged
         If CustomerPanel.Visible Then
+            CheckAndUpdateConnectionStatus()
             LoadCustomers()
         End If
     End Sub
@@ -910,1033 +653,113 @@ Public Class Form1
     ' RENT TRANSACTION PANEL
     ' =========================
 
-    Private Sub LoadRentTransactions()
-
-        Dim query As String = "
-    SELECT
-        r.Rent_ID,
-        c.Full_Name,
-        cl.Clothes_Name,
-        r.Date_Rented,
-        r.Expected_Return_Date,
-        r.Actual_Return_Date,
-        r.Rental_Status
-    FROM rent r
-    INNER JOIN customer c ON r.Customer_ID = c.Customer_ID
-    INNER JOIN clothes cl ON r.Clothes_ID = cl.Clothes_ID
-    ORDER BY r.Rent_ID DESC"
-
-        LoadToDGV(query, RentDGV)
-        AutoSelectFirstRow(RentDGV)
-    End Sub
-
-    Private Sub LoadCustomersToRentCombo()
-
-        Try
-            OpenConn()
-
-            Dim query As String = "SELECT Customer_ID, Full_Name FROM customer ORDER BY Full_Name"
-
-            cmd = New MySqlCommand(query, conn)
-
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-
-            adapter.Fill(dt)
-
-            RentCustomerNameCMB.DataSource = dt
-            RentCustomerNameCMB.DisplayMember = "Full_Name"
-            RentCustomerNameCMB.ValueMember = "Customer_ID"
-            RentCustomerNameCMB.SelectedIndex = -1
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
-    End Sub
-
-    Private Sub LoadAvailableClothesToCombo()
-
-        Try
-            OpenConn()
-
-            Dim query As String = "
-        SELECT Clothes_ID, Clothes_Name
-        FROM clothes
-        WHERE Status = 'Available'
-        ORDER BY Clothes_Name"
-
-            cmd = New MySqlCommand(query, conn)
-
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-
-            adapter.Fill(dt)
-
-            RentClothesCMB.DataSource = dt
-            RentClothesCMB.DisplayMember = "Clothes_Name"
-            RentClothesCMB.ValueMember = "Clothes_ID"
-            RentClothesCMB.SelectedIndex = -1
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
-    End Sub
-
     Private Sub RentPanel_VisibleChanged(sender As Object, e As EventArgs) Handles RentPanel.VisibleChanged
-
         If RentPanel.Visible Then
-            LoadRentTransactions()
-            LoadCustomersToRentCombo()
-            LoadAvailableClothesToCombo()
+            CheckAndUpdateConnectionStatus()
+            rentManager.LoadRentTransactions()
+            rentManager.LoadCustomersToRentCombo()
+            rentManager.LoadAvailableClothesToCombo()
         End If
-
     End Sub
 
     Private Sub RentItemBTN_Click(sender As Object, e As EventArgs) Handles RentItemBTN.Click
-
-        If RentCustomerNameCMB.SelectedIndex = -1 Then
-            MessageBox.Show("Please select customer")
-            Return
-        End If
-
-        If RentClothesCMB.SelectedIndex = -1 Then
-            MessageBox.Show("Please select clothes")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim insertQuery As String = "
-        INSERT INTO rent
-        (
-            Customer_ID,
-            Clothes_ID,
-            Date_Rented,
-            Expected_Return_Date,
-            Rental_Status
-        )
-        VALUES
-        (
-            @customerId,
-            @clothesId,
-            @dateRented,
-            @expectedReturn,
-            'Rented'
-        )"
-
-            cmd = New MySqlCommand(insertQuery, conn)
-
-            cmd.Parameters.AddWithValue("@customerId", RentCustomerNameCMB.SelectedValue)
-            cmd.Parameters.AddWithValue("@clothesId", RentClothesCMB.SelectedValue)
-            cmd.Parameters.AddWithValue("@dateRented", RentDateRentedDTP.Value.Date)
-            cmd.Parameters.AddWithValue("@expectedReturn", RentExpectedReturnDTP.Value.Date)
-
-            cmd.ExecuteNonQuery()
-
-            Dim updateClothesQuery As String = "
-        UPDATE clothes
-        SET Status = 'Rented'
-        WHERE Clothes_ID = @id"
-
-            cmd = New MySqlCommand(updateClothesQuery, conn)
-            cmd.Parameters.AddWithValue("@id", RentClothesCMB.SelectedValue)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Item rented successfully!")
-
-            ClearRentFields()
-            LoadRentTransactions()
-            LoadAvailableClothesToCombo()
-            clothesManager.LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        rentManager.RentItem()
     End Sub
 
-    Private Sub ClearRentFields()
-
-        RentCustomerNameCMB.SelectedIndex = -1
-        RentClothesCMB.SelectedIndex = -1
-
-        RentDateRentedDTP.Value = Date.Now
-        RentExpectedReturnDTP.Value = Date.Now.AddDays(3)
-
-    End Sub
 
     Private Sub ClearRentItemBTN_Click(sender As Object, e As EventArgs) Handles ClearRentItemBTN.Click
-        ClearRentFields()
+        rentManager.ClearRentFields()
     End Sub
 
 
     Private Sub ReturnItemBTN_Click(sender As Object, e As EventArgs) Handles ReturnItemBTN.Click
-
-        If ReturnItemRentIDTB.Text = "" Then
-            MessageBox.Show("Please select rent transaction")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim clothesId As Integer = 0
-
-            Dim getClothesQuery As String = "
-        SELECT Clothes_ID
-        FROM rent
-        WHERE Rent_ID = @rentId"
-
-            cmd = New MySqlCommand(getClothesQuery, conn)
-            cmd.Parameters.AddWithValue("@rentId", Convert.ToInt32(ReturnItemRentIDTB.Text))
-
-            clothesId = Convert.ToInt32(cmd.ExecuteScalar())
-
-            Dim returnQuery As String = "
-        UPDATE rent
-        SET
-            Rental_Status = 'Returned',
-            Actual_Return_Date = NOW()
-        WHERE Rent_ID = @rentId"
-
-            cmd = New MySqlCommand(returnQuery, conn)
-            cmd.Parameters.AddWithValue("@rentId", Convert.ToInt32(ReturnItemRentIDTB.Text))
-
-            cmd.ExecuteNonQuery()
-
-            Dim updateClothesQuery As String = "
-        UPDATE clothes
-        SET Status = 'Available'
-        WHERE Clothes_ID = @clothesId"
-
-            cmd = New MySqlCommand(updateClothesQuery, conn)
-            cmd.Parameters.AddWithValue("@clothesId", clothesId)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Item returned successfully!")
-
-            LoadRentTransactions()
-            LoadAvailableClothesToCombo()
-            clothesManager.LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        rentManager.ReturnItem()
     End Sub
 
+
     Private Sub MarkLostItemBTN_Click(sender As Object, e As EventArgs) Handles MarkLostItemBTN.Click
-
-        If ReturnItemRentIDTB.Text = "" Then
-            MessageBox.Show("Please select rent transaction")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim clothesId As Integer = 0
-
-            Dim getClothesQuery As String = "
-        SELECT Clothes_ID
-        FROM rent
-        WHERE Rent_ID = @rentId"
-
-            cmd = New MySqlCommand(getClothesQuery, conn)
-            cmd.Parameters.AddWithValue("@rentId", Convert.ToInt32(ReturnItemRentIDTB.Text))
-
-            clothesId = Convert.ToInt32(cmd.ExecuteScalar())
-
-            Dim lostQuery As String = "
-        UPDATE rent
-        SET Rental_Status = 'Lost'
-        WHERE Rent_ID = @rentId"
-
-            cmd = New MySqlCommand(lostQuery, conn)
-            cmd.Parameters.AddWithValue("@rentId", Convert.ToInt32(ReturnItemRentIDTB.Text))
-
-            cmd.ExecuteNonQuery()
-
-            Dim updateClothesQuery As String = "
-        UPDATE clothes
-        SET Status = 'Lost'
-        WHERE Clothes_ID = @clothesId"
-
-            cmd = New MySqlCommand(updateClothesQuery, conn)
-            cmd.Parameters.AddWithValue("@clothesId", clothesId)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Item marked as lost!")
-
-            LoadRentTransactions()
-            clothesManager.LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        rentManager.MarkLostItem()
     End Sub
 
     Private Sub ExtendItemBTN_Click(sender As Object, e As EventArgs) Handles ExtendItemBTN.Click
-
-        If ReturnItemRentIDTB.Text = "" Then
-            MessageBox.Show("Please select rent transaction")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim query As String = "
-        UPDATE rent
-        SET Expected_Return_Date = DATE_ADD(Expected_Return_Date, INTERVAL 3 DAY)
-        WHERE Rent_ID = @rentId"
-
-            cmd = New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@rentId", Convert.ToInt32(ReturnItemRentIDTB.Text))
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Return date extended by 3 days!")
-
-            LoadRentTransactions()
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        Finally
-            CloseConn()
-        End Try
-
+        rentManager.ExtendItem()
     End Sub
 
     Private Sub RentSearchTB_TextChanged(sender As Object, e As EventArgs) Handles RentSearchTB.TextChanged
-
-        Dim searchText As String = RentSearchTB.Text.Trim()
-
-        Dim query As String = "
-    SELECT
-        r.Rent_ID,
-        c.Full_Name,
-        cl.Clothes_Name,
-        r.Date_Rented,
-        r.Expected_Return_Date,
-        r.Actual_Return_Date,
-        r.Rental_Status
-    FROM rent r
-    INNER JOIN customer c ON r.Customer_ID = c.Customer_ID
-    INNER JOIN clothes cl ON r.Clothes_ID = cl.Clothes_ID
-    WHERE
-        c.Full_Name LIKE '%" & searchText & "%'
-        OR cl.Clothes_Name LIKE '%" & searchText & "%'
-        OR r.Rental_Status LIKE '%" & searchText & "%'
-    ORDER BY r.Rent_ID DESC"
-
-        LoadToDGV(query, RentDGV)
-
+        rentManager.SearchRent(RentSearchTB.Text.Trim())
     End Sub
 
     ' =========================
     ' TAILORING TRANSACTION PANEL
     ' =========================
 
-    Private Sub LoadTailoringTransactions()
-        Try
-            Dim query As String = "
-        SELECT 
-            ts.Tailoring_Services_ID,
-            ts.Type_of_Alteration,
-            c.Full_Name,
-            CASE WHEN ts.Is_Customer_Owned = 1 THEN '👕 CUSTOMER-OWNED' ELSE '👗 SHOP INVENTORY' END as Clothes_Source,
-            CASE 
-                WHEN ts.Is_Customer_Owned = 1 THEN ts.Description_of_Work
-                ELSE CONCAT(cl.Clothes_Name, ' (', cl.Category, ' ', cl.Size, ')')
-            END as Clothes_Details,
-            ts.Service_Price,
-            CONCAT(e.Full_Name, ' (', e.Position, ')') as Assigned_Employee,
-            ts.Status,
-            ts.Date_Requested
-        FROM Tailoring_Services ts
-        LEFT JOIN customer c ON ts.Customer_ID = c.Customer_ID
-        LEFT JOIN Clothes cl ON ts.Clothes_ID = cl.Clothes_ID
-        LEFT JOIN Employee e ON ts.Employee_ID = e.Employee_ID
-        ORDER BY ts.Tailoring_Services_ID DESC"
-
-            LoadToDGV(query, TailoringDGV)
-            AutoSelectFirstRow(TailoringDGV)
-        Catch ex As Exception
-            MessageBox.Show("Error loading tailoring transactions: " & ex.Message)
-        End Try
+    Private Sub TailoringPanel_VisibleChanged(sender As Object, e As EventArgs) Handles TailoringPanel.VisibleChanged
+        If TailoringPanel.Visible Then
+            CheckAndUpdateConnectionStatus()
+            tailoringManager.LoadTransactions()
+            tailoringManager.LoadCustomersToCombo()
+            tailoringManager.LoadEmployeesToCombo()
+            tailoringManager.LoadAvailableClothesToCombo()
+            tailoringManager.LoadCatalog()
+            tailoringManager.ResetUI()
+        End If
     End Sub
 
     Private Sub CustomerOwnedToggleBTN_Click(sender As Object, e As EventArgs) Handles CustomerOwnedToggleBTN.Click
-        isCustomerOwnedMode = Not isCustomerOwnedMode
-
-        If isCustomerOwnedMode Then
-            CustomerOwnedToggleBTN.Text = "👗 SHOP INVENTORY"
-            CustomerOwnedToggleBTN.BackColor = Color.Orange
-            TailoringClothesCMB.Enabled = False
-            TailoringCustomerClothesTB.Enabled = True
-            TailoringClothesLabel.Text = "Customer Clothes Description:"
-            TailoringDescriptionTB.Enabled = False
-        Else
-            CustomerOwnedToggleBTN.Text = "👕 CUSTOMER-OWNED"
-            CustomerOwnedToggleBTN.BackColor = Color.DodgerBlue
-            TailoringClothesCMB.Enabled = True
-            TailoringCustomerClothesTB.Enabled = False
-            TailoringClothesLabel.Text = "Shop Inventory Clothes:"
-            TailoringDescriptionTB.Enabled = True
-        End If
+        tailoringManager.ToggleCustomerOwnedMode()
     End Sub
 
-
-
-    Private Sub TailoringPanel_VisibleChanged(sender As Object, e As EventArgs) Handles TailoringPanel.VisibleChanged
-        If TailoringPanel.Visible Then
-            LoadTailoringTransactions()
-            LoadCustomersToTailoringCombo()
-            LoadTailoringCatalog()
-            LoadAvailableClothesToTailoringCombo()
-            LoadEmployeesToTailoringCombo()
-            ResetTailoringUI()
-        End If
-    End Sub
-
-    Private Sub LoadCustomersToTailoringCombo()
-        Try
-            OpenConn()
-            Dim query As String = "SELECT Customer_ID, Full_Name FROM customer ORDER BY Full_Name"
-            cmd = New MySqlCommand(query, conn)
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            adapter.Fill(dt)
-
-            TailoringCustomerCMB.DataSource = Nothing
-            TailoringCustomerCMB.DataSource = dt
-            TailoringCustomerCMB.DisplayMember = "Full_Name"
-            TailoringCustomerCMB.ValueMember = "Customer_ID"
-            TailoringCustomerCMB.SelectedIndex = -1
-        Catch ex As Exception
-        Finally
-            CloseConn()
-        End Try
-    End Sub
-
-    Private Sub LoadEmployeesToTailoringCombo()
-        Try
-            OpenConn()
-            Dim query As String = "SELECT Employee_ID, CONCAT(Full_Name, ' - ', Position) as DisplayName FROM Employee WHERE Date_Hired IS NOT NULL ORDER BY Full_Name"
-            cmd = New MySqlCommand(query, conn)
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            adapter.Fill(dt)
-
-            TailoringEmployeeCMB.DataSource = Nothing
-            TailoringEmployeeCMB.DataSource = dt
-            TailoringEmployeeCMB.DisplayMember = "DisplayName"
-            TailoringEmployeeCMB.ValueMember = "Employee_ID"
-            TailoringEmployeeCMB.SelectedIndex = -1
-        Catch ex As Exception
-            MessageBox.Show("Error loading employees: " & ex.Message)
-        Finally
-            CloseConn()
-        End Try
-    End Sub
-
-
-    Private Sub LoadAvailableClothesToTailoringCombo()
-        Try
-            OpenConn()
-            Dim query As String = "
-            SELECT Clothes_ID, CONCAT(Clothes_Name, ' - ', Category, ' (', Size, ')') as DisplayName
-            FROM Clothes WHERE Status IN ('Available', 'For Repair')
-            ORDER BY Clothes_Name"
-
-            cmd = New MySqlCommand(query, conn)
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            adapter.Fill(dt)
-
-            TailoringClothesCMB.DataSource = Nothing
-            TailoringClothesCMB.DataSource = dt
-            TailoringClothesCMB.DisplayMember = "DisplayName"
-            TailoringClothesCMB.ValueMember = "Clothes_ID"
-            TailoringClothesCMB.SelectedIndex = -1
-        Catch ex As Exception
-        Finally
-            CloseConn()
-        End Try
-    End Sub
-
-    Private Sub LoadTailoringCatalog()
-        ' ✅ INSTANT LOAD FROM MEMORY (NO DB!)
-        Dim catalogData = TailoringCatalog.Select(Function(s) New With {
-        .Catalog_ID = s.CatalogID,
-        .Service_Name = s.ServiceName
-    }).ToList()
-
-        TailoringTypeCMB.DataSource = Nothing
-        TailoringTypeCMB.DataSource = catalogData
-        TailoringTypeCMB.DisplayMember = "Service_Name"
-        TailoringTypeCMB.ValueMember = "Catalog_ID"
-        TailoringTypeCMB.SelectedIndex = -1
-    End Sub
-
-    ' Smart Features
     Private Sub TailoringTypeCMB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TailoringTypeCMB.SelectedIndexChanged
-        LoadRequiredMaterials()
-        CalculateSmartPrice()
+        tailoringManager.LoadRequiredMaterials()
+        tailoringManager.CalculateSmartPrice()
     End Sub
 
     Private Sub TailoringClothesCMB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TailoringClothesCMB.SelectedIndexChanged
         If Not String.IsNullOrEmpty(TailoringTypeCMB.Text) Then
-            CalculateSmartPrice()
+            tailoringManager.CalculateSmartPrice()
         End If
     End Sub
 
-    Private Sub CalculateSmartPrice()
-        If TailoringTypeCMB.SelectedIndex < 0 Then
-            TailoringPriceTB.Clear()
-            Return
-        End If
-
-        Dim serviceName = TailoringTypeCMB.Text
-        Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
-        If service Is Nothing Then
-            TailoringPriceTB.Clear()
-            Return
-        End If
-
-        TailoringPriceTB.Text = service.BasePrice.ToString("F2")
-    End Sub
-
-
-    Private Sub LoadRequiredMaterials()
-        If TailoringTypeCMB.SelectedIndex < 0 Then
-            TailoringMaterialsDGV.DataSource = Nothing
-            Return
-        End If
-
-        Dim serviceName = TailoringTypeCMB.Text
-        Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = serviceName)
-        If service Is Nothing Then Return
-
-        Dim clothesDetails = GetSelectedClothesDetails()
-        Dim requirements As List(Of ServiceRequirement) = New List(Of ServiceRequirement)
-
-        ' 🔍 Priority 1: Category + Fabric specific
-        If ServiceRequirements.ContainsKey(clothesDetails.Category) AndAlso
-       ServiceRequirements(clothesDetails.Category).ContainsKey(clothesDetails.FabricType) AndAlso
-       ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType).ContainsKey(service.CatalogID) Then
-
-            requirements = ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType)(service.CatalogID)
-
-            ' 🔍 Priority 2: Category + Any Fabric
-        ElseIf ServiceRequirements.ContainsKey(clothesDetails.Category) Then
-            Dim categoryDict = ServiceRequirements(clothesDetails.Category)
-            Dim fabricDict = categoryDict.Values.FirstOrDefault(Function(d) d.ContainsKey(service.CatalogID))
-            If fabricDict IsNot Nothing Then
-                requirements = fabricDict(service.CatalogID)
-            End If
-
-            ' 🔍 Priority 3: Any Category + Fabric
-        Else
-            For Each categoryDict In ServiceRequirements.Values
-                Dim fabricDict = categoryDict.Values.FirstOrDefault(Function(d) d.ContainsKey(service.CatalogID))
-                If fabricDict IsNot Nothing Then
-                    requirements = fabricDict(service.CatalogID)
-                    Exit For
-                End If
-            Next
-        End If
-
-        If requirements.Count = 0 Then
-            TailoringMaterialsDGV.DataSource = Nothing
-            TailoringMaterialsDGV.Columns.Clear()
-
-            ' Add columns first, then rows
-            TailoringMaterialsDGV.Columns.Add("MaterialID", "ID")
-            TailoringMaterialsDGV.Columns.Add("MaterialName", "Material")
-            TailoringMaterialsDGV.Columns.Add("Quantity", "Qty")
-            TailoringMaterialsDGV.Columns.Add("Unit", "Unit")
-            TailoringMaterialsDGV.Columns.Add("Stock", "Stock Status")
-            TailoringMaterialsDGV.Columns.Add("Match", "Match")
-
-            ' Now add the warning row
-            TailoringMaterialsDGV.Rows.Add("", "⚠️ No materials defined for this service + cloth combination", "", "", "CHECK SERVICE COMPATIBILITY", "")
-            Return
-        End If
-
-        ' Show materials with stock status (same as before)
-        Dim materialsWithStock = New List(Of Object)
-        For Each req In requirements
-            Dim stockLevel As Integer = 0
-            Try
-                OpenConn()
-                Dim stockQuery = "SELECT Quantity_in_Stock FROM Materials WHERE Material_ID = @id"
-                cmd = New MySqlCommand(stockQuery, conn)
-                cmd.Parameters.AddWithValue("@id", req.MaterialID)
-                Dim result = cmd.ExecuteScalar()
-                stockLevel = If(result IsNot Nothing, Convert.ToInt32(result), 0)
-                CloseConn()
-            Catch
-                stockLevel = 0
-            End Try
-
-            Dim stockStatus As String
-            If stockLevel >= req.DefaultQuantity Then
-                stockStatus = $"✅ IN STOCK ({stockLevel})"
-            ElseIf stockLevel > 0 Then
-                stockStatus = $"⚠️ LOW ({stockLevel}/{req.DefaultQuantity})"
-            Else
-                stockStatus = "❌ OUT OF STOCK"
-            End If
-
-            materialsWithStock.Add(New With {
-            .Material_ID = req.MaterialID,
-            .Material_Name = req.MaterialName,
-            .Default_Quantity = req.DefaultQuantity,
-            .Unit_Measure = req.UnitMeasure,
-            .Stock_Available = stockLevel,
-            .Stock_Status = stockStatus,
-            .Category_Match = clothesDetails.Category,
-            .Fabric_Match = clothesDetails.FabricType
-        })
-        Next
-
-        TailoringMaterialsDGV.Columns.Clear()
-        TailoringMaterialsDGV.DataSource = materialsWithStock
-
-        ' Auto-size columns
-        TailoringMaterialsDGV.AutoResizeColumns()
-        TailoringMaterialsDGV.Columns("Material_ID").Visible = False  ' Hide ID column
-    End Sub
-
-    Private Function GetSelectedClothesDetails() As (Category As String, FabricType As String)
-        If isCustomerOwnedMode Then
-            ' Parse customer description for category hints
-            Dim desc = TailoringCustomerClothesTB.Text.ToLower()
-            Dim category = "Top" ' Default
-            If desc.Contains("pants") Or desc.Contains("slacks") Or desc.Contains("jeans") Then
-                category = "Pants"
-            ElseIf desc.Contains("dress") Or desc.Contains("terno") Then
-                category = "Dress"
-            ElseIf desc.Contains("suit") Or desc.Contains("uniform") Then
-                category = "Suit"
-            End If
-            Return (category, "Cotton") ' Default fabric for customer-owned
-        End If
-
-        If TailoringClothesCMB.SelectedValue IsNot Nothing Then
-            Try
-                OpenConn()
-                Dim query = "SELECT Category, Fabric_Type FROM Clothes WHERE Clothes_ID = @id"
-                cmd = New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@id", TailoringClothesCMB.SelectedValue)
-                Using reader = cmd.ExecuteReader()
-                    If reader.Read() Then
-                        Dim category = reader("Category").ToString()
-                        Dim fabric = If(IsDBNull(reader("Fabric_Type")), "Cotton", reader("Fabric_Type").ToString())
-                        CloseConn()
-                        Return (category, fabric)
-                    End If
-                End Using
-                CloseConn()
-            Catch
-                ' Fallback
-            End Try
-        End If
-        Return ("Top", "Cotton") ' Ultimate fallback
-    End Function
-
-    ' Create Request
     Private Sub CreateTailoringRequestBTN_Click(sender As Object, e As EventArgs) Handles CreateTailoringRequestBTN.Click
-        ' 🆕 VALIDATE SERVICE COMPATIBILITY
-        Dim clothesDetails = GetSelectedClothesDetails()
-        Dim serviceName = TailoringTypeCMB.Text
-        Dim tailoringService = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName = TailoringTypeCMB.Text)
-
-        ' Block incompatible services
-        Dim incompatibleServices = {
-            ("Pants", "Shorten Sleeves"), ("Pants", "Button Replacement"),
-            ("Top", "Zipper Replacement"), ("Dress", "Button Replacement"),
-            ("Suit", "Zipper Replacement")
-}
-
-        For Each invalid In incompatibleServices
-            If clothesDetails.Category = invalid.Item1 AndAlso serviceName.Contains(invalid.Item2) Then
-                MessageBox.Show($"❌ '{serviceName}' not available for {clothesDetails.Category}!", "Service Incompatible")
-                Return
-            End If
-        Next
-
-        If TailoringCustomerCMB.SelectedIndex = -1 OrElse String.IsNullOrEmpty(TailoringTypeCMB.Text) Then
-            MessageBox.Show("⚠️ Select Customer + Service Type")
-            Return
-        End If
-
-        If TailoringEmployeeCMB.SelectedIndex = -1 Then  ' ✅ VALIDATION
-            MessageBox.Show("⚠️ Please assign an Employee")
-            Return
-        End If
-
-        If String.IsNullOrEmpty(TailoringPriceTB.Text) Then
-            MessageBox.Show("⚠️ Select Service Type first to auto-calculate price")
-            Return
-        End If
-
-        Try
-            OpenConn()
-
-            Dim insertQuery = "
-        INSERT INTO Tailoring_Services 
-        (Type_of_Alteration, Description_of_Work, Service_Price, Date_Requested, Status, 
-         Customer_ID, Clothes_ID, Is_Customer_Owned, Employee_ID)  
-        VALUES (@type, @desc, @price, NOW(), 'Pending', @customerId, @clothesId, @isOwned, @employeeId)"
-
-            cmd = New MySqlCommand(insertQuery, conn)
-            cmd.Parameters.AddWithValue("@type", TailoringTypeCMB.Text)
-            cmd.Parameters.AddWithValue("@desc", If(isCustomerOwnedMode, TailoringCustomerClothesTB.Text, TailoringDescriptionTB.Text))
-            cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(TailoringPriceTB.Text))
-            cmd.Parameters.AddWithValue("@customerId", TailoringCustomerCMB.SelectedValue)
-            cmd.Parameters.AddWithValue("@clothesId", If(isCustomerOwnedMode, DBNull.Value, TailoringClothesCMB.SelectedValue))
-            cmd.Parameters.AddWithValue("@isOwned", If(isCustomerOwnedMode, 1, 0))
-            cmd.Parameters.AddWithValue("@employeeId", TailoringEmployeeCMB.SelectedValue)
-
-            cmd.ExecuteNonQuery()
-
-            ' Update clothes status if shop inventory
-            If Not isCustomerOwnedMode AndAlso TailoringClothesCMB.SelectedValue IsNot Nothing Then
-                Dim updateClothes = "UPDATE Clothes SET Status = 'In Tailoring' WHERE Clothes_ID = @id"
-                cmd = New MySqlCommand(updateClothes, conn)
-                cmd.Parameters.AddWithValue("@id", TailoringClothesCMB.SelectedValue)
-                cmd.ExecuteNonQuery()
-            End If
-
-            ' 🔥 NEW: AUTO-DEDUCT MATERIALS FROM STOCK
-            If tailoringService IsNot Nothing Then  ' ✅ Fixed: Use consistent variable name
-                Dim requirements = GetCurrentServiceRequirements(tailoringService.CatalogID)  ' ✅ Fixed: Use tailoringService
-                Dim serviceId As Integer = Convert.ToInt32(cmd.LastInsertedId)
-
-                For Each req In requirements
-                    Try
-                        Dim deductQuery = "UPDATE Materials SET Quantity_in_Stock = GREATEST(0, Quantity_in_Stock - @qty) WHERE Material_ID = @materialId"
-                        cmd = New MySqlCommand(deductQuery, conn)
-                        cmd.Parameters.AddWithValue("@qty", req.DefaultQuantity)
-                        cmd.Parameters.AddWithValue("@materialId", req.MaterialID)
-                        cmd.ExecuteNonQuery()
-
-                        Dim recordQuery = "INSERT INTO Required_Materials (Tailoring_Services_ID, Material_ID, Quantity_Used, Unit_Measure_Used) VALUES (@serviceId, @materialId, @qty, @unit)"
-                        cmd = New MySqlCommand(recordQuery, conn)
-                        cmd.Parameters.AddWithValue("@serviceId", serviceId)
-                        cmd.Parameters.AddWithValue("@materialId", req.MaterialID)
-                        cmd.Parameters.AddWithValue("@qty", req.DefaultQuantity)
-                        cmd.Parameters.AddWithValue("@unit", req.UnitMeasure)
-                        cmd.ExecuteNonQuery()
-
-                    Catch deductEx As Exception
-                        ' Log but don't stop the whole transaction
-                        Debug.WriteLine($"⚠️ Failed to deduct material {req.MaterialID}: {deductEx.Message}")
-                    End Try
-                Next
-            End If
-
-            MessageBox.Show("✅ Tailoring request created!" & vbCrLf &
-               $"💰 ₱" & TailoringPriceTB.Text & vbCrLf &
-               $"👷 Assigned: " & TailoringEmployeeCMB.Text & vbCrLf &
-               $"📦 " & If(isCustomerOwnedMode, "👕 CUSTOMER-OWNED", "👗 SHOP INVENTORY"),
-               "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            ClearTailoringFields()
-            LoadTailoringTransactions()
-            clothesManager.LoadClothes()
-
-        Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
-        Finally
-            CloseConn()
-        End Try
+        tailoringManager.CreateRequest()
     End Sub
 
-    Private Function GetCurrentServiceRequirements(catalogId As Integer) As List(Of ServiceRequirement)
-        Dim clothesDetails = GetSelectedClothesDetails()
-
-        ' Priority 1: Exact Category + Fabric match
-        If ServiceRequirements.ContainsKey(clothesDetails.Category) AndAlso
-       ServiceRequirements(clothesDetails.Category).ContainsKey(clothesDetails.FabricType) AndAlso
-       ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType).ContainsKey(catalogId) Then
-            Return ServiceRequirements(clothesDetails.Category)(clothesDetails.FabricType)(catalogId)
-        End If
-
-        ' Priority 2: Category match, any fabric
-        If ServiceRequirements.ContainsKey(clothesDetails.Category) Then
-            Dim categoryDict = ServiceRequirements(clothesDetails.Category)
-            For Each fabricDict In categoryDict.Values
-                If fabricDict.ContainsKey(catalogId) Then
-                    Return fabricDict(catalogId)
-                End If
-            Next
-        End If
-
-        ' Priority 3: Any category + fabric match
-        For Each categoryDict In ServiceRequirements.Values
-            If categoryDict.ContainsKey(clothesDetails.FabricType) AndAlso
-           categoryDict(clothesDetails.FabricType).ContainsKey(catalogId) Then
-                Return categoryDict(clothesDetails.FabricType)(catalogId)
-            End If
-        Next
-
-        ' Priority 4: Any category, any fabric
-        For Each categoryDict In ServiceRequirements.Values
-            For Each fabricDict In categoryDict.Values
-                If fabricDict.ContainsKey(catalogId) Then
-                    Return fabricDict(catalogId)
-                End If
-            Next
-        Next
-
-        Return New List(Of ServiceRequirement)()
-    End Function
     Private Sub UpdateTailoringStatusBTN_Click(sender As Object, e As EventArgs) Handles UpdateTailoringStatusBTN.Click
-        If TailoringServiceIDTB.Text = "" OrElse String.IsNullOrEmpty(TailoringServiceIDTB.Text) Then
-            MessageBox.Show("❌ Select a tailoring transaction first!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        If TailoringStatusCMB.SelectedIndex = -1 OrElse TailoringStatusCMB.SelectedItem Is Nothing Then
-            MessageBox.Show("❌ Please select a status from the dropdown!", "No Status Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        Dim serviceId As Integer = Convert.ToInt32(TailoringServiceIDTB.Text.Trim())
-        Dim newStatus As String = TailoringStatusCMB.SelectedItem.ToString().Trim()
-        Dim fabricType As String = "Cotton"
-
-        ' 🔒 TRANSACTION for safety
-        Dim transaction As MySqlTransaction = Nothing
-        Try
-            OpenConn()
-            transaction = conn.BeginTransaction(IsolationLevel.ReadCommitted)
-
-            ' 1️⃣ UPDATE Tailoring Service
-            Dim updateServiceQuery As String = "UPDATE Tailoring_Services SET Status = @status, Date_Completed = NOW() WHERE Tailoring_Services_ID = @id"
-            Using cmdService = New MySqlCommand(updateServiceQuery, conn, transaction)
-                cmdService.Parameters.AddWithValue("@status", newStatus)
-                cmdService.Parameters.AddWithValue("@id", serviceId)
-                Dim serviceRows = cmdService.ExecuteNonQuery()
-                Debug.WriteLine($"📝 Service {serviceId} → '{newStatus}' ({serviceRows} rows)")
-            End Using
-
-            ' 2️⃣ 🆕 Get Clothes_ID, Is_Customer_Owned & Service Type
-            Dim clothesId As Integer? = Nothing
-            Dim isCustomerOwned As Boolean = False
-            Dim serviceTypeName As String = ""
-
-            Dim getDetailsQuery As String = "
-            SELECT Clothes_ID, Is_Customer_Owned, Type_of_Alteration 
-            FROM Tailoring_Services 
-            WHERE Tailoring_Services_ID = @id"
-
-            Using cmdDetails = New MySqlCommand(getDetailsQuery, conn, transaction)
-                cmdDetails.Parameters.AddWithValue("@id", serviceId)
-                Using reader = cmdDetails.ExecuteReader()
-                    If reader.Read() Then
-                        If Not IsDBNull(reader("Clothes_ID")) Then
-                            clothesId = Convert.ToInt32(reader("Clothes_ID"))
-                        End If
-                        isCustomerOwned = Convert.ToBoolean(reader("Is_Customer_Owned"))
-                        serviceTypeName = reader("Type_of_Alteration").ToString()
-                    End If
-                End Using
-            End Using
-
-            ' 3️⃣ HANDLE EACH STATUS
-            Dim clothesUpdated As Integer = 0
-            Dim materialsRefunded As Integer = 0
-
-            Select Case newStatus.ToUpperInvariant()
-                Case "COMPLETED"
-                    ' 🎉 Return shop clothes to Available
-                    If clothesId.HasValue AndAlso Not isCustomerOwned Then
-                        Dim updateClothesQuery As String = "
-                        UPDATE Clothes 
-                        SET Status = 'Available', 
-                            Clothes_Condition = 'Good'
-                        WHERE Clothes_ID = @clothesId"
-                        Using cmdClothes = New MySqlCommand(updateClothesQuery, conn, transaction)
-                            cmdClothes.Parameters.AddWithValue("@clothesId", clothesId.Value)
-                            clothesUpdated = cmdClothes.ExecuteNonQuery()
-                        End Using
-                    End If
-
-                Case "CANCELLED"
-                    ' Return shop clothes to Available
-                    If clothesId.HasValue AndAlso Not isCustomerOwned Then
-                        Dim updateClothesQuery As String = "UPDATE Clothes SET Status = 'Available' WHERE Clothes_ID = @clothesId"
-                        Using cmdClothes = New MySqlCommand(updateClothesQuery, conn, transaction)
-                            cmdClothes.Parameters.AddWithValue("@clothesId", clothesId.Value)
-                            clothesUpdated = cmdClothes.ExecuteNonQuery()
-                        End Using
-                    End If
-
-                    ' 🔥 FIXED: Fabric-aware material refund
-                    Dim service = TailoringCatalog.FirstOrDefault(Function(s) s.ServiceName.Equals(serviceTypeName, StringComparison.OrdinalIgnoreCase))
-                    If service IsNot Nothing Then
-                        ' Determine fabric type
-                        Dim refundFabricType As String = "Cotton"
-                        If clothesId.HasValue AndAlso Not isCustomerOwned Then
-                            Using cmdFabric = New MySqlCommand("SELECT Fabric_Type FROM Clothes WHERE Clothes_ID = @id", conn, transaction)
-                                cmdFabric.Parameters.AddWithValue("@id", clothesId.Value)
-                                Dim fabricResult = cmdFabric.ExecuteScalar()
-                                If fabricResult IsNot Nothing Then refundFabricType = fabricResult.ToString()
-                            End Using
-                        End If
-
-                        ' Get fabric-specific requirements or fallback
-                        Dim refundRequirements As New List(Of ServiceRequirement)
-                        Dim categoryDict As Dictionary(Of String, Dictionary(Of Integer, List(Of ServiceRequirement))) = Nothing
-                        Dim fabricDict As Dictionary(Of Integer, List(Of ServiceRequirement)) = Nothing
-
-                        If ServiceRequirements.ContainsKey(refundFabricType) Then
-                            categoryDict = ServiceRequirements(refundFabricType)
-                            If categoryDict IsNot Nothing AndAlso categoryDict.ContainsKey(service.CatalogID.ToString()) Then
-                                fabricDict = categoryDict(service.CatalogID.ToString())
-                                If fabricDict IsNot Nothing AndAlso fabricDict.ContainsKey(service.CatalogID) Then
-                                    refundRequirements = fabricDict(service.CatalogID)
-                                End If
-                            End If
-                        End If
-
-                        If refundRequirements.Count = 0 Then
-                            For Each catDict In ServiceRequirements.Values
-                                For Each fabDict In catDict.Values
-                                    If fabDict.ContainsKey(service.CatalogID) Then
-                                        refundRequirements = fabDict(service.CatalogID)
-                                        Exit For
-                                    End If
-                                Next
-                                If refundRequirements.Count > 0 Then Exit For
-                            Next
-                        End If
-
-                        ' Refund each material
-                        For Each req In refundRequirements
-                            Dim refundQuery As String = "UPDATE Materials SET Quantity_in_Stock = Quantity_in_Stock + @qty WHERE Material_ID = @materialId"
-                            Using cmdRefund = New MySqlCommand(refundQuery, conn, transaction)
-                                cmdRefund.Parameters.AddWithValue("@qty", req.DefaultQuantity)
-                                cmdRefund.Parameters.AddWithValue("@materialId", req.MaterialID)
-                                materialsRefunded += cmdRefund.ExecuteNonQuery()
-                            End Using
-                            Debug.WriteLine($"💰 Refunded {req.DefaultQuantity} {req.MaterialName} ({refundFabricType})")
-                        Next
-                    End If
-
-                Case Else
-                    ' Pending/In Progress/Ready for Pickup: No special handling
-                    Debug.WriteLine($"ℹ️ Status '{newStatus}' - no special clothes/material handling")
-
-            End Select
-
-            ' 4️⃣ COMMIT
-            transaction.Commit()
-
-            ' 🎉 DETAILED SUCCESS REPORT
-            Dim successMsg As New List(Of String) From {
-            $"✅ Service #{serviceId} → '{newStatus}'",
-            $"📅 {DateTime.Now:MMM dd, yyyy HH:mm}"
-        }
-
-            If clothesUpdated > 0 Then
-                successMsg.Insert(0, "👗 Clothes returned to Available inventory!")
-            End If
-
-            If materialsRefunded > 0 Then
-                successMsg.Insert(0, $"💰 {materialsRefunded} material units refunded!")
-            ElseIf newStatus.ToUpperInvariant() = "COMPLETED" AndAlso Not isCustomerOwned AndAlso clothesId.HasValue Then
-                successMsg.Insert(0, "🎉 Service completed - clothes ready!")
-            ElseIf newStatus.ToUpperInvariant() = "COMPLETED" Then
-                successMsg.Insert(0, "✅ Service completed (customer-owned)")
-            End If
-
-            MessageBox.Show(String.Join(vbCrLf, successMsg), "✅ Update Successful!",
-                       MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            ' 🔄 FULL REFRESH
-            LoadTailoringTransactions()
-            clothesManager.LoadClothes()
-            If MaterialsPanel.Visible Then LoadMaterials()  ' Refresh stock display
-            If TailoringPanel.Visible Then LoadAvailableClothesToTailoringCombo()
-
-        Catch ex As Exception
-            transaction?.Rollback()
-            MessageBox.Show($"❌ Update failed: {ex.Message}", "Database Error",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Debug.WriteLine($"TAILORING ERROR: {ex.ToString()}")
-        Finally
-            If conn?.State = ConnectionState.Open Then conn.Close()
-        End Try
-    End Sub
-
-    Private Sub ClearTailoringFields()
-        TailoringCustomerCMB.SelectedIndex = -1
-        TailoringClothesCMB.SelectedIndex = -1
-        TailoringEmployeeCMB.SelectedIndex = -1
-        TailoringTypeCMB.SelectedIndex = -1
-        TailoringCustomerClothesTB.Clear()
-        TailoringDescriptionTB.Clear()
-        TailoringPriceTB.Clear()
-        TailoringMaterialsDGV.DataSource = Nothing
-        TailoringServiceIDTB.Clear()
+        tailoringManager.UpdateStatus()
     End Sub
 
     Private Sub ClearTailoringBTN_Click(sender As Object, e As EventArgs) Handles ClearTailoringBTN.Click
-        ClearTailoringFields()
-        ResetTailoringUI()
+        tailoringManager.ClearFields()
     End Sub
 
-    Private Sub ResetTailoringUI()
-        isCustomerOwnedMode = False
-        CustomerOwnedToggleBTN.Text = "👕 CUSTOMER-OWNED"
-        CustomerOwnedToggleBTN.BackColor = Color.DodgerBlue
-        TailoringClothesCMB.Enabled = True
-        TailoringCustomerClothesTB.Enabled = False
-        TailoringClothesLabel.Text = "Shop Inventory Clothes:"
-        TailoringDescriptionTB.Enabled = True
+    ' =========================
+    ' REPORTS PANEL
+    ' =========================
+
+    Private Sub ReportsPanel_VisibleChanged(sender As Object, e As EventArgs) Handles ReportsPanel.VisibleChanged
+        If ReportsPanel.Visible Then
+            CheckAndUpdateConnectionStatus()
+            reportsManager.InitializeReportsPanel()
+        End If
     End Sub
 
+    Private Sub GenerateReportBTN_Click(sender As Object, e As EventArgs) Handles GenerateReportBTN.Click
+        reportsManager.GenerateSelectedReport()
+    End Sub
+
+    Private Sub ExportPDFBTN_Click(sender As Object, e As EventArgs) Handles ExportPDFBTN.Click
+        reportsManager.ExportToExcel()
+    End Sub
+
+    'Private Sub ExportExcelBTN_Click(sender As Object, e As EventArgs) Handles ExportExcelBTN.Click
+    '    reportsManager.ExportToExcel()
+    'End Sub
 
     ' =========================
     ' OFFLINE MODE HANDLER
     ' =========================
     Private Sub UpdateConnectionStatus()
-        If ConnDB.IsOfflineMode Then
-            ConnectionStatusLabel.ForeColor = Color.Red
-            ConnectionStatusLabel.Text = "⚠️ OFFLINE MODE - No database connection"
-
-            ClearAllDataGridViews()
-            SetOfflineUI()
-        Else
-            ConnectionStatusLabel.ForeColor = Color.Green
-            ConnectionStatusLabel.Text = "🟢 ONLINE - Connected to database"
-
-            ' Re-enable UI
-            SetOnlineUI()
-        End If
+        CheckAndUpdateConnectionStatus()
     End Sub
 
     Private Sub ClearAllDataGridViews()
@@ -1994,19 +817,291 @@ Public Class Form1
     ' =========================
     ' RECONNECTION HANDLER
     ' =========================
-    Private Sub CheckConnectionStatus()
-        Dim wasOffline = ConnDB.IsOfflineMode
+
+    Private Sub TestConnectionBTN_Click(sender As Object, e As EventArgs) Handles TestConnectionBTN.Click
+        ConnDB.serverName = ServerTB.Text.Trim()
+        ConnDB.databaseName = DatabaseTB.Text.Trim()
+        ConnDB.dbUsername = UsernameTB.Text.Trim()
+        ConnDB.dbPassword = PasswordTB.Text
 
         If ConnDB.TestConnection() Then
-            If wasOffline Then
-                MessageBox.Show("✅ Reconnected to database!", "Connection Restored",
-                              MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
-            UpdateConnectionStatus()
+
+            ConfigStatusLabel.Text = "✅ Connection Successful"
+            ConfigStatusLabel.ForeColor = Color.Green
+
         Else
-            UpdateConnectionStatus()
+
+            ConfigStatusLabel.Text = "❌ " & ConnDB.LastConnectionError
+            ConfigStatusLabel.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub SaveConfigBTN_Click(sender As Object, e As EventArgs) Handles SaveConfigBTN.Click
+        ConnDB.serverName = ServerTB.Text.Trim()
+        ConnDB.databaseName = DatabaseTB.Text.Trim()
+        ConnDB.dbUsername = UsernameTB.Text.Trim()
+        ConnDB.dbPassword = PasswordTB.Text
+
+        If ConnDB.TestConnection() Then
+
+            ConnDB.SaveConfig()
+
+            ConfigStatusLabel.Text = "✅ Configuration Saved"
+            ConfigStatusLabel.ForeColor = Color.Green
+
+        Else
+
+            ConfigStatusLabel.Text = "❌ Invalid Connection"
+            ConfigStatusLabel.ForeColor = Color.Red
+
+        End If
+    End Sub
+
+    Private Sub BackupNowBTN_Click(sender As Object, e As EventArgs) Handles BackupNowBTN.Click
+        Dim sfd As New SaveFileDialog()
+
+        sfd.Filter = "SQL File|*.sql"
+        sfd.FileName =
+            $"{databaseName}_Backup_{Date.Now:yyyyMMdd_HHmmss}.sql"
+
+        If sfd.ShowDialog() = DialogResult.OK Then
+
+            If ConnDB.BackupDatabase(sfd.FileName) Then
+
+                MessageBox.Show(
+                    "Database backup successful!",
+                    "Backup",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                )
+
+            Else
+
+                MessageBox.Show(
+                    "Backup failed!",
+                    "Backup",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                )
+
+            End If
+
+        End If
+    End Sub
+
+    Private Sub RestoreNowBTN_Click(sender As Object, e As EventArgs) Handles RestoreNowBTN.Click
+        If MessageBox.Show(
+        "This will overwrite current database data. Continue?",
+        "WARNING",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Warning
+    ) = DialogResult.No Then
+            Return
+        End If
+
+        Dim ofd As New OpenFileDialog()
+
+        ofd.Filter = "SQL File|*.sql"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+
+            If ConnDB.RestoreDatabase(ofd.FileName) Then
+
+                MessageBox.Show(
+                "Database restored successfully!",
+                "Restore",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+
+            Else
+
+                MessageBox.Show(
+                "Restore failed!",
+                "Restore",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            )
+
+            End If
+
+        End If
+
+    End Sub
+
+    Public Sub RefreshAllData()
+
+        Try
+
+            If dashboardManager IsNot Nothing Then
+                dashboardManager.LoadDashboard()
+            End If
+
+            If clothesManager IsNot Nothing Then
+                clothesManager.LoadClothes()
+            End If
+
+            If materialsManager IsNot Nothing Then
+                materialsManager.LoadMaterials()
+                materialsManager.LoadSuppliers()
+            End If
+
+            If rentManager IsNot Nothing Then
+                rentManager.LoadRentTransactions()
+                rentManager.LoadCustomersToRentCombo()
+                rentManager.LoadAvailableClothesToCombo()
+            End If
+
+            If tailoringManager IsNot Nothing Then
+                tailoringManager.LoadTransactions()
+                tailoringManager.LoadCustomersToCombo()
+                tailoringManager.LoadEmployeesToCombo()
+                tailoringManager.LoadAvailableClothesToCombo()
+                tailoringManager.LoadCatalog()
+            End If
+
+        Catch ex As Exception
+            Debug.WriteLine("RefreshAllData Error: " & ex.Message)
+        End Try
+
+    End Sub
+
+    Public Function EnsureOnline() As Boolean
+
+        If ConnDB.IsOfflineMode Then
+
+            If ConnDB.TestConnection() Then
+
+                UpdateConnectionStatus()
+                RefreshAllData()
+
+                MessageBox.Show(
+                    "✅ Connection restored!",
+                    "Online",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                )
+
+                Return True
+
+            Else
+
+                UpdateConnectionStatus()
+
+                MessageBox.Show(
+                    "❌ Database still offline.",
+                    "Offline Mode",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                )
+
+                Return False
+
+            End If
+
+        End If
+
+        Return True
+
+    End Function
+
+
+    ' Add this method to check and update connection status
+    Public Sub CheckAndUpdateConnectionStatus()
+        ' Test connection to get current status
+        Dim wasOffline = ConnDB.IsOfflineMode
+        Dim isNowOnline = ConnDB.TestConnection()
+
+        ' Update the UI based on current status
+        If ConnDB.IsOfflineMode Then
+            ConnectionStatusLabel.ForeColor = Color.Red
+            ConnectionStatusLabel.Text = "⚠️ OFFLINE MODE - No database connection"
+
+            If Not wasOffline Then
+                ' Just went offline
+                ClearAllDataGridViews()
+                SetOfflineUI()
+
+                ' Show offline in dashboard too
+                If dashboardManager IsNot Nothing AndAlso AdminDashboardPanel.Visible Then
+                    dashboardManager.LoadDashboard()
+                End If
+            End If
+
+            hasRefreshedAfterReconnect = False
+        Else
+            ConnectionStatusLabel.ForeColor = Color.Green
+            ConnectionStatusLabel.Text = "🟢 ONLINE - Connected to database"
+
+            If wasOffline Then
+                ' Just came online
+                SetOnlineUI()
+
+                ' Auto-refresh data when coming online
+                If Not hasRefreshedAfterReconnect Then
+                    RefreshAllData()
+                    hasRefreshedAfterReconnect = True
+                End If
+            End If
         End If
     End Sub
 
 
+    Private Sub RefreshCurrentPanelData()
+        If ConnDB.IsOfflineMode Then
+            ' Try to reconnect
+            If ConnDB.TestConnection() Then
+                UpdateConnectionStatus()
+            Else
+                Return
+            End If
+        End If
+
+        ' Refresh data for the currently visible panel
+        If AdminDashboardPanel.Visible Then
+            If dashboardManager IsNot Nothing Then
+                dashboardManager.LoadDashboard()
+            End If
+        ElseIf ClothesPanel.Visible Then
+            clothesManager.LoadCurrentDGV()
+        ElseIf CustomerPanel.Visible Then
+            LoadCustomers()
+        ElseIf RentPanel.Visible Then
+            rentManager.LoadRentTransactions()
+            rentManager.LoadCustomersToRentCombo()
+            rentManager.LoadAvailableClothesToCombo()
+        ElseIf TailoringPanel.Visible Then
+            tailoringManager.LoadTransactions()
+            tailoringManager.LoadCustomersToCombo()
+            tailoringManager.LoadEmployeesToCombo()
+            tailoringManager.LoadAvailableClothesToCombo()
+            tailoringManager.LoadCatalog()
+        ElseIf MaterialsPanel.Visible Then
+            materialsManager.LoadMaterials()
+            materialsManager.LoadSuppliers()
+        ElseIf ReportsPanel.Visible Then
+            reportsManager.InitializeReportsPanel()
+        End If
+    End Sub
+
+    Private Sub AdminDashboardPanel_VisibleChanged(sender As Object, e As EventArgs) Handles AdminDashboardPanel.VisibleChanged
+        If AdminDashboardPanel.Visible Then
+            If ConnDB.IsOfflineMode Then
+                ConnDB.TestConnection()
+                UpdateConnectionStatus()
+            End If
+
+            If dashboardManager IsNot Nothing Then
+                dashboardManager.LoadDashboard()
+            End If
+        End If
+    End Sub
+
+    Private Sub ClothesPanel_VisibleChanged(sender As Object, e As EventArgs) Handles ClothesPanel.VisibleChanged
+        If ClothesPanel.Visible Then
+            CheckAndUpdateConnectionStatus()  ' Add this line
+            clothesManager.LoadCurrentDGV()
+        End If
+    End Sub
 End Class

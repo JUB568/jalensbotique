@@ -12,10 +12,56 @@ Module ConnDB
     Public IsOfflineMode As Boolean = False
     Public LastConnectionError As String = ""
 
-    Private serverName As String = "localhost"
-    Private databaseName As String = "jalensbotique"
-    Private dbUsername As String = "root"
-    Private dbPassword As String = ""
+    Public serverName As String = "localhost"
+    Public databaseName As String = "jalensbotique"
+    Public dbUsername As String = "root"
+    Public dbPassword As String = ""
+
+    Private configPath As String = Application.StartupPath & "\dbconfig.txt"
+
+    Public Sub SaveConfig()
+
+        Try
+
+            Dim lines As String() = {
+            serverName,
+            databaseName,
+            dbUsername,
+            Encrypt(dbPassword)
+        }
+
+            File.WriteAllLines(configPath, lines)
+
+        Catch ex As Exception
+            MessageBox.Show("Error saving config: " & ex.Message)
+        End Try
+
+    End Sub
+
+    Public Sub LoadConfig()
+
+        Try
+
+            If File.Exists(configPath) Then
+
+                Dim lines() As String = File.ReadAllLines(configPath)
+
+                If lines.Length >= 4 Then
+
+                    serverName = lines(0)
+                    databaseName = lines(1)
+                    dbUsername = lines(2)
+                    dbPassword = Decrypt(lines(3))
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading config: " & ex.Message)
+        End Try
+
+    End Sub
 
     Private Function GetConnectionString() As String
         Return $"server={serverName};uid={dbUsername};password={dbPassword};database={databaseName};AllowUserVariables=True;"
@@ -26,6 +72,7 @@ Module ConnDB
             Using testConn As New MySqlConnection(GetConnectionString())
                 testConn.Open()
                 IsOfflineMode = False
+                LastConnectionError = ""
                 Return True
             End Using
         Catch ex As Exception
@@ -36,22 +83,53 @@ Module ConnDB
     End Function
 
     Public Sub OpenConn()
+
         Try
-            If IsOfflineMode Then Return
+            ' If we think we're online but connection is broken, test again
+            If Not IsOfflineMode Then
+                If conn Is Nothing OrElse conn.State <> ConnectionState.Open Then
+                    If Not TestConnection() Then
+                        IsOfflineMode = True
+                        Return
+                    End If
+                End If
+            End If
+
+            If IsOfflineMode Then
+                ' Only try to reconnect if we have config
+                If Not String.IsNullOrEmpty(serverName) Then
+                    If TestConnection() Then
+                        ' We're online now, continue
+                    Else
+                        Return
+                    End If
+                Else
+                    Return
+                End If
+            End If
 
             If conn Is Nothing Then
                 conn = New MySqlConnection(GetConnectionString())
+            ElseIf conn.ConnectionString <> GetConnectionString() Then
+                conn.Close()
+                conn.Dispose()
+                conn = New MySqlConnection(GetConnectionString())
             End If
 
-            If conn.State = ConnectionState.Closed OrElse conn.State = ConnectionState.Broken Then
+            If conn.State = ConnectionState.Closed OrElse
+           conn.State = ConnectionState.Broken Then
+
                 conn.Open()
                 IsOfflineMode = False
+                LastConnectionError = ""
+
             End If
 
         Catch ex As Exception
             IsOfflineMode = True
             LastConnectionError = ex.Message
         End Try
+
     End Sub
 
     Public Sub CloseConn()
@@ -65,7 +143,9 @@ Module ConnDB
 
     Public Sub ReadQuery(ByVal sql As String)
         Try
-            If IsOfflineMode Then Return
+            If IsOfflineMode Then
+                If Not TestConnection() Then Return
+            End If
             OpenConn()
             If IsOfflineMode Then Return
             cmd = New MySqlCommand(sql, conn)
@@ -78,11 +158,13 @@ Module ConnDB
 
     Public Function LoadToDGV(ByVal query As String, ByVal dgv As DataGridView) As Integer
         Try
-
             If IsOfflineMode Then
-                dgv.DataSource = Nothing
-                dgv.Rows.Clear()
-                Return 0
+                ' Try to reconnect once
+                If Not TestConnection() Then
+                    dgv.DataSource = Nothing
+                    dgv.Rows.Clear()
+                    Return 0
+                End If
             End If
 
             OpenConn()
@@ -100,7 +182,6 @@ Module ConnDB
             Return dt.Rows.Count
 
         Catch ex As Exception
-
             IsOfflineMode = True
             LastConnectionError = ex.Message
             dgv.DataSource = Nothing
@@ -110,6 +191,97 @@ Module ConnDB
             CloseConn()
         End Try
     End Function
+
+    Public Function BackupDatabase(savePath As String) As Boolean
+
+        Try
+
+            Dim mysqldumpPath As String =
+            "D:\xampp\mysql\bin\mysqldump.exe"
+
+            Dim arguments As String =
+            $"-h {serverName} -u {dbUsername} "
+
+            If dbPassword <> "" Then
+                arguments &= $"-p{dbPassword} "
+            End If
+
+            arguments &= $"{databaseName} --result-file=""{savePath}"""
+
+            Dim process As New Process()
+
+            process.StartInfo.FileName = mysqldumpPath
+            process.StartInfo.Arguments = arguments
+            process.StartInfo.UseShellExecute = False
+            process.StartInfo.CreateNoWindow = True
+
+            process.Start()
+
+            process.WaitForExit()
+
+            Return process.ExitCode = 0
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+            "Backup Error: " & ex.Message
+        )
+
+            Return False
+
+        End Try
+
+    End Function
+
+    Public Function RestoreDatabase(sqlFilePath As String) As Boolean
+
+        Try
+
+            CloseConn()
+
+            Dim mysqlPath As String =
+            "D:\xampp\mysql\bin\mysql.exe"
+
+            Dim arguments As String =
+            $"-h {serverName} -u {dbUsername} "
+
+            If dbPassword <> "" Then
+                arguments &= $"-p{dbPassword} "
+            End If
+
+            arguments &= $"{databaseName}"
+
+            Dim process As New Process()
+
+            process.StartInfo.FileName = mysqlPath
+            process.StartInfo.Arguments = arguments
+            process.StartInfo.UseShellExecute = False
+            process.StartInfo.RedirectStandardInput = True
+            process.StartInfo.CreateNoWindow = True
+
+            process.Start()
+
+            Dim sql As String = File.ReadAllText(sqlFilePath)
+
+            process.StandardInput.WriteLine(sql)
+            process.StandardInput.Close()
+
+            process.WaitForExit()
+
+            Return process.ExitCode = 0
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+            "Restore Error: " & ex.Message
+        )
+
+            Return False
+
+        End Try
+
+    End Function
+
 
     ' =========================
     ' ENCRYPT/DECRYPT (Always available)
@@ -149,5 +321,35 @@ Module ConnDB
             End Using
         End Using
     End Function
+
+    Public Sub EnsureDatabaseExists()
+
+        Try
+
+            Dim connStr As String =
+                $"server={serverName};uid={dbUsername};password={dbPassword};"
+
+            Using tempConn As New MySqlConnection(connStr)
+
+                tempConn.Open()
+
+                Dim query As String =
+                    $"CREATE DATABASE IF NOT EXISTS `{databaseName}`"
+
+                Using cmd As New MySqlCommand(query, tempConn)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+            End Using
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+                "Create DB Error: " & ex.Message
+            )
+
+        End Try
+
+    End Sub
 
 End Module

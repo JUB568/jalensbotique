@@ -286,7 +286,7 @@ Public Class ClothesInventoryManager
         "✓ Clears archive date" & vbCrLf &
         "✓ Item returns to main inventory",
         "Restore from Storage",
-        MessageBoxButtons.YesNoCancel,
+        MessageBoxButtons.YesNo,
         MessageBoxIcon.Question
     )
 
